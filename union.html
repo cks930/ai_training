@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智造科技｜員工福利委員會 (EWC)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/union.css">
+</head>
+
+<body>
+    <nav class="site-nav py-2 shadow-sm mb-3 overflow-x-auto">
+    <ul class="nav justify-content-center gap-2 m-0 p-0 text-nowrap flex-nowrap align-items-center">
+        <li><a href="home.html">🏠 首頁</a></li>
+        <li><a href="about-us.html">🏢 關於智造</a></li>
+        <li><a href="timeline.html">📈 發展時間軸</a></li>
+        <li><a href="EHC-policy.html">🛡️ 職業安全</a></li>
+        <li><span class="nav-link active px-3 py-1 text-primary fw-bold">🎁 員工福利</span></li>
+        <li><a href="R-D.html">🚀 科技展示</a></li>
+        <li><a href="signup.html">📝 線上報名</a></li>
+    </ul>
+</nav>
+
+    <div class="container my-4">
+        <div class="main-card">
+            <h1 class="display-6 main-title text-center mb-4">福委會特約合作廠商列表</h1>
+            <div class="table-responsive-md">
+                <table class="table custom-table table-rwd mb-0 table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">餐廳名稱</th>
+                            <th style="width: 15%;">圖片</th>
+                            <th style="width: 15%;">電話</th>
+                            <th style="width: 30%;">住址</th>
+                            <th style="width: 20%;">位置導航</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myList">
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-muted">正在載入美食資料中...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx?IsTransData=1&UnitId=193",
+                dataType: "json",
+                success: function (data) {
+                    $("#myList").empty();
+                    var fallbackPic = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='90' viewBox='0 0 130 90' fill='%23CBD5E1'><rect width='130' height='90'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='14' fill='%230F172A'>🍴 No Image</text></svg>";
+
+                    $.each(data.slice(0, 50), function (i, item) {
+                        var name = item.Name || '未提供';
+                        var pic = item.PicURL || fallbackPic;
+                        var tel = item.Tel || '未提供';
+                        var addr = item.Address || '未提供';
+                        var mapUrl = (item.Latitude && item.Longitude)
+                            ? `https://www.google.com/maps/dir/?api=1&destination=${item.Latitude},${item.Longitude}`
+                            : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + addr)}`;
+
+                        $("#myList").append(`
+                            <tr>
+                                <td data-th="餐廳名稱"><span class="fw-bold">${name}</span></td>
+                                <td data-th="圖片"><span class="img-container"><img src="${pic}" alt="${name}" onerror="this.onerror=null;this.src='${fallbackPic}';"></span></td>
+                                <td data-th="電話"><span>${tel}</span></td>
+                                <td data-th="住址"><span>${addr}</span></td>
+                                <td data-th="位置導航">
+                                    <span><a href="${mapUrl}" target="_blank" class="btn-map">📍 開啟導航</a></span>
+                                </td>
+                            </tr>
+                        `);
+                    });
+                },
+                error: function () {
+                    $("#myList").html('<tr><td colspan="5" class="text-center py-4 text-danger">⚠️ 美食開放資料抓取失敗，請稍後再試！</td></tr>');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

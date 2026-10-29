@@ -1,0 +1,145 @@
+html
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智造科技｜ PCB 電路板製造</title>
+    <meta name="description" content="智造科技專注於 PCB 電路板設計與製造，提供高品質、穩定可靠的電路板產品，滿足電子、通訊、工業設備等產業需求。">
+    <!-- 引入網路 CDN Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- 引入全局 style.css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- 頂部導覽列 -->
+    <header class="navbar">
+        <!-- Logo 點擊導向首頁 -->
+        <a href="home.html" class="logo-group">
+            <!-- Data URI 備援圖案 -->
+            <div class="logo-icon fallback-icon">智</div>
+            <div class="logo-text">
+                <span class="company-name">智造科技</span>
+                <span class="company-tagline">| 專業 PCB 製造</span>
+            </div>
+        </a>
+        <div class="nav-right">
+            <nav>
+    <ul class="nav-links list-unstyled d-flex gap-2 m-0 align-items-center">
+        <!-- 點擊 Logo 回首頁，導覽列不放首頁連結 -->
+        <li><a href="about-us.html">關於智造</a></li>
+        <li><a href="timeline.html">發展時間軸</a></li>
+        <li><a href="EHC-policy.html">職業安全</a></li>
+        <li><a href="union.html">員工福利</a></li>
+        <li><a href="R-D.html">科技展示</a></li>
+        <li><a href="signup.html">線上報名</a></li>
+    </ul>
+</nav>
+
+            <!-- 深淺切換按鈕 -->
+            <button class="mode-switch" onclick="changeMode()" id="modeButton" aria-label="切換深淺色模式">
+                <span>☀/☾</span>
+                <span class="switch-track">
+                    <span class="switch-dot"></span>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- 主視覺 Banner -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-image">
+                     <img src="images/a1.jpg" alt="智造科技主視覺">
+                </div>
+                <div class="hero-content">
+                    <h1>智慧驅動製造<br>連結科技未來</h1>
+                    <p>專注於高階多層板與 HDI PCB 製造，結合專業研發團隊與自動化精準工藝，為全球客戶提供可靠的 PCB 解決方案。</p>
+                    <a href="about-us.html" class="btn-cta">探索智造</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 數據與企業實力 -->
+        <section class="metrics-bar">
+            <div class="metrics-container">
+                <div class="metric-item"><div class="number">30+</div><div class="label">年產業經驗積累</div></div>
+                <div class="metric-item"><div class="number">99.8%</div><div class="label">嚴格良率控制</div></div>
+                <div class="metric-item"><div class="number">ISO</div><div class="label">國際認證 9001 / 14001</div></div>
+                <div class="metric-item"><div class="number">24/7</div><div class="label">快速打樣與全球支援</div></div>
+            </div>
+        </section>
+
+        <!-- 核心優勢 -->
+        <section id="products" class="section">
+            <h2 class="section-title">核心優勢與專業服務</h2>
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>精密製程技術</h3>
+                    <p>專注於多層板、HDI、以及特殊材質線路設計，滿足通訊與工業設備的高頻高速品質需求。</p>
+                </div>
+                <div class="card">
+                    <h3>全面品質管理</h3>
+                    <p>引進全自動光學檢測 (AOI) 與嚴密品質控管流程，確保產品極致穩定性。</p>
+                </div>
+                <div class="card">
+                    <h3>快速打樣彈性量產</h3>
+                    <p>提供客製化快速打樣方案，彈性調整量產規模，縮短客戶開發週期。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 企業頁尾 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>智造科技股份有限公司</h4>
+                <p>電話：+886-2-1234-5678</p>
+                <p>Email：service@smart-tech.com</p>
+                <p>地址：新竹科學園區創新一路 888 號</p>
+            </div>
+            <div class="footer-col">
+                <h4>快速連結</h4>
+                <a href="about-us.html">關於我們</a>
+                <a href="timeline.html">發展時間軸</a>
+                <a href="#products">產品與服務</a>
+                <a href="R-D.html">科技展示</a>
+            </div>
+            <div class="footer-col">
+                <h4>企業內部與專區</h4>
+                <a href="EHC-policy.html">職業安全衛生專區</a>
+                <a href="union.html">福委會 (EWC)</a>
+            </div>
+            <div class="footer-col">
+                <h4>永續承諾</h4>
+                <p>智造科技致力於推動綠色製造，落實環境友善政策與永續經營。</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 智造科技股份有限公司 SmartTech Co., Ltd. All Rights Reserved.
+        </div>
+    </footer>
+
+</div>
+
+<!-- 引入網路 JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- 深淺切換 JS -->
+<script>
+    function changeMode() {
+        const isDark = document.body.classList.toggle("dark");
+        localStorage.setItem("mode", isDark ? "dark" : "light");
+    }
+    if (localStorage.getItem("mode") === "dark") {
+        document.body.classList.add("dark");
+    }
+</script>
+
+</body>
+</html>

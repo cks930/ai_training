@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課程線上報名表 (含 JSON 非同步載入與嚴格地址驗證)</title>
+    <!-- 引入 Bootstrap 5 樣式外掛 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- 引入 Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #121824;
+            color: #e2e8f0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding-bottom: 60px;
+        }
+
+        .hero-title {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246,.4);
+        }
+
+        .rules-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            color: #94a3b8;
+        }
+
+        .form-container {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-control, .form-select {
+            background-color: #0f172a !important;
+            border: 1px solid #475569 !important;
+            color: #f8fafc !important;
+            border-radius: 8px !important;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #0f172a !important;
+            border-color: #3b82f6 !important;
+            box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important;
+        }
+
+        .valid-feedback { color: #34d399 !important; font-weight: 500; }
+        .invalid-feedback { color: #f87171 !important; font-weight: 500; }
+    </style>
+</head>
+
+<body>
+    <div class="container py-4">
+        <!-- 頁面大標題 -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="hero-title text-center py-4 px-3">
+                    <h1 class="fw-bold m-0 display-5">課程線上報名表</h1>
+                    <p class="mb-0 mt-2 text-white-50">JSON 非同步載入與嚴格地址驗證版</p>
+                </div>
+            </div>
+            <!-- 填寫規則說明 -->
+            <div class="col-12 mt-3">
+                <div class="rules-card p-3">
+                    <h6 class="text-white fw-bold mb-2">📌 填寫規範說明：</h6>
+                    <ul class="mb-0 small" style="line-height: 1.6;">
+                        <li><strong>姓名</strong>：2 ~ 5 個中文字。</li>
+                        <li><strong>密碼</strong>：8 ~ 16 個字元，<strong>須包含大小寫英文</strong>。</li>
+                        <li><strong>Email</strong>：真實信箱格式，且結尾必須為 <code>.com</code>。</li>
+                        <li><strong>身分證</strong>：共 10 碼（第1碼大寫英文字母，後9碼為數字）。</li>
+                        <li><strong>手機號碼</strong>：共 10 碼，開頭必須為 <code>09</code>。</li>
+                        <li><strong>通訊地址</strong>：必須完整選擇縣市、鄉鎮市區，且詳細地址<strong>必須包含「路或街」以及「號」</strong>（例如：xx路xx號），嚴格確保門牌格式。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 表單卡片區塊 -->
+        <div class="row">
+            <div class="col-12">
+                <div class="form-container p-4 p-md-5">
+                    
+                    <!-- 1. 姓名 -->
+                    <div class="mb-4">
+                        <label for="username" class="form-label fw-bold text-light">姓名</label>
+                        <input type="text" class="form-control form-control-lg" id="username" placeholder="請輸入姓名 (2~5個中文字)">
+                        <div class="valid-feedback">✓ 姓名符合規定</div>
+                        <div class="invalid-feedback">✗ 姓名格式錯誤 (需為2~5個中文字)</div>
+                    </div>
+
+                    <!-- 2. 密碼 -->
+                    <div class="mb-4">
+                        <label for="password" class="form-label fw-bold text-light">密碼</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control form-control-lg" id="password" placeholder="請輸入密碼 (8~16字，含大小寫英文)">
+                            <button class="btn btn-outline-secondary px-3" type="button" id="toggle_pwd" style="border-color: #475569; color: #94a3b8;">
+                                <i class="bi bi-eye-slash" id="pwd_icon"></i>
+                            </button>
+                        </div>
+                        <div class="valid-feedback">✓ 密碼符合規定</div>
+                        <div class="invalid-feedback">✗ 密碼格式錯誤 (需8~16字，且必須包含英文大小寫)</div>
+                    </div>
+
+                    <!-- 3. Email -->
+                    <div class="mb-4">
+                        <label for="email" class="form-label fw-bold text-light">Email</label>
+                        <input type="text" class="form-control form-control-lg" id="email" placeholder="請輸入有效信箱 (例如: abc@gmail.com)">
+                        <div class="valid-feedback">✓ Email 格式符合規定</div>
+                        <div class="invalid-feedback">✗ Email 格式錯誤 (需包含 @ 且結尾為 .com)</div>
+                    </div>
+
+                    <!-- 4. 身分證 -->
+                    <div class="mb-4">
+                        <label for="idcard" class="form-label fw-bold text-light">身分證</label>
+                        <input type="text" class="form-control form-control-lg" id="idcard" placeholder="請輸入身分證 (首字大寫英文+9碼數字)">
+                        <div class="valid-feedback">✓ 身分證格式符合規定</div>
+                        <div class="invalid-feedback">✗ 身分證格式錯誤 (首字需為大寫英文，共10碼)</div>
+                    </div>
+
+                    <!-- 5. 電話號碼 -->
+                    <div class="mb-4">
+                        <label for="phone" class="form-label fw-bold text-light">手機號碼</label>
+                        <input type="text" class="form-control form-control-lg" id="phone" placeholder="請輸入手機 (例如: 0912345678)">
+                        <div class="valid-feedback">✓ 手機號碼符合規定</div>
+                        <div class="invalid-feedback">✗ 手機格式錯誤 (需為10碼，且開頭為 09)</div>
+                    </div>
+
+                    <!-- 6. 通訊地址 (嚴格驗證) -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-light">通訊地址 (JSON 撈取與嚴格門牌檢核)</label>
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <select class="form-select form-select-lg" id="city">
+                                    <option value="" selected disabled>載入中...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select form-select-lg" id="district">
+                                    <option value="" selected disabled>請先選擇縣市</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control form-control-lg" id="address_detail" placeholder="例如: 中正路100號">
+                            </div>
+                        </div>
+                        <div class="valid-feedback" id="address_valid_feedback" style="display: none;">✓ 地址格式符合規定</div>
+                        <div class="invalid-feedback" id="address_invalid_feedback" style="display: block;">✗ 嚴格要求：必須選擇縣市、行政區，且詳細地址必須同時包含「路」或「街」以及「號」！</div>
+                    </div>
+
+                    <!-- 按鈕區 -->
+                    <div class="text-center mt-5">
+                        <button class="btn btn-primary btn-lg px-5 me-2 shadow-sm" id="ok_btn">確認送出</button>
+                        <button class="btn btn-outline-secondary btn-lg px-4" id="reset_btn">重新填寫</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 顯示輸入成功的訊息區塊 -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="p-4 rounded-4" style="background-color: #1e293b; border: 1px solid #334155;">
+                    <h3 class="text-success fw-bold text-center mb-3">📋 報名資料確認</h3>
+                    <div id="showmsg" class="text-center text-white-50">尚未送出資料</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 載入 JavaScript 與 jQuery 套件 -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.js"></script>
+    
+    <script>
+        let globalCityData = []; // 存放從 JSON 撈回來的完整資料
+
+        let flag_username = false;
+        let flag_password = false;
+        let flag_email = false;
+        let flag_idcard = false;
+        let flag_phone = false;
+        let flag_address = false;
+
+        $(function () {
+            // ==========================================
+            // 已將路徑修正為對應專案中的 data 資料夾
+            // ==========================================
+            $.ajax({
+                type: "GET",
+                url: "data/CityCountyData.json",
+                dataType: "JSON",
+                success: showdata_city,
+                error: function () {
+                    alert("error - data/CityCountyData.json");
+                }
+            });
+
+            // 縣市選單變更時，連動載入行政區
+            $("#city").on("change", function () {
+                let selectedCityName = $(this).val();
+                let targetCity = globalCityData.find(city => city.CityName === selectedCityName);
+                
+                let districtOptions = '<option value="" selected disabled class="text-center fw-bold">---請選擇鄉鎮市區---</option>';
+                if (targetCity && targetCity.AreaList) {
+                    targetCity.AreaList.forEach((area, index) => {
+                        const count = index + 1;
+                        districtOptions += `<option value="${area.AreaName}">${count}：${area.AreaName}</option>`;
+                    });
+                }
+                $("#district").html(districtOptions);
+                checkAddress();
+            });
+
+            // 地址欄位即時驗證（更嚴格條件）
+            $("#district, #address_detail").on("change input", function () {
+                checkAddress();
+            });
+
+            // ==========================================
+            // 地址嚴格驗證函式
+            // ==========================================
+            function checkAddress() {
+                let city = $("#city").val();
+                let district = $("#district").val();
+                let detail = $("#address_detail").val().trim();
+
+                // 嚴格檢查：必須有填路或街，且必須有填號
+                let hasRoadOrStreet = /[路街]/.test(detail);
+                let hasNumber = /號/.test(detail);
+
+                if (city && district && detail.length > 0 && hasRoadOrStreet && hasNumber) {
+                    flag_address = true;
+                    $("#address_detail").removeClass("is-invalid").addClass("is-valid");
+                    $("#address_valid_feedback").show();
+                    $("#address_invalid_feedback").hide();
+                } else {
+                    flag_address = false;
+                    $("#address_detail").removeClass("is-valid").addClass("is-invalid");
+                    $("#address_valid_feedback").hide();
+                    $("#address_invalid_feedback").show();
+                }
+            }
+
+            // 密碼顯隱切換
+            $("#toggle_pwd").on("click", function () {
+                let pwdInput = $("#password");
+                let pwdIcon = $("#pwd_icon");
+                if (pwdInput.attr("type") === "password") {
+                    pwdInput.attr("type", "text");
+                    pwdIcon.removeClass("bi-eye-slash").addClass("bi-eye");
+                } else {
+                    pwdInput.attr("type", "password");
+                    pwdIcon.removeClass("bi-eye").addClass("bi-eye-slash");
+                }
+            });
+
+            // 1. 姓名驗證
+            $("#username").on("input", function () {
+                let reg = /^[\u4e00-\u9fa5]{2,5}$/;
+                if (reg.test($(this).val())) {$(this).removeClass("is-invalid").addClass("is-valid");
+                    flag_username = true;
+                } else {
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+                    flag_username = false;
+                }
+            });
+
+            // 2. 密碼驗證 (8~16字，含大小寫英文)
+            $("#password").on("input", function () {
+                let pwd = $(this).val();
+                let pwdReg = /^(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
+                if (pwdReg.test(pwd)) {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+                    flag_password = true;
+                } else {
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+                    flag_password = false;
+                }
+            });
+
+            // 3. Email 驗證
+            $("#email").on("change", function () {
+                let reg = /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.com$/;
+                if (reg.test($(this).val())) {$(this).removeClass("is-invalid").addClass("is-valid");
+                    flag_email = true;
+                } else {
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+                    flag_email = false;
+                }
+            });
+
+            // 4. 身分證驗證
+            $("#idcard").on("input", function () {
+                let reg = /^[A-Z][0-9]{9}$/;
+                if (reg.test($(this).val())) {$(this).removeClass("is-invalid").addClass("is-valid");
+                    flag_idcard = true;
+                } else {
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+                    flag_idcard = false;
+                }
+            });
+
+            // 5. 電話驗證
+            $("#phone").on("input", function () {
+                let reg = /^09[0-9]{8}$/;
+                if (reg.test($(this).val())) {$(this).removeClass("is-invalid").addClass("is-valid");
+                    flag_phone = true;
+                } else {
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+                    flag_phone = false;
+                }
+            });
+
+            // 確認送出總檢查
+            $("#ok_btn").on("click", function () {
+                checkAddress(); // 點擊時強制再檢查一次地址
+
+                if (flag_username && flag_password && flag_email && flag_idcard && flag_phone && flag_address) {
+                    let city = $("#city").val();
+                    let district = $("#district").val();
+                    let detail = $("#address_detail").val().trim();
+                    let fullAddress = `${city}${district}${detail}`;
+                    
+                    const strHTML = `
+                        <div class="fs-5 text-light mb-2"><strong>姓名：</strong>${$("#username").val()}</div>
+                        <div class="fs-5 text-light mb-2"><strong>密碼：</strong>******** (基於資安考量已隱藏)</div>
+                        <div class="fs-5 text-light mb-2"><strong>Email：</strong>${$("#email").val()}</div>
+                        <div class="fs-5 text-light mb-2"><strong>身分證：</strong>${$("#idcard").val()}</div>
+                        <div class="fs-5 text-light mb-2"><strong>手機：</strong>${$("#phone").val()}</div>
+                        <div class="fs-5 text-success"><strong>地址：</strong>${fullAddress}</div>
+                    `;
+                    $("#showmsg").html(strHTML);
+                } else {
+                    alert("填寫格式有誤，請檢查各欄位的紅框錯誤提示與地址門牌格式（需含路/街與號）！");
+                }
+            });
+
+            $("#reset_btn").on("click", function () {
+                location.reload();
+            });
+        });
+
+        // 載入縣市資料的函式
+        function showdata_city(data) {
+            globalCityData = data; // 存入全域變數供後續過濾行政區使用
+            console.log(data);
+            $("#city").empty();
+            $("#city").append('<option value="" selected disabled class="text-center fw-bold">---請選擇縣市名稱---</option>');
+            
+            data.forEach(function (item, index) {
+                const count = index + 1;
+                const strHTML = `<option value="${item.CityName}">${count}：${item.CityName}</option>`;
+                $("#city").append(strHTML);
+            });
+        }
+    </script>
+</body>
+
+</html>

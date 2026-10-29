@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智造科技｜公司介紹與關係企業</title>
+    <!-- 統一使用最新官方網路 CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/about.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Header Logo -->
+        <header class="logo d-flex align-items-center justify-content-center">
+            <svg width="260" height="50" viewBox="0 0 320 60">
+                <rect x="0" y="10" width="20" height="20" rx="4" fill="#3A86FF" />
+                <rect x="12" y="22" width="20" height="20" rx="4" fill="#00D084" />
+                <text x="45" y="32" font-weight="700" font-size="22" fill="#FFF">智造科技</text>
+                <text x="45" y="48" font-weight="600" font-size="9" fill="#3A86FF" letter-spacing="2">CIRCUIT
+                    TECH</text>
+            </svg>
+        </header>
+
+        <!-- ✅ 超連結修正為大廠架構檔名 -->
+        html
+        <!-- 跨頁導覽列（在關於智造頁面時，移除關於智造的超連結） -->
+        <nav class="site-nav p-2 overflow-x-auto">
+    <ul class="nav justify-content-center gap-2 m-0 p-0 text-nowrap flex-nowrap align-items-center">
+        <li><a href="home.html">🏠 首頁</a></li>
+        <li><span class="nav-link active px-3 py-1 text-primary fw-bold">🏢 關於智造</span></li>
+        <li><a href="timeline.html">📈 發展時間軸</a></li>
+        <li><a href="EHC-policy.html">🛡️ 職業安全</a></li>
+        <li><a href="union.html">🎁 員工福利</a></li>
+        <li><a href="R-D.html">🚀 科技展示</a></li>
+        <li><a href="signup.html">📝 線上報名</a></li>
+    </ul>
+</nav>
+
+        <!-- 技術發展區段 -->
+        <main class="p-4 p-md-5 bg-light" id="tech">
+            <h1 class="section-title mb-1">公司技術發展</h1>
+            <p class="subtitle mb-4">TECHNOLOGY DEVELOPMENT</p>
+            <div id="techArticles"></div>
+        </main>
+
+        <!-- 關係企業區段 -->
+        <section class="p-4 p-md-5 border-top border-dashed" id="companies">
+            <h1 class="section-title mb-1">關係企業與合作夥伴</h1>
+            <p class="subtitle mb-4">OUR GROUP & PARTNERS</p>
+            <div class="row row-cols-1 row-cols-md-2 g-4" id="companyCards"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="p-3 text-center text-secondary bg-dark border-top border-primary border-3 fs-7">
+            智造科技 Circuit Tech © 2026 版權所有
+        </footer>
+    </div>
+
+    <script>
+        const techData = [
+            { num: '01', tag: 'FOUNDATION', title: '創始奠基：傳統工藝與穩定產能', short: '創立初期，公司以雙面與多層印刷電路板（PCB）之傳統製造技術起家，致力於提升基礎製程良率...', full: '創立初期，公司以雙面與多層印刷電路板（PCB）之傳統製造技術起家，致力於提升基礎製程良率與良好品質管理控制。透過導入自動化光學檢測（AOI）系統與標準化生產管理流程，我們成功建立穩定高效率的產能，並獲得國內多家消費性電子品牌廠的長期信任與合作。' },
+            { num: '02', tag: 'TRANSFORMATION', title: '技術轉型：邁向高密度互連', short: '因應智慧型手機與行動通訊裝置的迅速普及，公司啟動第一次重大技術轉型，全面佈局 HDI 先進領域...', full: '因應智慧型手機與行動通訊裝置的迅速普及，公司啟動第一次重大技術轉型，全面佈局高密度互連板（HDI）先進領域。我們引進高精度雷射鑽孔設備與微孔盲埋技術，大幅優化電路板佈線空間與傳輸效能。成功轉型後，公司順利打入國際一線供應鏈。' },
+            { num: '03', tag: 'FUTURE', title: 'AI 時代：智慧製造與高效能運算', short: '迎接 AI 伺服器、高效能運算（HPC）與 5G/6G 通訊時代，公司全面建置智慧工廠，專注封裝載板研發...', full: '迎接 AI 伺服器、高效能運算（HPC）與 5G/6G 通訊時代，公司全面建置全自動智慧製造工廠，並專注於高階封裝載板研發。透過結合 AI 大數據即時品質監控、物聯網產線監測與 AGV 搬運系統，大幅降低損耗並提昇生產效率，落實永續經營目標。' }
+        ];
+
+        document.getElementById('techArticles').innerHTML = techData.map((item, i) => `
+            <article class="d-flex border rounded bg-white overflow-hidden mb-3 shadow-sm">
+                <div class="article-num d-flex align-items-center justify-content-center">${item.num}</div>
+                <div class="p-3 flex-grow-1">
+                    <span class="subtitle d-block mb-1">${item.tag}</span>
+                    <h2 class="h5 fw-bold text-dark mb-2">${item.title}</h2>
+                    <p class="text-muted small mb-2" id="text-${i}">${item.short}</p>
+                    <button class="read-btn px-2 py-1" onclick="toggleText(${i})">閱讀完整內容</button>
+                </div>
+            </article>
+        `).join('');
+
+        function toggleText(i) {
+            const p = document.getElementById(`text-${i}`);
+            const btn = p.nextElementSibling;
+            const isFull = p.innerText === techData[i].full;
+            p.innerText = isFull ? techData[i].short : techData[i].full;
+            btn.innerText = isFull ? '閱讀完整內容' : '收合內容';
+        }
+
+        const companyData = [
+            { name: '海豚電子科技 (竹科廠)', addr: '新竹科學園區展業一路 888 號', tel: '(03) 578-1234', desc: '專注於高密度互連板（HDI）與先進封裝載板製造，主要提供 AI 伺服器晶片支援。', img: 'a2.jpg', url: '#' },
+            { name: '柑仔軟硬結合板有限公司', addr: '桃園市龜山工業區興邦路 999 號', tel: '(03) 369-5678', desc: '深耕車用電子與穿戴式裝置 Rigid-Flex 領域，為國際電動車大廠合作供應商。', img: 'a3.jpg', url: '#' },
+            { name: '幻視智慧綠能材料', addr: '台中科學園區科雅路 666 號', tel: '(04) 2567-8901', desc: '致力於環保低耗能電路板基材與高導熱銅箔基板研發，助力達成低碳目標。', img: 'a4.jpg', url: '#' },
+            { name: '極光微電子封裝測試', addr: '高雄楠梓科技產業園區加昌路 555 號', tel: '(07) 361-9988', desc: '提供半導體後段封裝測試一站式服務，專精高階晶片整合與高頻測試技術。', img: 'a5.jpg', url: '#' }
+        ];
+
+        document.getElementById('companyCards').innerHTML = companyData.map(c => `
+            <div class="col" onclick="window.location.href='${c.url}'">
+                <div class="card col-company h-100 shadow-sm border-0">
+                    <div class="card-img-wrapper">
+                        <img src="images/${c.img}" class="card-img-top" alt="${c.name}">
+                        <div class="roller-overlay">
+                            <span class="more-badge">了解更多 ➔</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="company-name fw-bold ps-2 mb-2">${c.name}</div>
+                        <div class="small text-secondary">📍 ${c.addr}</div>
+                        <div class="small text-secondary mb-2">📞 ${c.tel}</div>
+                        <p class="card-text small text-muted">${c.desc}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    </script>
+</body>
+</html>

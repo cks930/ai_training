@@ -1,0 +1,101 @@
+
+    :root {
+      --page: #0b1220;
+      --panel: #172337;
+      --field: #0e192b;
+      --line: #34445c;
+      --text: #edf3fb;
+      --muted: #b7c4d7;
+      --blue: #3978e8;
+      --green: #43d6a0;
+      --red: #ff8585;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding-bottom: 48px;
+      background: radial-gradient(circle at top, #142b4a 0, var(--page) 48%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC",
+                    "Microsoft JhengHei", sans-serif;
+      line-height: 1.65;
+    }
+    .page-wrap { max-width: 960px; }
+    .hero {
+      border: 1px solid #35527b;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #1d477d, #20345b 65%, #26324d);
+      box-shadow: 0 18px 45px #0004;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 16px 38px #0003;
+    }
+    .rule-note {
+      color: var(--muted);
+      background: #111d30;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .form-label { color: var(--text); font-weight: 650; }
+    .form-control, .form-select {
+      min-height: 48px;
+      color: var(--text);
+      background-color: var(--field);
+      border: 1px solid #53647d;
+      border-radius: 10px;
+    }
+    .form-control::placeholder { color: #9eacc0; opacity: 1; }
+    .form-control:focus, .form-select:focus {
+      color: var(--text);
+      background-color: var(--field);
+      border-color: #7daeff;
+      box-shadow: 0 0 0 .22rem #3978e84d;
+    }
+    .form-select option { color: var(--text); background: var(--field); }
+    .input-group .form-control { border-radius: 10px 0 0 10px; }
+    .input-group .btn { border-radius: 0 10px 10px 0; }
+    .help-text { color: var(--muted); font-size: .9rem; }
+    .valid-feedback { color: var(--green); font-weight: 600; }
+    .invalid-feedback { color: var(--red); font-weight: 600; }
+    
+    /* 視覺優化：當欄位發生錯誤時，透過 CSS 自動隱藏預設說明文字，避免視覺擁擠 */
+    .form-control.is-invalid ~ .help-text,
+    .form-select.is-invalid ~ .help-text {
+      display: none;
+    }
+
+    .form-control.is-valid, .form-select.is-valid {
+      border-color: var(--green);
+      background-image: none;
+      padding-right: .75rem;
+    }
+    .form-control.is-invalid, .form-select.is-invalid {
+      border-color: var(--red);
+      background-image: none;
+      padding-right: .75rem;
+    }
+    .btn-primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      font-weight: 650;
+    }
+    .btn-primary:hover { background: #2d65c8; border-color: #2d65c8; }
+    .result-box {
+      min-height: 72px;
+      overflow-wrap: anywhere;
+      background: #111d30;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .required-mark { color: #ff9a9a; }
+    :focus-visible { outline: 3px solid #9ac1ff; outline-offset: 3px; }
+    @media (max-width: 575.98px) {
+      .hero { border-radius: 14px; }
+      .panel { border-radius: 14px; }
+      .hero h1 { font-size: 1.75rem; }
+      .action-buttons .btn { width: 100%; }
+    }

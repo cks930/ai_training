@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智造科技｜PCB 產業發展時間軸</title>
+    <!-- 統一使用最新官方網路 CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+        .imgbox{
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+        .timeline-section{
+            position: relative;
+            padding: 3rem 0;
+        }
+        .timeline-section::before{
+            position: absolute;
+            content: "";
+            width: 4px;
+            background: linear-gradient(to bottom, #cbd5e1, #3b82f6, #1e40af, #cbd5e1);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            z-index: 1;
+        }
+        .timeline-row {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #60a5fa;
+            border-radius: 50%;
+            border: 6px solid #1e3a8a;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+        .timeline-card {
+            background: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .timeline-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .timeline-tag {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 700;
+            padding: 0.35rem 1rem;
+            border-radius: 50rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            border: 1px solid #dbeafe;
+            width: fit-content;
+        }
+        .roller-t{
+            position: relative;
+            overflow: hidden;
+        }
+        .roller-t .rollerbox-t{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(153, 174, 231, 0.397);
+            transform: translateY(-100%);
+            transition: transform 2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+        }
+        .roller-t:hover .rollerbox-t{
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .timeline-section::before { display: none; }
+            .timeline-dot { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 跨頁導覽列（時間軸頁面高亮，移除點擊連結） -->
+    <nav class="site-nav py-2 shadow-sm mb-3 bg-white overflow-x-auto">
+        <ul class="nav justify-content-center gap-2 m-0 p-0 text-nowrap flex-nowrap align-items-center">
+            <li><a href="home.html" class="btn btn-sm btn-outline-primary">🏠 首頁</a></li>
+            <li><a href="about-us.html" class="btn btn-sm btn-outline-primary">🏢 關於智造</a></li>
+            <li><span class="btn btn-sm btn-primary active fw-bold">📈 發展時間軸</span></li>
+            <li><a href="EHC-policy.html" class="btn btn-sm btn-outline-primary">🛡️ 職業安全</a></li>
+            <li><a href="union.html" class="btn btn-sm btn-outline-primary">🎁 員工福利</a></li>
+            <li><a href="R-D.html" class="btn btn-sm btn-outline-primary">🚀 科技展示</a></li>
+            <li><a href="signup.html" class="btn btn-sm btn-outline-primary">📝 線上報名</a></li>
+        </ul>
+    </nav>
+
+    <div class="container py-5">
+        <div class="display-3 text-center fw-900 mb-2" style="color: #1e293b;">PCB 產業發展時間軸</div>
+        <p class="text-center text-muted mb-5 fs-5">從傳統製造到智慧永續的技術革新之路</p>
+        
+        <div class="timeline-section">
+            
+            <!-- 第 1 組 (創立與技術奠基) -->
+            <div class="row align-items-center justify-content-between timeline-row">
+                <div class="timeline-dot"></div>
+                <div class="col-md-5 mb-3 mb-md-0">
+                    <div class="imgbox bg-img roller-t" style="background-image: url('images/c1.jpg');">
+                        <div class="rollerbox-t">
+                            <button class="btn btn-warning">查看更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="timeline-card">
+                        <span class="timeline-tag">2016 · 階段一</span>
+                        <div class="h2 fw-900 text-dark mb-3">創立與技術奠基</div>
+                        <p class="text-secondary mb-2">公司正式成立並引進先進的單雙面板生產設備，建立標準化無塵室與化學蝕刻產線。</p>
+                        <p class="text-secondary mb-2">成功通過 ISO 9001 品質管理系統認證，奠定高品質電路板製造的穩固基礎。</p>
+                        <p class="text-secondary mb-0">初期主要服務本地消費性電子與家電客戶，建立穩定的產品良率與交期口碑。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第 2 組 (多層板擴產突破) -->
+            <div class="row flex-row-reverse align-items-center justify-content-between timeline-row">
+                <div class="timeline-dot"></div>
+                <div class="col-md-5 mb-3 mb-md-0">
+                    <div class="imgbox bg-img roller-t" style="background-image: url('images/c2.jpg');">
+                        <div class="rollerbox-t">
+                            <button class="btn btn-warning">查看更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="timeline-card">
+                        <span class="timeline-tag">2019 · 階段二</span>
+                        <div class="h2 fw-900 text-dark mb-3">多層板擴產突破</div>
+                        <p class="text-secondary mb-0">因應資通訊與筆記型電腦市場的高速成長，大規模擴建多層板（Multi-layer PCB）量產廠房，順利切入主流供應鏈，並導入自動化雷射鑽孔與精密壓合技術，大幅提升高密度電路板的生產效率。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第 3 組 (高頻高速與車用轉型) -->
+            <div class="row align-items-center justify-content-between timeline-row">
+                <div class="timeline-dot"></div>
+                <div class="col-md-5 mb-3 mb-md-0">
+                    <div class="imgbox bg-img roller-t" style="background-image: url('images/c3.jpg');">
+                        <div class="rollerbox-t">
+                            <button class="btn btn-warning">查看更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="timeline-card">
+                        <span class="timeline-tag">2022 · 階段三</span>
+                        <div class="h2 fw-900 text-dark mb-3">高頻高速與車用轉型</div>
+                        <p class="text-secondary mb-2">面對 5G 通訊、物聯網及車用電子（ADAS、車載娛樂系統）的龐大需求，公司全面升級製程能力，開發出低訊號損耗的高頻高速板與車規級信賴性板材。</p>
+                        <p class="text-secondary mb-0">順利取得 IATF 16949 汽車產業品質認證，成功打入國際知名車用電子與網通大廠供應鏈，開創營運成長新動能。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第 4 組 (智慧製造與永續淨零) -->
+            <div class="row flex-row-reverse align-items-center justify-content-between timeline-row mb-0">
+                <div class="timeline-dot"></div>
+                <div class="col-md-5 mb-3 mb-md-0">
+                    <div class="imgbox bg-img roller-t" style="background-image: url('images/c4.jpg');">
+                        <div class="rollerbox-t">
+                            <button class="btn btn-warning">查看更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="timeline-card">
+                        <span class="timeline-tag">2026 · 階段四</span>
+                        <div class="h2 fw-900 text-dark mb-3">智慧製造與永續淨零</div>
+                        <p class="text-secondary mb-2">呼應全球淨零碳排與工業 4.0 趨勢，全面導入 AI 智慧光學檢測（AOI）與大數據產線分析，大幅降低不良率並提升能源使用效率。</p>
+                        <p class="text-secondary mb-0">同時積極推動綠色製造，落實廢水回收與節能減碳標竿廠房建置，朝向兼顧環保與高科技創新的永續企業目標邁進。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 載入 Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

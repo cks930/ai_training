@@ -1,0 +1,97 @@
+/* 基礎樣式與 RWD 優化 */
+body {
+    background-color: #F1F5F9;
+    color: #0F172A;
+    font-family: system-ui, sans-serif;
+}
+
+.box01 {
+    height: 160px;
+    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80');
+}
+
+.bg-img {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+}
+
+/* 統一跨頁導覽列 */
+.site-nav {
+    background: #0F172A;
+}
+
+.site-nav a {
+    color: #94A3B8;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: 0.2s;
+    white-space: nowrap;
+    border: 1px solid #334155;
+    font-size: 14px;
+}
+
+.site-nav a:hover,
+.site-nav a.tech-active {
+    background: #2563EB;
+    border-color: #2563EB;
+    color: #fff;
+}
+
+/* 核心選單按鈕 */
+.box02 {
+    width: 140px;
+    height: 140px;
+    line-height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0F172A, #2563EB);
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
+    text-decoration: none;
+    display: block;
+}
+
+.box02:hover {
+    transform: translateY(-5px);
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+@media (min-width: 992px) {
+    .box02 {
+        width: 180px;
+        height: 180px;
+        line-height: 180px;
+        font-size: 1.25rem;
+    }
+}
+
+/* 科技展示卡片 */
+.box03 {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+    border: 1px solid #E2E8F0;
+}
+
+.box03:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.box03 img {
+    border-radius: 8px;
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>智造科技｜2027 暑期高階研發實習生計畫線上報名</title>
+
+  <!-- Bootstrap 5 & Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/signup.css">
+
+  <style>
+    /* 補充優化樣式 */
+    #idcard { text-transform: uppercase; }
+    .required-mark { color: #dc3545; font-weight: bold; }
+    .help-text { font-size: 0.875rem; color: #8c939b; }
+  </style>
+</head>
+
+<body>
+  <main class="container page-wrap py-4 py-md-5">
+    <header class="hero text-center p-4 p-md-5 mb-4">
+      <p class="text-uppercase small mb-2" style="letter-spacing: 2px;">SmartTech R&D Internship 2027</p>
+      <h1 class="fw-bold mb-2">2027 暑期高階研發實習生計畫</h1>
+      <p class="mb-0">邁向百大科技企業，探索 AI 伺服器與高階 PCB 載板前瞻技術</p>
+    </header>
+
+    <section class="rule-note p-3 p-md-4 mb-4" aria-labelledby="rules-title">
+      <h2 id="rules-title" class="h5 fw-bold text-light">申請與報名說明</h2>
+      <ul class="mb-0 ps-4">
+        <li>標示 <span class="required-mark">*</span> 的欄位皆為必要填寫項目。</li>
+        <li>申請資格：大三以上、碩博士在大專院校在學學生（科系不限，電機、電子、資工、材料、機械尤佳）。</li>
+        <li>密碼用於日後「查詢實習甄選進度」與登入會員系統（需包含大小寫英文與數字）。</li>
+        <li>身分證字號 / 居留證號用於入廠安檢授權與實習期間平安保險投保。</li>
+        <li>填寫完成並送出後，系統將寄送「申請確認信」至您填寫的 Email。</li>
+      </ul>
+    </section>
+
+    <section class="panel p-3 p-md-5" aria-labelledby="form-title">
+      <h2 id="form-title" class="h4 fw-bold mb-4">實習申請人資料</h2>
+
+      <form id="registrationForm" novalidate>
+        <!-- 姓名 -->
+        <div class="mb-4">
+          <label for="username" class="form-label">中文 / 英文姓名 <span class="required-mark">*</span></label>
+          <input id="username" name="username" class="form-control" type="text"
+                 autocomplete="name" maxlength="50" required
+                 aria-describedby="usernameHelp usernameError"
+                 placeholder="例如：王大明 / David Wang">
+          <div id="usernameHelp" class="help-text mt-1">請填寫與身分證或護照相同之姓名，最多 50 個字元。</div>
+          <div id="usernameError" class="invalid-feedback"></div>
+          <div class="valid-feedback">姓名格式正確</div>
+        </div>
+
+        <!-- 系統密碼（動態檢核強化） -->
+        <div class="mb-4">
+          <label for="password" class="form-label">進度查詢密碼 <span class="required-mark">*</span></label>
+          <div class="input-group">
+            <input id="password" name="password" class="form-control" type="password"
+                   autocomplete="new-password" required
+                   aria-describedby="passwordHelp passwordError"
+                   placeholder="至少 8 個字元，包含大小寫英文與數字">
+            <button class="btn btn-outline-light" type="button" id="togglePassword"
+                    aria-label="顯示密碼" aria-pressed="false">
+              <i class="bi bi-eye" id="passwordIcon" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div id="passwordHelp" class="help-text mt-1">請自訂查詢甄選結果之密碼（至少 8 個字元，含大小寫英文及數字）。</div>
+          <div id="passwordError" class="invalid-feedback"></div>
+          <div class="valid-feedback">密碼格式符合要求</div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <label for="email" class="form-label">聯絡 Email <span class="required-mark">*</span></label>
+          <input id="email" name="email" class="form-control" type="email"
+                 autocomplete="email" maxlength="254" required
+                 aria-describedby="emailHelp emailError"
+                 placeholder="例如：student@university.edu.tw">
+          <div id="emailHelp" class="help-text mt-1">請提供常用電子郵件，面試通知與錄取結果將透過此 Email 寄送。</div>
+          <div id="emailError" class="invalid-feedback"></div>
+          <div class="valid-feedback">Email 格式正確</div>
+        </div>
+
+        <!-- 身分證/居留證 -->
+        <div class="mb-4">
+          <label for="idcard" class="form-label">身分證字號 / 居留證號 <span class="required-mark">*</span></label>
+          <input id="idcard" name="idcard" class="form-control" type="text"
+                 autocomplete="off" inputmode="text" maxlength="10" required
+                 aria-describedby="idcardHelp idcardError"
+                 placeholder="請輸入 10 碼身分證或居留證號">
+          <div id="idcardHelp" class="help-text mt-1">系統自動轉大寫。支援本國身分證及新版居留證（第二碼為 1, 2, 8, 9）。</div>
+          <div id="idcardError" class="invalid-feedback"></div>
+          <div class="valid-feedback">格式與檢查碼正確</div>
+        </div>
+
+        <!-- 手機號碼 -->
+        <div class="mb-4">
+          <label for="phone" class="form-label">行動電話 <span class="required-mark">*</span></label>
+          <input id="phone" name="phone" class="form-control" type="tel"
+                 autocomplete="tel" inputmode="numeric" maxlength="10" required
+                 aria-describedby="phoneHelp phoneError"
+                 placeholder="例如：0912345678">
+          <div id="phoneHelp" class="help-text mt-1">請填寫台灣手機號碼（09 開頭的 10 碼數字）。</div>
+          <div id="phoneError" class="invalid-feedback"></div>
+          <div class="valid-feedback">手機號碼格式正確</div>
+        </div>
+
+        <!-- 學歷背景 -->
+        <fieldset class="mb-4">
+          <legend class="form-label fs-6">大專院校學歷背景 <span class="required-mark">*</span></legend>
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <label for="school_city" class="form-label">學校所在縣市</label>
+              <select id="school_city" name="school_city" class="form-select" required>
+                <option value="">載入縣市中…</option>
+              </select>
+              <div id="schoolCityError" class="invalid-feedback">請選擇學校所在縣市。</div>
+            </div>
+            <div class="col-12 col-md-8">
+              <label for="school_name" class="form-label">大專院校名稱</label>
+              <select id="school_name" name="school_name" class="form-select" required disabled>
+                <option value="">請先選擇學校縣市</option>
+              </select>
+              <div id="schoolNameError" class="invalid-feedback">請選擇大專院校。</div>
+            </div>
+            <div class="col-12 col-md-8">
+              <label for="department" class="form-label">就讀科系 / 研究所</label>
+              <input id="department" name="department" class="form-control" type="text" required
+                     placeholder="例如：電機工程學系 / 資訊工程研究所">
+              <div id="departmentError" class="invalid-feedback">請填寫就讀科系。</div>
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="degree" class="form-label">目前年級</label>
+              <select id="degree" name="degree" class="form-select" required>
+                <option value="">請選擇年級</option>
+                <option value="大三">大學部 三年級</option>
+                <option value="大四">大學部 四年級</option>
+                <option value="碩一">碩士班 一年級</option>
+                <option value="碩二">碩士班 二年級以上</option>
+                <option value="博士班">博士班研究生</option>
+              </select>
+              <div id="degreeError" class="invalid-feedback">請選擇年級。</div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 通訊地址 -->
+        <fieldset class="mb-4">
+          <legend class="form-label fs-6">現居通訊地址 <span class="required-mark">*</span></legend>
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <label for="city" class="form-label">縣市</label>
+              <select id="city" name="city" class="form-select" required>
+                <option value="">載入縣市資料中…</option>
+              </select>
+              <div id="cityError" class="invalid-feedback"></div>
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="district" class="form-label">鄉鎮市區</label>
+              <select id="district" name="district" class="form-select" required disabled>
+                <option value="">請先選擇縣市</option>
+              </select>
+              <div id="districtError" class="invalid-feedback"></div>
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="address_detail" class="form-label">詳細地址</label>
+              <input id="address_detail" name="address_detail" class="form-control"
+                     type="text" autocomplete="street-address" maxlength="120" required
+                     placeholder="例如：中山路 100 號 3 樓">
+              <div id="addressError" class="invalid-feedback"></div>
+            </div>
+          </div>
+          <div id="addressHelp" class="help-text mt-2">供實習開工前紙本合約與實習通知書寄送使用。</div>
+        </fieldset>
+
+        <!-- 應徵志願列表 (複選) -->
+        <div class="mb-4">
+          <label class="form-label">實習應徵志願部門 (可複選，最多 2 項) <span class="required-mark">*</span></label>
+          <div>
+            <div class="form-check form-check-inline mb-2">
+              <input type="checkbox" class="form-check-input dept-chk" id="chk01" value="AI 伺服器高階載板研發部">
+              <label for="chk01" class="form-check-label">AI 伺服器高階載板研發部</label>
+            </div>
+            <div class="form-check form-check-inline mb-2">
+              <input type="checkbox" class="form-check-input dept-chk" id="chk02" value="HDI 微孔製程整合工程部">
+              <label for="chk02" class="form-check-label">HDI 微孔製程整合工程部</label>
+            </div>
+            <div class="form-check form-check-inline mb-2">
+              <input type="checkbox" class="form-check-input dept-chk" id="chk03" value="全自動智慧工廠與 AOI 演算法組">
+              <label for="chk03" class="form-check-label">全自動智慧工廠與 AOI 演算法組</label>
+            </div>
+            <div class="form-check form-check-inline mb-2">
+              <input type="checkbox" class="form-check-input dept-chk" id="chk04" value="ESG 綠色低碳基材開發課">
+              <label for="chk04" class="form-check-label">ESG 綠色低碳基材開發課</label>
+            </div>
+          </div>
+          <div id="deptError" class="invalid-feedback" style="display:none;">請至少選擇 1 項應徵志願（最多 2 項）。</div>
+        </div>
+
+        <!-- 履歷與成績單上傳 (百大企業必備區塊) -->
+        <div class="mb-4">
+          <label for="resume_file" class="form-label">個人履歷與歷年成績單 (PDF) <span class="required-mark">*</span></label>
+          <input class="form-control" type="file" id="resume_file" accept=".pdf" required>
+          <div id="resumeHelp" class="help-text mt-1">請將「個人簡歷 + 歷年成績單 (附 GPA)」合併為單一 PDF 檔，檔案大小限制 10MB 以內。</div>
+          <div id="resumeError" class="invalid-feedback">請上傳 PDF 格式之履歷成績單檔案。</div>
+        </div>
+
+        <!-- 個資保護條款 -->
+        <div class="mb-4 p-3 border rounded" style="background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.15) !important;">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="privacyConsent" required>
+            <label class="form-check-label small" for="privacyConsent">
+              我已閱讀並同意 <a href="#" class="text-primary text-decoration-underline" data-bs-toggle="modal" data-bs-target="#privacyModal">《智造科技人才招募個人資料蒐集告知條款》</a>。<span class="required-mark">*</span>
+            </label>
+            <div id="privacyError" class="invalid-feedback">送出前必須同意個人資料蒐集條款。</div>
+          </div>
+        </div>
+
+        <div id="formAlert" class="alert alert-danger d-none" role="alert" tabindex="-1"></div>
+        <div id="loadingAlert" class="alert alert-info" role="status">正在載入縣市與大專院校資料…</div>
+
+        <div class="action-buttons d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4">
+          <button id="submitButton" type="submit" class="btn btn-primary btn-lg px-5">
+            <i class="bi bi-send-check me-1" aria-hidden="true"></i>送出實習申請
+          </button>
+          <button id="resetButton" type="reset" class="btn btn-outline-light btn-lg px-4">
+            重新填寫
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 結果預覽 -->
+    <section class="mt-4" aria-labelledby="result-title">
+      <div class="panel p-3 p-md-4">
+        <h2 id="result-title" class="h5 fw-bold text-center mb-3">實習報名資料預覽確認</h2>
+        <div id="showmsg" class="result-box p-3 text-center" role="status" aria-live="polite">
+          尚未送出資料
+        </div>
+        <p class="help-text mt-3 mb-0">這是前端操作示範：資料僅顯示於目前頁面，不會傳送至伺服器，亦不會建立真實報名紀錄。</p>
+      </div>
+    </section>
+
+    <footer class="text-center help-text mt-4">
+      智造科技 Circuit Tech © 2026 人力資源處招募小組版權所有
+    </footer>
+  </main>
+
+  <!-- 個資告知條款 Modal (取代原本 alert) -->
+  <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content bg-dark text-light border-secondary">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="privacyModalLabel">個人資料蒐集告知條款</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body small">
+          <p>智造科技股份有限公司（以下簡稱本公司）基於招募實習生之目的，將於甄選期間蒐集、處理及利用您所填寫的個人資料：</p>
+          <ul>
+            <li><strong>蒐集目的：</strong>實習生甄選、面試安排、身分核對及平安保險投保。</li>
+            <li><strong>個人資料類別：</strong>姓名、聯絡電話、Email、身分證字號/居留證號、學歷資訊、通訊地址等。</li>
+            <li><strong>利用期間及地區：</strong>自本申請案送出日起至甄選作業結束後一年內，利用地區僅限台灣地區。</li>
+            <li><strong>權利行使：</strong>您可以透過 HR 服務信箱（hr@smarttech.example.com）申請查詢、複製本或補充/更正資料。</li>
+          </ul>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">我已了解</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    "use strict";
+
+    // 大專院校資料庫
+    const collegeData = {
+      "臺北市": ["國立臺灣大學", "國立臺灣科技大學", "國立臺北科技大學", "國立臺灣師範大學", "國立政治大學", "國立臺北大學", "臺北市立大學", "東吳大學", "中國文化大學", "銘傳大學", "實踐大學", "大同大學", "世新大學", "臺北醫學大學", "德明財經科技大學", "中國科技大學"],
+      "新北市": ["國立臺北大學", "輔仁大學", "淡江大學", "真理大學", "亞東科技大學", "明志科技大學", "聖母醫護管理專科學校", "景文科技大學", "華夏科技大學", "醒吾科技大學"],
+      "基隆市": ["國立臺灣海洋大學", "崇右影藝科技大學", "經國管理暨健康學院"],
+      "桃園市": ["國立中央大學", "中原大學", "元智大學", "長庚大學", "開南大學", "龍華科技大學", "健行科技大學", "萬能科技大學", "長庚科技大學"],
+      "新竹市": ["國立清華大學", "國立陽明交通大學", "中華大學", "玄奘大學", "元培醫事科技大學"],
+      "新竹縣": ["明新科技大學", "大華科技大學"],
+      "苗栗縣": ["國立聯合大學", "育達科技大學", "仁德醫護管理專科學校"],
+      "臺中市": ["國立中興大學", "國立臺中科技大學", "國立勤益科技大學", "國立臺灣體育運動大學", "東海大學", "逢甲大學", "靜宜大學", "中山醫學大學", "中國醫藥大學", "嶺東科技大學", "中台科技大學", "弘光科技大學", "朝陽科技大學", "修平科技大學"],
+      "彰化縣": ["國立彰化師範大學", "大葉大學", "建國科技大學", "中州科技大學"],
+      "南投縣": ["國立暨南國際大學", "南開科技大學"],
+      "雲林縣": ["國立雲林科技大學", "國立虎尾科技大學", "環球科技大學"],
+      "嘉義市": ["國立嘉義大學", "吳鳳科技大學"],
+      "嘉義縣": ["國立中正大學", "南華大學", "稻江科技暨管理學院"],
+      "臺南市": ["國立成功大學", "國立臺南大學", "國立臺南藝術大學", "長榮大學", "南台科技大學", "崑山科技大學", "嘉南藥理大學", "台南應用科技大學", "遠東科技大學"],
+      "高雄市": ["國立中山大學", "國立高雄大學", "國立高雄科技大學", "國立高雄餐旅大學", "義守大學", "高雄醫學大學", "樹德科技大學", "輔英科技大學", "正修科技大學", "文藻外語大學"],
+      "屏東縣": ["國立屏東大學", "國立屏東科技大學", "大仁科技大學", "美和科技大學"],
+      "宜蘭縣": ["國立宜蘭大學", "佛光大學", "淡江大學 (蘭陽校區)", "聖母醫護管理專科學校"],
+      "花蓮縣": ["國立東華大學", "慈濟大學", "慈濟科技大學"],
+      "臺東縣": ["國立臺東大學", "國立臺東專科學校"],
+      "澎湖縣": ["國立澎湖科技大學"],
+      "金門縣": ["國立金門大學"]
+    };
+
+    const form = document.getElementById("registrationForm");
+    const citySelect = document.getElementById("city");
+    const districtSelect = document.getElementById("district");
+    const addressDetail = document.getElementById("address_detail");
+    const schoolCitySelect = document.getElementById("school_city");
+    const schoolNameSelect = document.getElementById("school_name");
+    const formAlert = document.getElementById("formAlert");
+    const loadingAlert = document.getElementById("loadingAlert");
+    const showmsg = document.getElementById("showmsg");
+    const resumeFileInput = document.getElementById("resume_file");
+    let cityData = [];
+
+    const fields = {
+      username: document.getElementById("username"),
+      password: document.getElementById("password"),
+      email: document.getElementById("email"),
+      idcard: document.getElementById("idcard"),
+      phone: document.getElementById("phone"),
+      school_city: schoolCitySelect,
+      school_name: schoolNameSelect,
+      department: document.getElementById("department"),
+      degree: document.getElementById("degree"),
+      city: citySelect,
+      district: districtSelect,
+      address_detail: addressDetail,
+      resume_file: resumeFileInput
+    };
+
+    const errors = {
+      username: document.getElementById("usernameError"),
+      password: document.getElementById("passwordError"),
+      email: document.getElementById("emailError"),
+      idcard: document.getElementById("idcardError"),
+      phone: document.getElementById("phoneError"),
+      school_city: document.getElementById("schoolCityError"),
+      school_name: document.getElementById("schoolNameError"),
+      department: document.getElementById("departmentError"),
+      degree: document.getElementById("degreeError"),
+      city: document.getElementById("cityError"),
+      district: document.getElementById("districtError"),
+      address_detail: document.getElementById("addressError"),
+      resume_file: document.getElementById("resumeError")
+    };
+
+    function setFieldState(name, message) {
+      const field = fields[name];
+      const error = errors[name];
+      const valid = message === "";
+
+      if (field) {
+        field.classList.toggle("is-valid", valid);
+        field.classList.toggle("is-invalid", !valid);
+        field.setAttribute("aria-invalid", String(!valid));
+      }
+      if (error) {
+        error.textContent = message;
+        error.style.display = valid ? "none" : "block";
+      }
+      return valid;
+    }
+
+    function clearFieldState(name) {
+      const field = fields[name];
+      if (field) {
+        field.classList.remove("is-valid", "is-invalid");
+        field.removeAttribute("aria-invalid");
+      }
+      if (errors[name]) {
+        errors[name].textContent = "";
+        errors[name].style.display = "";
+      }
+    }
+
+    function validateUsername() {
+      const value = fields.username.value.trim();
+      const allowed = /^[\p{L}\p{M}][\p{L}\p{M} .·・'’\-]{0,49}$/u;
+      if (!value) return setFieldState("username", "請輸入中文或英文姓名。");
+      if (value.length > 50 || !allowed.test(value)) {
+        return setFieldState("username", "請確認姓名格式，最多 50 個字元，請勿輸入數字或特殊符號。");
+      }
+      return setFieldState("username", "");
+    }
+
+    // 增強型密碼驗證
+    function validatePassword() {
+      const value = fields.password.value;
+      const hasLength = value.length >= 8 && value.length <= 64;
+      const hasUpper = /[A-Z]/.test(value);
+      const hasLower = /[a-z]/.test(value);
+      const hasNum = /[0-9]/.test(value);
+
+      if (!value) return setFieldState("password", "請輸入進度查詢密碼。");
+      if (!hasLength || !hasUpper || !hasLower || !hasNum) {
+        return setFieldState("password", "密碼需為 8～64 個字元，且包含大小寫英文及數字。");
+      }
+      return setFieldState("password", "");
+    }
+
+    function validateEmail() {
+      const value = fields.email.value.trim();
+      if (!value) return setFieldState("email", "請輸入聯絡 Email。");
+      fields.email.value = value;
+      if (value.length > 254 || !fields.email.validity.valid || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        return setFieldState("email", "請輸入正確的電子郵件格式，例如 name@example.com。");
+      }
+      return setFieldState("email", "");
+    }
+
+    Object.assign(window, {
+      checkTaiwanID(rawValue) {
+        const id = rawValue.trim().toUpperCase();
+        if (id.length === 0) return { valid: false, msg: "請輸入身分證字號或居留證號。" };
+        if (id.length < 10) return { valid: false, msg: "請輸入完整的 10 碼證號。" };
+        if (!/^[A-Z]/.test(id)) return { valid: false, msg: "證號開頭需為英文字母。" };
+        if (!/^[A-Z][1289]/.test(id)) return { valid: false, msg: "證號第二碼需為數字 1、2、8 或 9。" };
+        if (!/^[A-Z][1289]\d{8}$/.test(id)) return { valid: false, msg: "證號格式不正確，後 8 碼需皆為數字。" };
+
+        const letterCodes = {
+          A:10, B:11, C:12, D:13, E:14, F:15, G:16, H:17, I:34,
+          J:18, K:19, L:20, M:21, N:22, O:35, P:23, Q:24, R:25,
+          S:26, T:27, U:28, V:29, W:32, X:30, Y:31, Z:33
+        };
+        const code = letterCodes[id[0]];
+        if (!code) return { valid: false, msg: "無效的縣市英文代碼。" };
+
+        const digits = [
+          Math.floor(code / 10), code % 10,
+          ...id.slice(1).split("").map(Number)
+        ];
+        const weights = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1];
+        const sum = digits.reduce((total, digit, index) => total + digit * weights[index], 0);
+
+        if (sum % 10 !== 0) {
+          return { valid: false, msg: "身分證/居留證檢查碼不符，請確認輸入內容。" };
+        }
+        return { valid: true, msg: "" };
+      }
+    });
+
+    function validateID() {
+      const value = fields.idcard.value.trim().toUpperCase();
+      fields.idcard.value = value;
+      const result = checkTaiwanID(value);
+      return setFieldState("idcard", result.msg);
+    }
+
+    function validatePhone() {
+      const raw = fields.phone.value.trim();
+      if (!raw) return setFieldState("phone", "請輸入行動電話號碼。");
+      if (!/^09\d{8}$/.test(raw)) {
+        return setFieldState("phone", "請輸入 09 開頭的 10 碼台灣手機號碼。");
+      }
+      return setFieldState("phone", "");
+    }
+
+    function validateSchoolCity() {
+      if (!schoolCitySelect.value) return setFieldState("school_city", "請選擇學校所在縣市。");
+      return setFieldState("school_city", "");
+    }
+
+    function validateSchoolName() {
+      if (!schoolNameSelect.value) return setFieldState("school_name", "請選擇大專院校。");
+      return setFieldState("school_name", "");
+    }
+
+    function validateDepartment() {
+      const value = fields.department.value.trim();
+      if (!value) return setFieldState("department", "請填寫就讀科系。");
+      return setFieldState("department", "");
+    }
+
+    function validateDegree() {
+      if (!fields.degree.value) return setFieldState("degree", "請選擇年級。");
+      return setFieldState("degree", "");
+    }
+
+    function validateCity() {
+      if (!citySelect.value || !cityData.some(item => item.CityName === citySelect.value)) {
+        return setFieldState("city", "請選擇有效的縣市。");
+      }
+      return setFieldState("city", "");
+    }
+
+    function validateDistrict() {
+      const selectedCity = cityData.find(item => item.CityName === citySelect.value);
+      const validDistrict = selectedCity?.AreaList?.some(area => area.AreaName === districtSelect.value);
+      if (!validDistrict) return setFieldState("district", "請選擇有效的鄉鎮市區。");
+      return setFieldState("district", "");
+    }
+
+    function validateAddressDetail() {
+      const value = addressDetail.value.trim();
+      if (!value) return setFieldState("address_detail", "請輸入詳細地址。");
+      if (value.length < 3 || value.length > 120) {
+        return setFieldState("address_detail", "詳細地址請輸入 3～120 個字元。");
+      }
+      return setFieldState("address_detail", "");
+    }
+
+    function validateResumeFile() {
+      const file = resumeFileInput.files[0];
+      if (!file) return setFieldState("resume_file", "請上傳個人履歷與成績單檔案。");
+      if (file.type !== "application/pdf") {
+        return setFieldState("resume_file", "檔案格式僅限定 PDF 格式。");
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        return setFieldState("resume_file", "檔案大小不能超過 10MB。");
+      }
+      return setFieldState("resume_file", "");
+    }
+
+    function validateDepartments() {
+      const checked = document.querySelectorAll(".dept-chk:checked");
+      const errBox = document.getElementById("deptError");
+      if (checked.length === 0 || checked.length > 2) {
+        errBox.style.display = "block";
+        return false;
+      } else {
+        errBox.style.display = "none";
+        return true;
+      }
+    }
+
+    function validatePrivacy() {
+      const chk = document.getElementById("privacyConsent");
+      const errBox = document.getElementById("privacyError");
+      if (!chk.checked) {
+        chk.classList.add("is-invalid");
+        errBox.style.display = "block";
+        return false;
+      } else {
+        chk.classList.remove("is-invalid");
+        errBox.style.display = "none";
+        return true;
+      }
+    }
+
+    const validators = {
+      username: validateUsername,
+      password: validatePassword,
+      email: validateEmail,
+      idcard: validateID,
+      phone: validatePhone,
+      school_city: validateSchoolCity,
+      school_name: validateSchoolName,
+      department: validateDepartment,
+      degree: validateDegree,
+      city: validateCity,
+      district: validateDistrict,
+      address_detail: validateAddressDetail,
+      resume_file: validateResumeFile
+    };
+
+    // 監聽手機欄位輸入：自動剔除非數字字元
+    fields.phone.addEventListener("input", (e) => {
+      let cleaned = e.target.value.replace(/\D/g, "");
+      if (cleaned.length > 10) cleaned = cleaned.slice(0, 10);
+      e.target.value = cleaned;
+    });
+
+    // 即時密碼強度提示
+    fields.password.addEventListener("input", () => {
+      const val = fields.password.value;
+      const help = document.getElementById("passwordHelp");
+      const hasLength = val.length >= 8 && val.length <= 64;
+      const hasUpper = /[A-Z]/.test(val);
+      const hasLower = /[a-z]/.test(val);
+      const hasNum = /[0-9]/.test(val);
+
+      if (!val) {
+        help.innerHTML = "請自訂查詢甄選結果之密碼（至少 8 個字元，含大小寫英文及數字）。";
+        help.className = "help-text mt-1";
+        return;
+      }
+
+      if (hasLength && hasUpper && hasLower && hasNum) {
+        help.innerHTML = '<i class="bi bi-check-circle-fill text-success me-1"></i> 密碼強度符合要求';
+        help.className = "help-text mt-1 text-success";
+      } else {
+        help.innerHTML = `<i class="bi bi-exclamation-triangle-fill text-warning me-1"></i> 尚缺：` +
+          [
+            !hasLength ? "8-64碼" : "",
+            !hasUpper ? "大寫英文" : "",
+            !hasLower ? "小寫英文" : "",
+            !hasNum ? "數字" : ""
+          ].filter(Boolean).join("、");
+        help.className = "help-text mt-1 text-warning";
+      }
+    });
+
+    Object.keys(validators).forEach(name => {
+      const field = fields[name];
+      if (!field) return;
+      const eventName = ["city", "district", "degree", "school_city", "school_name", "resume_file"].includes(name) ? "change" : "input";
+
+      field.addEventListener(eventName, () => {
+        if (name === "idcard") {
+          field.value = field.value.toUpperCase();
+          if (field.value.length === 10) validators[name]();
+          else clearFieldState(name);
+        } else {
+          if (field.classList.contains("is-invalid")) clearFieldState(name);
+        }
+        formAlert.classList.add("d-none");
+      });
+
+      field.addEventListener("blur", validators[name]);
+    });
+
+    // 學校連動
+    schoolCitySelect.addEventListener("change", () => {
+      const selectedCity = schoolCitySelect.value;
+      schoolNameSelect.replaceChildren(new Option("請選擇大專院校", ""));
+      if (selectedCity && collegeData[selectedCity]) {
+        collegeData[selectedCity].forEach(college => {
+          schoolNameSelect.add(new Option(college, college));
+        });
+        schoolNameSelect.disabled = false;
+      } else {
+        schoolNameSelect.disabled = true;
+      }
+      clearFieldState("school_name");
+      validateSchoolCity();
+      validateSchoolName();
+    });
+
+    // 志願複選限制
+    document.querySelectorAll(".dept-chk").forEach(chk => {
+      chk.addEventListener("change", () => {
+        const checked = document.querySelectorAll(".dept-chk:checked");
+        if (checked.length > 2) {
+          chk.checked = false;
+          alert("實習志願部門最多只能選擇 2 項！");
+        }
+        validateDepartments();
+      });
+    });
+
+    document.getElementById("privacyConsent").addEventListener("change", validatePrivacy);
+
+    // 密碼顯示切換
+    document.getElementById("togglePassword").addEventListener("click", () => {
+      const input = fields.password;
+      const button = document.getElementById("togglePassword");
+      const icon = document.getElementById("passwordIcon");
+      const reveal = input.type === "password";
+      input.type = reveal ? "text" : "password";
+      button.setAttribute("aria-label", reveal ? "隱藏密碼" : "顯示密碼");
+      button.setAttribute("aria-pressed", String(reveal));
+      icon.classList.toggle("bi-eye", !reveal);
+      icon.classList.toggle("bi-eye-slash", reveal);
+    });
+
+    citySelect.addEventListener("change", () => {
+      const selectedCity = cityData.find(item => item.CityName === citySelect.value);
+      districtSelect.replaceChildren(new Option("請選擇鄉鎮市區", ""));
+      if (selectedCity && Array.isArray(selectedCity.AreaList)) {
+        selectedCity.AreaList.forEach(area => {
+          districtSelect.add(new Option(area.AreaName, area.AreaName));
+        });
+        districtSelect.disabled = false;
+      } else {
+        districtSelect.disabled = true;
+      }
+      clearFieldState("district");
+      validateCity();
+      validateDistrict();
+    });
+
+    async function loadCityData() {
+      const urls = [
+        "https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/CityCountyData.json"
+      ];
+      try {
+        let response;
+        for (const url of urls) {
+          try {
+            response = await fetch(url, { cache: "no-store" });
+            if (response.ok) break;
+          } catch (_) { response = null; }
+        }
+        if (!response || !response.ok) throw new Error("無法載入縣市資料。");
+        const data = await response.json();
+        cityData = data;
+        
+        citySelect.replaceChildren(new Option("請選擇縣市", ""));
+        schoolCitySelect.replaceChildren(new Option("請選擇學校縣市", ""));
+        
+        data.forEach(item => {
+          citySelect.add(new Option(item.CityName, item.CityName));
+          schoolCitySelect.add(new Option(item.CityName, item.CityName));
+        });
+        
+        citySelect.disabled = false;
+        schoolCitySelect.disabled = false;
+        loadingAlert.classList.add("d-none");
+      } catch (error) {
+        citySelect.replaceChildren(new Option("縣市資料載入失敗", ""));
+        loadingAlert.className = "alert alert-warning";
+        loadingAlert.textContent = "目前無法載入縣市資料，請檢查網路連線。";
+      }
+    }
+
+    // 表單送出處理
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      formAlert.classList.add("d-none");
+
+      const isBaseValid = Object.keys(validators).map(name => validators[name]()).every(Boolean);
+      const isDeptValid = validateDepartments();
+      const isPrivacyValid = validatePrivacy();
+
+      if (!isBaseValid || !isDeptValid || !isPrivacyValid) {
+        formAlert.textContent = "尚有欄位未填寫或格式不符合要求，請檢查紅框提示後重新送出。";
+        formAlert.classList.remove("d-none");
+        formAlert.focus();
+        showmsg.textContent = "尚未完成驗證，請修正表單後再送出。";
+        return;
+      }
+
+      showmsg.replaceChildren();
+      const selectedDepts = Array.from(document.querySelectorAll(".dept-chk:checked")).map(c => c.value);
+      const resumeFile = resumeFileInput.files[0];
+
+      const details = [
+        ["申請人姓名", fields.username.value.trim()],
+        ["聯絡 Email", fields.email.value.trim()],
+        ["身分證/居留證", fields.idcard.value.slice(0, 1) + "*********（基於個資安全已隱蔽）"],
+        ["行動電話", fields.phone.value.trim()],
+        ["大專學歷", schoolNameSelect.value + " " + fields.department.value.trim() + " (" + fields.degree.value + ")"],
+        ["通訊地址", citySelect.value + districtSelect.value + addressDetail.value.trim()],
+        ["志願實習部門", selectedDepts.join("、")],
+        ["已上傳附件", resumeFile ? `${resumeFile.name} (${(resumeFile.size / 1024 / 1024).toFixed(2)} MB)` : "無"]
+      ];
+
+      details.forEach(([label, value]) => {
+        const row = document.createElement("p");
+        row.className = "mb-2";
+        const strong = document.createElement("strong");
+        strong.textContent = label + "：";
+        row.append(strong, document.createTextNode(value));
+        showmsg.appendChild(row);
+      });
+
+      const note = document.createElement("p");
+      note.className = "text-success mb-0 mt-3 fw-bold";
+      note.textContent = "恭喜！實習報名資料已成功通過驗證，已為您產送報名試算號碼 #ST2027-8891。";
+      showmsg.appendChild(note);
+      showmsg.focus();
+    });
+
+    // 表單重置
+    form.addEventListener("reset", () => {
+      setTimeout(() => {
+        Object.keys(fields).forEach(clearFieldState);
+        districtSelect.replaceChildren(new Option("請先選擇縣市", ""));
+        schoolNameSelect.replaceChildren(new Option("請先選擇學校縣市", ""));
+        districtSelect.disabled = true;
+        schoolNameSelect.disabled = true;
+        citySelect.value = "";
+        schoolCitySelect.value = "";
+        document.getElementById("privacyConsent").checked = false;
+        document.getElementById("privacyConsent").classList.remove("is-invalid");
+        document.getElementById("privacyError").style.display = "none";
+        document.getElementById("deptError").style.display = "none";
+        document.getElementById("passwordHelp").innerHTML = "請自訂查詢甄選結果之密碼（至少 8 個字元，含大小寫英文及數字）。";
+        document.getElementById("passwordHelp").className = "help-text mt-1";
+        formAlert.classList.add("d-none");
+        showmsg.textContent = "尚未送出資料";
+      }, 0);
+    });
+
+    citySelect.disabled = true;
+    schoolCitySelect.disabled = true;
+    loadCityData();
+  </script>
+</body>
+</html>

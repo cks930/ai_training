@@ -1,0 +1,381 @@
+/* ========================================================= 1. 基本設定 ========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #F4F7FA;
+  color: #243B53;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+}
+
+/* ========================================================= 2. 網站外框 ========================================================= */
+.wrapper {
+  width: 1024px;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 30px rgba(0, 30, 60, 0.12);
+}
+
+/* ========================================================= 3. Banner ========================================================= */
+.logo {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background-image: linear-gradient(rgba(4, 20, 38, 0.72), rgba(4, 20, 38, 0.55)), url("images/a08.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: 4px solid #00A8E8;
+}
+
+/* Banner 底部英文 */
+.logo::after {
+  content: "TECHNOLOGY • INNOVATION • FUTURE";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 25px;
+  color: #00D084;
+  font-size: 13px;
+  font-weight: normal;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+/* ========================================================= 4. 導覽列 ========================================================= */
+.nav {
+  width: 100%;
+  padding: 14px 10px;
+  background-color: #071A2B;
+  border-bottom: 1px solid #123B50;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav li {
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  display: block;
+  padding: 9px 18px;
+  color: #EAF7FF;
+  background-color: transparent;
+  border: 1px solid #168AAD;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* 導覽列 Hover */
+.nav a:hover {
+  color: #071A2B;
+  background-color: #00A8E8;
+  border-color: #00A8E8;
+  box-shadow: 0 0 12px rgba(0, 168, 232, 0.55);
+  transform: translateY(-2px);
+}
+
+/* ========================================================= 5. 內容區 ========================================================= */
+.content {
+  width: 100%;
+  padding: 55px 70px;
+  background-color: #EAF4F8;
+  text-align: center;
+}
+
+/* ========================================================= 6. 主標題 ========================================================= */
+.content h1 {
+  margin: 0 0 35px;
+  color: #071A2B;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1.4;
+  letter-spacing: 1px;
+}
+
+/* 標題底線 */
+.content h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 15px auto 0;
+  background-color: #00A8E8;
+  border-radius: 5px;
+}
+
+/* ========================================================= 7. 文章卡片 ========================================================= */
+.article {
+  width: 100%;
+  margin: 18px 0;
+  padding: 20px 25px;
+  color: #34495E;
+  background-color: #FFFFFF;
+  line-height: 1.9;
+  font-weight: normal;
+  text-align: left;
+  border-left: 5px solid #00A8E8;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0, 40, 70, 0.10);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* 文章 Hover */
+.article:hover {
+  border-left-color: #00D084;
+  box-shadow: 0 10px 25px rgba(0, 80, 120, 0.16);
+  transform: translateY(-4px);
+}
+
+/* ========================================================= 8. 各段文字大小 ========================================================= */
+/* 第一段 */
+.text-01 {
+  font-size: 16px;
+}
+
+/* 第二段 */
+.text-02 {
+  font-size: 17px;
+}
+
+/* 第三段 */
+.text-03 {
+  font-size: 18px;
+}
+
+/* ========================================================= 9. 了解更多按鈕 ========================================================= */
+.btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 35px;
+  color: #071A2B;
+  background-color: #00D084;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 208, 132, 0.30);
+  transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* 按鈕 Hover */
+.btn:hover {
+  color: #FFFFFF;
+  background-color: #00A8E8;
+  box-shadow: 0 8px 22px rgba(0, 168, 232, 0.35);
+  transform: translateY(-3px);
+}
+
+/* ========================================================= 10. Footer ========================================================= */
+.footer {
+  width: 100%;
+  padding: 20px 10px;
+  color: #8FB3C4;
+  background-color: #071A2B;
+  border-top: 3px solid #00A8E8;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* ========================================================= 11. color.css 標題覆寫 ========================================================= */
+.mytitle-01 {
+  font-size: 40px;
+}
+
+.mytitle-02 {
+  font-size: 45px;
+}
+
+.mytitle-03 {
+  font-size: 52px;
+}
+
+/* ========================================================= 12. 平板 RWD 1024px 以下 ========================================================= */
+@media screen and (max-width: 1024px) {
+
+  /* 導覽列改成直式 */
+  .nav ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nav li {
+    width: 100%;
+  }
+
+  .nav a {
+    width: 100%;
+  }
+
+  /* 內容縮小左右空間 */
+  .content {
+    padding: 50px;
+  }
+}
+
+/* ========================================================= 13. 手機 RWD 600px 以下 ========================================================= */
+@media screen and (max-width: 600px) {
+
+  /* ---------- 網站 ---------- */
+  .wrapper {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  /* ---------- Banner ---------- */
+  .logo {
+    height: 140px;
+  }
+
+  .logo::after {
+    bottom: 15px;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  /* ---------- 導覽列 ---------- */
+  .nav {
+    padding: 8px;
+  }
+
+  .nav ul {
+    gap: 4px;
+  }
+
+  .nav a {
+    padding: 8px 5px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
+
+  /* ---------- 內容 ---------- */
+  .content {
+    padding: 30px 12px;
+  }
+
+  /* ---------- 標題 ---------- */
+  .content h1,
+  .mytitle-01 {
+    margin-bottom: 25px;
+    font-size: 25px;
+    line-height: 1.5;
+  }
+
+  .content h1::after {
+    width: 45px;
+    height: 3px;
+    margin-top: 10px;
+  }
+
+  /* ---------- 文章 ---------- */
+  .article {
+    margin: 12px 0;
+    padding: 14px 12px;
+    line-height: 1.85;
+    border-left-width: 4px;
+    border-radius: 7px;
+  }
+
+  /* ---------- 手機各段文字 ---------- */
+  .text-01 {
+    font-size: 13px;
+  }
+
+  .text-02 {
+    font-size: 14px;
+  }
+
+  .text-03 {
+    font-size: 15px;
+  }
+
+  /* ---------- 按鈕 ---------- */
+  .btn {
+    display: block;
+    width: 100%;
+    margin-top: 22px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 25px;
+  }
+
+  /* ---------- Footer ---------- */
+  .footer {
+    padding: 15px 5px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* ========================================================= 14. 超小手機 RWD 400px 以下 ========================================================= */
+@media screen and (max-width: 400px) {
+
+  /* Banner */
+  .logo {
+    height: 120px;
+  }
+
+  /* 內容 */
+  .content {
+    padding: 20px 8px;
+  }
+
+  /* 標題 */
+  .content h1,
+  .mytitle-01 {
+    font-size: 21px;
+  }
+
+  /* 各段文字 */
+  .text-01 {
+    font-size: 12px;
+  }
+
+  .text-02 {
+    font-size: 13px;
+  }
+
+  .text-03 {
+    font-size: 14px;
+  }
+
+  /* 文章 */
+  .article {
+    padding: 12px 10px;
+  }
+
+  /* 按鈕 */
+  .btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+}

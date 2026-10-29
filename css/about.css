@@ -1,0 +1,158 @@
+body {
+    background: #F1F5F9;
+    color: #334155;
+    font-family: system-ui, sans-serif;
+    line-height: 1.7;
+}
+
+.wrapper {
+    max-width: 1140px;
+    margin: 20px auto;
+    background: #FFF;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    height: 180px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 58, 138, 0.75)), url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80") center/cover;
+    border-bottom: 4px solid #2563EB;
+}
+
+/* 統一全站導覽列樣式 */
+.site-nav {
+    background: #0F172A;
+}
+
+.site-nav a {
+    color: #94A3B8;
+    border: 1px solid #334155;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.2s;
+    white-space: nowrap;
+    padding: 6px 16px;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+    background: #2563EB;
+    border-color: #2563EB;
+    color: #FFF;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0F172A;
+}
+
+.subtitle {
+    color: #2563EB;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.article-num {
+    width: 90px;
+    min-width: 90px;
+    background: #0F172A;
+    color: #FFF;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+/* 按鈕樣式優化 */
+.read-btn {
+    color: #2563EB;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.read-btn:hover {
+    color: #FFF;
+    background: #2563EB;
+    border-color: #2563EB;
+}
+
+.company-name {
+    border-left: 4px solid #2563EB;
+    font-size: 18px;
+    color: #0F172A;
+}
+
+.col-company {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.col-company:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+/* 圖片卷軸 (Roller Overlay) 美化樣式 */
+.card-img-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-img-wrapper .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.col-company:hover .card-img-top {
+    transform: scale(1.08);
+}
+
+.roller-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(37, 99, 235, 0.75));
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+}
+
+.col-company:hover .roller-overlay {
+    transform: translateY(0);
+}
+
+.more-badge {
+    color: #FFF;
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.col-company:hover .more-badge {
+    background: #FFF;
+    color: #2563EB;
+    border-color: #FFF;
+}

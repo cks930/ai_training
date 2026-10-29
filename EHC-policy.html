@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智造科技｜職業安全衛生管理守則</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/EHC.css">
+</head>
+<body>
+
+    <!-- 跨頁導覽列 -->
+    <nav class="site-nav py-2 shadow-sm mb-3 overflow-x-auto">
+    <ul class="nav justify-content-center gap-2 m-0 p-0 text-nowrap flex-nowrap align-items-center">
+        <li><a href="home.html">🏠 首頁</a></li>
+        <li><a href="about-us.html">🏢 關於智造</a></li>
+        <li><a href="timeline.html">📈 發展時間軸</a></li>
+        <li><span class="nav-link active px-3 py-1 text-primary fw-bold">🛡️ 職業安全</span></li>
+        <li><a href="union.html">🎁 員工福利</a></li>
+        <li><a href="R-D.html">🚀 科技展示</a></li>
+        <li><a href="signup.html">📝 線上報名</a></li>
+    </ul>
+    </nav>
+
+    <div class="container my-4">
+        <div class="hero-banner text-center">
+            <h1 class="display-5 fw-bold mb-3">職業安全衛生管理手冊</h1>
+            <p class="lead mb-0">落實危害預防，推動職業安全訓練與健康維護</p>
+        </div>
+
+        <section class="mb-5">
+            <h2 class="section-title">雇主應辦理的安全衛生事項</h2>
+            <div class="row g-4" id="employerList"></div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title">勞工應配合的遵守義務</h2>
+            <div class="row g-4" id="workerList"></div>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(function(){
+            var fallbackSvg = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 600 400' fill='%23CBD5E1'><rect width='600' height='400'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='24' fill='%230F172A'>🛡️ 職業安全衛生宣導</text></svg>";
+
+            var employerData = [
+                { title: "防止危害發生", desc: "設置機械、防爆、防電熱及搬運作業等符合規定的安全設備與預防措施。", pic: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80", tag: "設備安全", location: "勞動部職業安全衛生署" },
+                { title: "工作環境管理", desc: "保持通道與地板安全，防止跌倒、滑倒或物件滾落，確保動線順暢。", pic: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80", tag: "環境維護", location: "職業安全衛生展示館" },
+                { title: "危害辨識控制", desc: "訂定職業安全衛生管理計畫，定期評估作業風險並完整留存紀錄。", pic: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=600&q=80", tag: "風險評估", location: "職業安全衛生署北區職業安全衛生中心" },
+                { title: "個人防護具提供", desc: "備妥耳塞、耳罩、防塵口罩及防護面罩等裝備，並督導確實配戴。", pic: "https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=600&q=80", tag: "防護裝備", location: "職業安全衛生署中區職業安全衛生中心" }
+            ];
+
+            var workerData = [
+                { title: "接受安全教育訓練", desc: "勞工不得無故拒絕雇主安排的職安訓練（含新進訓練及定期在職訓練）。", pic: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80", tag: "教育訓練", location: "職業安全衛生署南區職業安全衛生中心" },
+                { title: "接受健康檢查", desc: "勞工有義務配合接受一般健康檢查、特殊危害健檢與特定追蹤管理。", pic: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80", tag: "健康維護", location: "勞工體格及健康檢查認可醫療機構" },
+                { title: "確實佩戴及使用防護具", desc: "作業期間必須正確佩戴個人防護具（如安全帽、護目鏡、防護手套）。", pic: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=600&q=80", tag: "裝備配戴", location: "勞動部勞動及職業安全衛生研究所" },
+                { title: "遵守安全衛生工作守則", desc: "必須嚴格遵守會同勞工代表訂定並公告之各項「安全衛生工作守則」。", pic: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80", tag: "守則遵循", location: "勞動部職業安全衛生署" }
+            ];
+
+            function renderCards(dataList, targetId) {
+                var $target =$(targetId); $target.empty();$.each(dataList, function(i, item){
+                    var mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}`;
+                    $target.append(`
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="safety-card">
+                                <div class="card-img-wrap">
+                                    <img src="${item.pic}" alt="${item.title}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackSvg}';">
+                                </div>
+                                <div class="card-body-custom">
+                                    <div>
+                                        <span class="badge-tag">${item.tag}</span>
+                                        <h3 class="card-title-custom">${item.title}</h3>
+                                        <p class="card-desc">${item.desc}</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a href="${mapUrl}" target="_blank" class="btn-nav w-100">📍 開啟地圖導航</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+            renderCards(employerData, "#employerList");
+            renderCards(workerData, "#workerList");
+        });
+    </script>
+</body>
+</html>
