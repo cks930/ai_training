@@ -1,117 +1,452 @@
+
+/* =====================================================
+   TIMELINE.CSS
+   PCB 產業發展時間軸｜完整優化版
+   保留老師原本的 Bootstrap 行列排列
+===================================================== */
+
+/* 01. 深色模式 */
+:root,
+html.dark,
+html[data-bs-theme="dark"] {
+    color-scheme: dark;
+
+    --page-bg: #0b1422;
+    --section-bg: #101e30;
+    --card-bg: #17283d;
+    --card-hover: #203650;
+    --heading-color: #f1f6fc;
+    --body-text: #d1deeb;
+    --muted-color: #b9cadb;
+    --accent-color: #7dd3fc;
+    --border-color: #34475e;
+    --line-color: #3b82f6;
+    --modal-bg: #17283d;
+    --shadow-color: rgba(0, 0, 0, 0.25);
+}
+
+/* 02. 淺色模式 */
+html:not(.dark),
+html[data-bs-theme="light"] {
+    color-scheme: light;
+
+    --page-bg: #f4f7fb;
+    --section-bg: #f4f7fb;
+    --card-bg: #ffffff;
+    --card-hover: #f0f7fd;
+    --heading-color: #17324d;
+    --body-text: #334155;
+    --muted-color: #52677c;
+    --accent-color: #086d98;
+    --border-color: #cbd7e4;
+    --line-color: #2563eb;
+    --modal-bg: #ffffff;
+    --shadow-color: rgba(15, 23, 42, 0.08);
+}
+
+/* 03. 全站背景 */
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
 body {
-  background-color: #f8fafc;
-  color: #334155;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--page-bg) !important;
+    color: var(--body-text);
+    font-family: system-ui, -apple-system,
+                 "Segoe UI", Roboto,
+                 "Microsoft JhengHei", sans-serif;
+    line-height: 1.7;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
-.imgbox {
-  height: 280px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e2e8f0;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
+/* 04. 主框架 */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--page-bg) !important;
+    color: var(--body-text);
+}
+
+.wrapper > main {
+    flex: 1 0 auto;
+}
+
+main.container {
+    background: var(--section-bg);
+}
+
+/* 05. 標題 */
+.timeline-title {
+    color: var(--heading-color) !important;
+    letter-spacing: 1px;
+}
+
+.timeline-subtitle {
+    color: var(--muted-color) !important;
+}
+
+/* 06. 時間軸整體 */
 .timeline-section {
-  position: relative;
-  padding: 3rem 0;
+    position: relative;
+    padding: 3rem 0;
+    background: transparent;
 }
 
+/* 07. 中央時間線 */
 .timeline-section::before {
-  position: absolute;
-  content: "";
-  width: 4px;
-  background: linear-gradient(to bottom, #cbd5e1, #3b82f6, #1e40af, #cbd5e1);
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 2px;
-  z-index: 1;
+    position: absolute;
+    content: "";
+    width: 4px;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    z-index: 1;
+
+    background: linear-gradient(
+        to bottom,
+        #64748b,
+        #3b82f6,
+        #1d4ed8,
+        #64748b
+    );
 }
 
+/* 08. 每一列 */
 .timeline-row {
-  position: relative;
-  margin-bottom: 4rem;
+    position: relative;
+    margin-bottom: 4rem;
 }
 
+/* 09. 時間軸圓點 */
 .timeline-dot {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-color: #60a5fa;
-  border-radius: 50%;
-  border: 6px solid #1e3a8a;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
-  box-sizing: border-box;
-  flex-shrink: 0;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    background: #60a5fa;
+    border: 6px solid #1e3a8a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    flex-shrink: 0;
 }
 
-.timeline-card {
-  background: #ffffff;
-  border-radius: 1rem;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* 10. 圖片 */
+.imgbox {
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 25px -5px var(--shadow-color);
 }
 
-.timeline-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-tag {
-  display: inline-block;
-  background-color: #eff6ff;
-  color: #1d4ed8;
-  font-weight: 700;
-  padding: 0.35rem 1rem;
-  border-radius: 50rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
-  border: 1px solid #dbeafe;
-  width: fit-content;
-}
-
+/* 11. 圖片滑入效果 */
 .roller-t {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
 
 .roller-t .rollerbox-t {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(153, 174, 231, 0.397);
-  transform: translateY(-100%);
-  transition: transform 2s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(2px);
+
+    transform: translateY(-100%);
+    transition: transform 0.45s ease;
 }
 
-.roller-t:hover .rollerbox-t {
-  transform: translateY(0);
+.roller-t:hover .rollerbox-t,
+.roller-t:focus-within .rollerbox-t {
+    transform: translateY(0);
 }
 
-@media (max-width: 768px) {
-  .timeline-section::before {
-    display: none;
-  }
-  .timeline-dot {
-    display: none;
-  }
+/* 12. 查看更多按鈕 */
+.rollerbox-t .btn-warning {
+    background: #facc15;
+    border-color: #facc15;
+    color: #172033 !important;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+.rollerbox-t .btn-warning:hover {
+    background: #fde047;
+    border-color: #fde047;
+    color: #172033 !important;
+}
+
+/* 13. 卡片 */
+.timeline-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+
+    padding: 2rem;
+    background: var(--card-bg) !important;
+    color: var(--body-text) !important;
+
+    border: 1px solid var(--border-color) !important;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px var(--shadow-color);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.timeline-card:hover {
+    transform: translateY(-4px);
+    background: var(--card-hover) !important;
+    box-shadow: 0 20px 25px -5px var(--shadow-color);
+}
+
+/* 14. 卡片標題 */
+.timeline-card h2 {
+    color: var(--heading-color) !important;
+    font-weight: 700;
+}
+
+/* 15. 卡片內文 */
+.timeline-card p {
+    color: var(--body-text) !important;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* 16. 時間標籤 */
+.timeline-tag,
+.timeline-card .badge.bg-primary {
+    display: inline-block;
+    width: fit-content;
+
+    padding: 0.35rem 1rem;
+    margin-bottom: 0.75rem;
+
+    background: #1d4ed8 !important;
+    color: #ffffff !important;
+    border: 1px solid #3b82f6;
+
+    border-radius: 50rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+/* 17. 淺色模式 */
+html:not(.dark) .timeline-card {
+    background: #ffffff !important;
+    border-color: #cbd7e4 !important;
+}
+
+html:not(.dark) .timeline-card h2 {
+    color: #17324d !important;
+}
+
+html:not(.dark) .timeline-card p {
+    color: #334155 !important;
+}
+
+/* 18. 深色模式 */
+html.dark .timeline-card {
+    background: #17283d !important;
+    border-color: #34475e !important;
+}
+
+html.dark .timeline-card h2 {
+    color: #f1f6fc !important;
+}
+
+html.dark .timeline-card p {
+    color: #d1deeb !important;
+}
+
+/* 19. Bootstrap 文字修正 */
+.text-muted,
+.text-secondary {
+    color: var(--muted-color) !important;
+}
+
+/* 20. 彈出視窗 */
+.modal-content {
+    background: var(--modal-bg);
+    color: var(--body-text);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--border-color);
+}
+
+.modal-title {
+    color: var(--heading-color);
+}
+
+.modal-body {
+    color: var(--body-text);
+}
+
+.modal-body p {
+    color: var(--body-text);
+    line-height: 1.8;
+}
+
+#timelineModalYear {
+    color: var(--accent-color);
+}
+
+#timelineModalImage {
+    max-height: 350px;
+    object-fit: cover;
+    background: var(--section-bg);
+}
+
+/* 21. 關閉按鈕 */
+html.dark .modal .btn-close {
+    filter: invert(1) grayscale(100%);
+}
+
+/* 22. Footer */
+footer {
+    flex-shrink: 0;
+    background: var(--section-bg) !important;
+    color: var(--body-text) !important;
+    border-color: var(--border-color);
+}
+
+footer .footer-content,
+footer .footer-bottom {
+    background: var(--section-bg) !important;
+    color: var(--body-text) !important;
+}
+
+footer h6 {
+    color: var(--heading-color) !important;
+}
+
+footer p {
+    color: var(--body-text) !important;
+}
+
+/* 23. 導覽列文字 */
+#navbar-container .navbar {
+    background: #1e293b !important;
+}
+
+#navbar-container .nav-link,
+#navbar-container .company-name,
+#navbar-container .logo-text {
+    color: #f1f5f9 !important;
+}
+
+#navbar-container .nav-link:hover,
+#navbar-container .nav-link.active {
+    color: #67e8f9 !important;
+}
+
+/* 24. 操作焦點 */
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #38bdf8;
+    outline-offset: 3px;
+}
+
+/* 25. 平板 */
+@media (max-width: 991.98px) {
+    .timeline-card {
+        padding: 1.5rem;
+    }
+
+    .timeline-dot {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* 26. 手機 */
+@media (max-width: 767.98px) {
+    .timeline-section {
+        padding: 1rem 0;
+    }
+
+    .timeline-section::before {
+        display: none;
+    }
+
+    .timeline-dot {
+        display: none;
+    }
+
+    .timeline-row {
+        margin-bottom: 2rem;
+    }
+
+    .timeline-card {
+        padding: 1.25rem;
+    }
+
+    .timeline-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .imgbox {
+        height: 220px;
+    }
+
+    .roller-t .rollerbox-t {
+        transform: translateY(0);
+        background: rgba(15, 23, 42, 0.25);
+        align-items: flex-end;
+        padding-bottom: 15px;
+    }
+
+    .rollerbox-t .btn-warning {
+        background: #facc15;
+        color: #172033 !important;
+    }
+}
+
+/* 27. 減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }

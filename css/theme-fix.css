@@ -1,0 +1,781 @@
+
+/* =====================================================
+   theme-fix.css
+   全站深淺色一致性與文字對比優化
+   保留原本 HTML 框架與 Bootstrap 排列
+===================================================== */
+
+/* 01. 深色模式 */
+:root,
+html.dark,
+html.dark-mode,
+html[data-bs-theme="dark"] {
+    color-scheme: dark;
+
+    --theme-bg: #0b1422;
+    --theme-section: #101d2e;
+    --theme-card: #17283d;
+    --theme-card-hover: #203650;
+    --theme-text: #f1f6fc;
+    --theme-muted: #bfccdc;
+    --theme-border: #34475e;
+    --theme-primary: #7dd3fc;
+    --theme-link: #7dd3fc;
+    --theme-input: #15263a;
+    --theme-nav: #101d2e;
+    --theme-table-head: #213c58;
+    --theme-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+}
+
+/* 02. 淺色模式 */
+html:not(.dark),
+html[data-bs-theme="light"] {
+    color-scheme: light;
+
+    --theme-bg: #f4f7fb;
+    --theme-section: #eaf0f7;
+    --theme-card: #ffffff;
+    --theme-card-hover: #f0f7fd;
+    --theme-text: #24364b;
+    --theme-muted: #52677c;
+    --theme-border: #cbd7e4;
+    --theme-primary: #086d98;
+    --theme-link: #086d98;
+    --theme-input: #ffffff;
+    --theme-nav: #ffffff;
+    --theme-table-head: #dceaf5;
+    --theme-shadow: 0 8px 24px rgba(25, 55, 90, .08);
+}
+
+/* 03. 全站背景，不留下白色斷層 */
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+    background: var(--theme-bg) !important;
+    color: var(--theme-text);
+}
+
+body {
+    transition: background-color .25s ease, color .25s ease;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--theme-bg) !important;
+    color: var(--theme-text);
+}
+
+.wrapper > main,
+.wrapper > .container,
+.wrapper > section,
+body > main {
+    color: var(--theme-text);
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+body,
+main,
+section,
+article {
+    border-color: var(--theme-border);
+}
+
+/* 04. Bootstrap 主題變數 */
+html[data-bs-theme="dark"] {
+    --bs-body-bg: #0b1422;
+    --bs-body-color: #f1f6fc;
+    --bs-secondary-color: #bfccdc;
+    --bs-border-color: #34475e;
+}
+
+html[data-bs-theme="light"] {
+    --bs-body-bg: #f4f7fb;
+    --bs-body-color: #24364b;
+    --bs-secondary-color: #52677c;
+    --bs-border-color: #cbd7e4;
+}
+
+/* 05. 一般文字 */
+h1, h2, h3, h4, h5, h6,
+p, li, dt, dd, label, legend {
+    overflow-wrap: break-word;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+    color: var(--theme-text);
+}
+
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4,
+html:not(.dark) h5,
+html:not(.dark) h6 {
+    color: var(--theme-text);
+}
+
+.text-muted,
+.text-secondary,
+.form-text {
+    color: var(--theme-muted) !important;
+}
+
+a:not(.btn):not(.btn-cta):not(.box02):not(.nav-link) {
+    text-underline-offset: 3px;
+}
+
+/* 06. 導覽列 */
+#navbar-container,
+.site-nav,
+.navbar {
+    background-color: var(--theme-nav);
+}
+
+#navbar-container .navbar,
+.site-nav,
+.navbar {
+    border-color: var(--theme-border) !important;
+}
+
+.navbar .company-name,
+.navbar .logo-text,
+.navbar .nav-link,
+.site-nav .nav-link {
+    color: var(--theme-text);
+}
+
+.navbar .nav-link:hover,
+.site-nav .nav-link:hover {
+    color: var(--theme-primary);
+}
+
+.navbar .nav-link.active,
+.site-nav .nav-link.active {
+    color: var(--theme-primary) !important;
+}
+
+.navbar-toggler {
+    border-color: var(--theme-border);
+}
+
+/* 07. 導覽列切換按鈕 */
+.mode-switch,
+#theme-toggle {
+    color: var(--theme-text);
+    border-color: var(--theme-border);
+}
+
+.mode-switch .switch-track {
+    background: var(--theme-border);
+}
+
+.mode-switch .switch-dot {
+    background: #ffffff;
+}
+
+html.dark .mode-switch .switch-track {
+    background: #087eaf;
+}
+
+/* 08. 常見卡片背景 */
+.card,
+.card-custom,
+.timeline-card,
+.main-card,
+.panel,
+.rule-note,
+.box03,
+.hero-banner,
+#techArticles article,
+#companyCards > div > * {
+    background-color: var(--theme-card);
+    color: var(--theme-text);
+    border-color: var(--theme-border);
+}
+
+.card,
+.card-custom,
+.timeline-card,
+.main-card,
+.panel,
+.rule-note,
+.box03 {
+    box-shadow: var(--theme-shadow);
+}
+
+/* 09. 卡片內文字 */
+.card h1, .card h2, .card h3,
+.card h4, .card h5, .card h6,
+.card-custom h1, .card-custom h2,
+.card-custom h3, .card-custom h4,
+.timeline-card h2,
+.panel h2,
+.main-card h1,
+.box03 h2,
+.box03 h3 {
+    color: var(--theme-text);
+}
+
+.card p,
+.card-custom p,
+.timeline-card p,
+.panel p,
+.main-card p,
+.box03 p {
+    color: var(--theme-muted);
+}
+
+/* 10. 深色模式強化 */
+html.dark .card,
+html.dark .timeline-card,
+html.dark .main-card,
+html.dark .panel,
+html.dark .rule-note,
+html.dark .box03 {
+    background-color: #17283d !important;
+    color: #f1f6fc !important;
+    border-color: #34475e !important;
+}
+
+html.dark .card p,
+html.dark .timeline-card p,
+html.dark .main-card p,
+html.dark .panel p,
+html.dark .box03 p {
+    color: #bfccdc !important;
+}
+
+/* 11. 淺色模式強化 */
+html:not(.dark) .card,
+html:not(.dark) .timeline-card,
+html:not(.dark) .main-card,
+html:not(.dark) .panel,
+html:not(.dark) .rule-note,
+html:not(.dark) .box03 {
+    background-color: #ffffff !important;
+    color: #24364b !important;
+    border-color: #cbd7e4 !important;
+}
+
+html:not(.dark) .card p,
+html:not(.dark) .timeline-card p,
+html:not(.dark) .main-card p,
+html:not(.dark) .panel p,
+html:not(.dark) .box03 p {
+    color: #52677c !important;
+}
+
+/* 12. Bootstrap 背景工具類 */
+.bg-body,
+.bg-light,
+.bg-white {
+    background-color: var(--theme-section) !important;
+    color: var(--theme-text);
+}
+
+.bg-dark,
+.bg-primary,
+.bg-success,
+.bg-danger {
+    /* 保留 Bootstrap 強調色背景 */
+    color: #ffffff;
+}
+
+/* 13. 表格：union.html */
+.custom-table,
+.table-rwd,
+.table {
+    --bs-table-bg: var(--theme-card);
+    --bs-table-color: var(--theme-text);
+    --bs-table-border-color: var(--theme-border);
+    --bs-table-hover-bg: var(--theme-card-hover);
+    --bs-table-hover-color: var(--theme-text);
+
+    background: var(--theme-card);
+    color: var(--theme-text);
+}
+
+.custom-table thead,
+.table-rwd thead {
+    background: var(--theme-table-head);
+}
+
+.custom-table thead th,
+.table-rwd thead th {
+    background: var(--theme-table-head) !important;
+    color: var(--theme-text) !important;
+    border-color: var(--theme-border);
+}
+
+.custom-table tbody td,
+.table-rwd tbody td {
+    background: var(--theme-card) !important;
+    color: var(--theme-text) !important;
+    border-color: var(--theme-border);
+}
+
+.custom-table tbody tr:hover td,
+.table-rwd tbody tr:hover td {
+    background: var(--theme-card-hover) !important;
+}
+
+.table-responsive,
+.table-responsive-md {
+    background: var(--theme-card);
+}
+
+/* 14. 表單：signup.html */
+.form-control,
+.form-select,
+textarea,
+input:not([type="checkbox"]):not([type="radio"]),
+select {
+    background-color: var(--theme-input);
+    color: var(--theme-text);
+    border-color: var(--theme-border);
+}
+
+.form-control::placeholder,
+textarea::placeholder,
+input::placeholder {
+    color: var(--theme-muted);
+    opacity: 1;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus,
+input:focus {
+    background-color: var(--theme-input);
+    color: var(--theme-text);
+    border-color: var(--theme-primary);
+    box-shadow: 0 0 0 .2rem rgba(56, 189, 248, .16);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+    background-color: var(--theme-section);
+    color: var(--theme-muted);
+    opacity: .8;
+}
+
+.form-check-label,
+.form-label {
+    color: var(--theme-text);
+}
+
+.input-group-text {
+    background: var(--theme-section);
+    color: var(--theme-text);
+    border-color: var(--theme-border);
+}
+
+.form-check-input {
+    border-color: var(--theme-border);
+}
+
+.invalid-feedback {
+    color: #fb7185;
+}
+
+html:not(.dark) .invalid-feedback {
+    color: #b42336;
+}
+
+.required-mark {
+    color: #fb7185;
+}
+
+html:not(.dark) .required-mark {
+    color: #b42336;
+}
+
+/* 15. 報名預覽 */
+.result-box,
+#showmsg {
+    background: var(--theme-section);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-border);
+}
+
+/* 16. 首頁：整體背景 */
+.hero,
+.hero-container,
+.metrics-bar,
+#products {
+    color: var(--theme-text);
+}
+
+.metrics-bar {
+    background: var(--theme-section) !important;
+}
+
+#products {
+    background: var(--theme-bg) !important;
+}
+
+.grid-cards .card {
+    background: var(--theme-card) !important;
+    color: var(--theme-text) !important;
+    border: 1px solid var(--theme-border);
+}
+
+.grid-cards .card h3 {
+    color: var(--theme-text) !important;
+}
+
+.grid-cards .card p {
+    color: var(--theme-muted) !important;
+}
+
+/* 17. 首頁主視覺文字對比 */
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1,
+.hero-content p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .6);
+}
+
+.hero-image {
+    position: relative;
+}
+
+.hero-image img {
+    display: block;
+    max-width: 100%;
+}
+
+/* 18. 首頁數據區 */
+.metrics-bar .metric-item {
+    color: var(--theme-text);
+}
+
+.metrics-bar .number {
+    color: var(--theme-primary);
+}
+
+.metrics-bar .label {
+    color: var(--theme-muted);
+}
+
+/* 19. 科技展示：R-D.html */
+.box03 {
+    background: var(--theme-card) !important;
+    color: var(--theme-text) !important;
+}
+
+.box03 p,
+.box03 .text-muted {
+    color: var(--theme-muted) !important;
+}
+
+.box03 .text-primary {
+    color: var(--theme-primary) !important;
+}
+
+.box02 {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.box01 .bg-dark {
+    background-color: rgba(10, 22, 38, .86) !important;
+}
+
+.box01 .text-white,
+.box01 .text-light {
+    color: #ffffff !important;
+}
+
+/* 20. 時間軸 */
+.timeline-section {
+    background: transparent;
+}
+
+.timeline-card {
+    background: var(--theme-card) !important;
+    border-color: var(--theme-border) !important;
+}
+
+.timeline-card h2 {
+    color: var(--theme-text) !important;
+}
+
+.timeline-card p {
+    color: var(--theme-muted) !important;
+}
+
+/* 21. 關於智造 */
+#tech,
+#companies {
+    background: var(--theme-bg);
+    color: var(--theme-text);
+}
+
+#techArticles,
+#companyCards {
+    color: var(--theme-text);
+}
+
+#tech .section-title,
+#companies .section-title {
+    color: var(--theme-text);
+}
+
+/* 22. 職業安全 */
+.hero-banner {
+    background: var(--theme-card);
+    color: var(--theme-text);
+}
+
+#employerList,
+#workerList {
+    color: var(--theme-text);
+}
+
+/* 23. Bio 頁面 */
+.hero-card {
+    color: #ffffff;
+}
+
+.hero-card .text-light,
+.hero-card .text-white {
+    color: #f1f6fc !important;
+}
+
+.thumb-card {
+    color: #ffffff;
+}
+
+.thumb-card h2,
+.thumb-card p {
+    color: #e2e8f0;
+}
+
+#s03,
+#s05,
+#s07,
+#s09,
+#s11,
+#s13,
+#s15 {
+    background: var(--theme-section);
+}
+
+#s04,
+#s06,
+#s08,
+#s10,
+#s12,
+#s14 {
+    background: var(--theme-bg);
+}
+
+/* 24. 頁尾不留白 */
+footer,
+.footer {
+    flex-shrink: 0;
+    background: var(--theme-section);
+    color: var(--theme-text);
+    border-color: var(--theme-border);
+}
+
+footer .footer-content,
+footer .footer-bottom {
+    background: var(--theme-section);
+    color: var(--theme-text);
+}
+
+footer h4,
+footer h6,
+footer p {
+    color: var(--theme-text);
+}
+
+footer .text-muted,
+footer .text-secondary {
+    color: var(--theme-muted) !important;
+}
+
+/* 25. 明確保護彩色背景文字 */
+.bg-primary,
+.bg-success,
+.bg-danger,
+.badge.bg-primary,
+.badge.bg-success,
+.badge.bg-danger {
+    color: #ffffff !important;
+}
+
+.bg-warning,
+.badge.bg-warning {
+    color: #172033 !important;
+}
+
+.btn-primary,
+.btn-success,
+.btn-danger {
+    color: #ffffff;
+}
+
+.btn-warning {
+    color: #172033;
+}
+
+/* 26. 焦點與可操作性 */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #38bdf8;
+    outline-offset: 2px;
+}
+
+/* 27. 手機版 */
+@media (max-width: 767.98px) {
+    .wrapper {
+        min-height: 100dvh;
+    }
+
+    .card,
+    .timeline-card,
+    .main-card,
+    .panel,
+    .box03 {
+        max-width: 100%;
+    }
+
+    .table-responsive,
+    .table-responsive-md {
+        overflow-x: auto;
+    }
+}
+
+/* 28. 尊重減少動畫設定 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
+
+/* ==========================================
+   首頁深淺色文字修正
+   保留原本版面、圖片、行列
+========================================== */
+
+/* 淺色模式：首頁主視覺 */
+html:not(.dark) .hero {
+    background-color: #f4f7fb !important;
+}
+
+html:not(.dark) .hero-content h1 {
+    color: #17324d !important;
+    text-shadow: none !important;
+}
+
+html:not(.dark) .hero-content p {
+    color: #40566d !important;
+    text-shadow: none !important;
+}
+
+/* 深色模式：首頁主視覺 */
+html.dark .hero {
+    background-color: #0b1422 !important;
+}
+
+html.dark .hero-content h1 {
+    color: #f4f8ff !important;
+    text-shadow: none !important;
+}
+
+html.dark .hero-content p {
+    color: #c9d7e8 !important;
+    text-shadow: none !important;
+}
+
+/* 淺色模式：導覽列維持深藍色背景 */
+html:not(.dark) #navbar-container,
+html:not(.dark) #navbar-container .navbar {
+    background-color: #1e293b !important;
+}
+
+/* 導覽列文字：兩種模式都清楚 */
+#navbar-container .company-name,
+#navbar-container .nav-link,
+#navbar-container .logo-text {
+    color: #f1f5f9 !important;
+}
+
+#navbar-container .company-tagline {
+    color: #cbd5e1 !important;
+}
+
+#navbar-container .nav-link:hover,
+#navbar-container .nav-link.active {
+    color: #67e8f9 !important;
+}
+
+/* 導覽列手機版選單按鈕 */
+#navbar-container .navbar-toggler {
+    border-color: #94a3b8 !important;
+}
+
+#navbar-container .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* 深淺色切換按鈕 */
+#navbar-container .mode-switch {
+    background-color: #e2e8f0;
+    color: #172033 !important;
+    border: 1px solid #cbd5e1;
+}
+
+/* 首頁數據與卡片 */
+html:not(.dark) .metrics-bar,
+html:not(.dark) #products {
+    color: #24364b !important;
+}
+
+html:not(.dark) .metric-item .label,
+html:not(.dark) .grid-cards .card p {
+    color: #52677c !important;
+}
+
+html.dark .metric-item .label,
+html.dark .grid-cards .card p {
+    color: #cbd5e1 !important;
+}
+
+/* 按鈕保持清楚 */
+.hero-content .btn-cta {
+    background-color: #009caf !important;
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+.hero-content .btn-cta:hover {
+    background-color: #007f91 !important;
+    color: #ffffff !important;
+}

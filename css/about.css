@@ -1,114 +1,352 @@
-body {
-    background: #F1F5F9;
-    color: #334155;
-    font-family: system-ui, sans-serif;
-    line-height: 1.7;
+
+/* =====================================================
+   ABOUT.CSS｜關於智造完整優化版
+   保留原本 Bootstrap 框架與行列
+===================================================== */
+
+/* 01. 深色模式 */
+:root,
+html.dark,
+html[data-bs-theme="dark"] {
+    color-scheme: dark;
+
+    --page-bg: #0b1422;
+    --wrapper-bg: #101e30;
+    --section-bg: #101e30;
+    --card-bg: #17283d;
+    --card-hover: #203650;
+    --text-color: #f1f6fc;
+    --muted-color: #bfccdc;
+    --heading-color: #f8fafc;
+    --accent-color: #7dd3fc;
+    --border-color: #34475e;
+    --nav-bg: #1e293b;
+    --nav-text: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.25);
 }
 
+/* 02. 淺色模式 */
+html:not(.dark),
+html[data-bs-theme="light"] {
+    color-scheme: light;
+
+    --page-bg: #f1f5f9;
+    --wrapper-bg: #ffffff;
+    --section-bg: #f8fafc;
+    --card-bg: #ffffff;
+    --card-hover: #eff6ff;
+    --text-color: #334155;
+    --muted-color: #52677c;
+    --heading-color: #0f172a;
+    --accent-color: #155bb5;
+    --border-color: #d5dfeb;
+    --nav-bg: #1e293b;
+    --nav-text: #f1f5f9;
+    --shadow-color: rgba(15, 23, 42, 0.08);
+}
+
+/* 03. 全站基礎 */
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--page-bg);
+    color: var(--text-color);
+    font-family: system-ui, "Microsoft JhengHei", sans-serif;
+    line-height: 1.7;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+/* 04. 主框架 */
 .wrapper {
-    max-width: 1140px;
+    display: flex;
+    flex-direction: column;
+    width: min(1140px, 100%);
+    min-height: calc(100vh - 40px);
     margin: 20px auto;
-    background: #FFF;
+    background: var(--wrapper-bg);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 25px var(--shadow-color);
 }
 
+.wrapper > main {
+    flex: 1 0 auto;
+}
+
+/* 05. Header Logo */
 .logo {
     height: 180px;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 58, 138, 0.75)), url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80") center/cover;
-    border-bottom: 4px solid #2563EB;
+    flex-shrink: 0;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.94),
+            rgba(30, 58, 138, 0.78)
+        ),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80")
+        center / cover no-repeat;
+
+    border-bottom: 4px solid #2563eb;
 }
 
-/* 統一全站導覽列樣式 */
+.logo svg {
+    max-width: 90%;
+    height: auto;
+}
+
+/* 06. 導覽列 */
 .site-nav {
-    background: #0F172A;
+    background: var(--nav-bg);
+    border-color: #334155 !important;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #64748b #1e293b;
 }
 
-.site-nav a {
-    color: #94A3B8;
-    border: 1px solid #334155;
+.site-nav .nav {
+    min-width: max-content;
+}
+
+.site-nav a,
+.site-nav .nav-link {
+    display: inline-block;
+    padding: 6px 16px;
+    color: var(--nav-text) !important;
+    border: 1px solid #475569;
     border-radius: 20px;
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
-    transition: 0.2s;
     white-space: nowrap;
-    padding: 6px 16px;
+    transition: all 0.2s ease;
 }
 
 .site-nav a:hover,
-.site-nav a.active {
-    background: #2563EB;
-    border-color: #2563EB;
-    color: #FFF;
+.site-nav a:focus-visible,
+.site-nav .nav-link.active {
+    background: #2563eb;
+    border-color: #60a5fa;
+    color: #ffffff !important;
+}
+
+/* 07. 深淺色按鈕 */
+.mode-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 35px;
+    padding: 5px 10px;
+    background: #e2e8f0;
+    color: #172033;
+    border: 1px solid #cbd5e1;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mode-switch:hover {
+    background: #ffffff;
+}
+
+.switch-track {
+    display: inline-flex;
+    align-items: center;
+    width: 34px;
+    height: 18px;
+    padding: 2px;
+    background: #94a3b8;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.switch-dot {
+    display: block;
+    width: 14px;
+    height: 14px;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+html.dark .switch-track {
+    background: #087eaf;
+}
+
+html.dark .switch-dot {
+    transform: translateX(16px);
+}
+
+/* 08. 兩大內容區段 */
+#tech,
+#companies {
+    background: var(--section-bg);
+    color: var(--text-color);
+}
+
+#companies {
+    border-color: var(--border-color) !important;
 }
 
 .section-title {
     font-size: 28px;
     font-weight: 800;
-    color: #0F172A;
+    color: var(--heading-color);
 }
 
 .subtitle {
-    color: #2563EB;
+    color: var(--accent-color);
     font-size: 12px;
     letter-spacing: 2px;
     font-weight: 700;
 }
 
+/* 09. 技術文章 */
+#techArticles article {
+    display: flex;
+    background: var(--card-bg) !important;
+    color: var(--text-color);
+    border: 1px solid var(--border-color) !important;
+    border-radius: 9px !important;
+    box-shadow: 0 4px 12px var(--shadow-color) !important;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+#techArticles article:hover {
+    background: var(--card-hover) !important;
+    border-color: var(--accent-color) !important;
+    transform: translateY(-2px);
+}
+
+#techArticles article h2 {
+    color: var(--heading-color) !important;
+}
+
+#techArticles article p {
+    color: var(--muted-color) !important;
+}
+
 .article-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 90px;
     min-width: 90px;
-    background: #0F172A;
-    color: #FFF;
+    background: #0f172a;
+    color: #ffffff;
     font-size: 24px;
     font-weight: 800;
 }
 
-/* 按鈕樣式優化 */
+html.dark .article-num {
+    background: #0a3655;
+    color: #e0f2fe;
+}
+
+/* 10. 閱讀按鈕 */
 .read-btn {
-    color: #2563EB;
-    background: #EFF6FF;
-    border: 1px solid #BFDBFE;
+    padding: 5px 10px;
+    color: #155bb5;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
     border-radius: 6px;
     font-weight: 600;
     font-size: 13px;
-    transition: 0.2s;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .read-btn:hover {
-    color: #FFF;
-    background: #2563EB;
-    border-color: #2563EB;
+    color: #ffffff;
+    background: #2563eb;
+    border-color: #2563eb;
 }
 
-.company-name {
-    border-left: 4px solid #2563EB;
-    font-size: 18px;
-    color: #0F172A;
+html.dark .read-btn {
+    color: #e0f2fe;
+    background: #16446a;
+    border-color: #38749d;
 }
 
+html.dark .read-btn:hover {
+    color: #ffffff;
+    background: #087eaf;
+    border-color: #38bdf8;
+}
+
+/* 11. 關係企業卡片 */
 .col-company {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    background: var(--card-bg) !important;
+    color: var(--text-color);
+    border: 1px solid var(--border-color) !important;
     border-radius: 8px;
     overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
 }
 
 .col-company:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-    cursor: pointer;
+    background: var(--card-hover) !important;
+    box-shadow: 0 12px 20px var(--shadow-color);
 }
 
-/* 圖片卷軸 (Roller Overlay) 美化樣式 */
+.col-company .card-body {
+    background: transparent;
+    color: var(--text-color);
+}
+
+.company-name {
+    border-left: 4px solid #2563eb;
+    font-size: 18px;
+    color: var(--heading-color);
+}
+
+.col-company .text-secondary,
+.col-company .text-muted {
+    color: var(--muted-color) !important;
+}
+
+.col-company .card-text {
+    line-height: 1.8;
+}
+
+/* 12. 卡片圖片 */
 .card-img-wrapper {
     position: relative;
     height: 200px;
     overflow: hidden;
+    background: #17283d;
 }
 
 .card-img-wrapper .card-img-top {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -119,13 +357,17 @@ body {
     transform: scale(1.08);
 }
 
+/* 13. Roller Overlay 滑入效果 */
 .roller-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(37, 99, 235, 0.75));
+    background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.88),
+        rgba(37, 99, 235, 0.78)
+    );
     transform: translateY(-100%);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
@@ -134,12 +376,14 @@ body {
     backdrop-filter: blur(2px);
 }
 
-.col-company:hover .roller-overlay {
+.col-company:hover .roller-overlay,
+.col-company:focus-within .roller-overlay {
     transform: translateY(0);
 }
 
+/* 14. 了解更多標籤 */
 .more-badge {
-    color: #FFF;
+    color: #ffffff;
     border: 1.5px solid rgba(255, 255, 255, 0.8);
     background: rgba(255, 255, 255, 0.15);
     padding: 8px 20px;
@@ -151,8 +395,107 @@ body {
     transition: all 0.3s ease;
 }
 
-.col-company:hover .more-badge {
-    background: #FFF;
-    color: #2563EB;
-    border-color: #FFF;
+.col-company:hover .more-badge,
+.col-company:focus-within .more-badge {
+    background: #ffffff;
+    color: #155bb5;
+    border-color: #ffffff;
+}
+
+/* 15. Footer */
+footer {
+    margin-top: auto;
+    background: #1e293b !important;
+    color: #e2e8f0 !important;
+    border-color: #2563eb !important;
+}
+
+/* 16. 鍵盤操作 */
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #38bdf8;
+    outline-offset: 3px;
+}
+
+/* 17. 平板 */
+@media (max-width: 991.98px) {
+    .wrapper {
+        margin: 0 auto;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    .site-nav {
+        gap: 10px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+}
+
+/* 18. 手機 */
+@media (max-width: 767.98px) {
+    .logo {
+        height: 140px;
+    }
+
+    .site-nav {
+        padding: 10px !important;
+    }
+
+    .site-nav .nav-link {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .section-title {
+        font-size: 23px;
+    }
+
+    .article-num {
+        width: 60px;
+        min-width: 60px;
+        font-size: 20px;
+    }
+
+    .company-name {
+        font-size: 16px;
+    }
+
+    .card-img-wrapper {
+        height: 190px;
+    }
+}
+
+/* 19. 小手機 */
+@media (max-width: 399.98px) {
+    .article-num {
+        width: 48px;
+        min-width: 48px;
+        font-size: 17px;
+    }
+
+    #techArticles article .p-3 {
+        padding: 12px !important;
+    }
+
+    .subtitle {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+}
+
+/* 20. 減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }
