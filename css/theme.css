@@ -1,0 +1,38 @@
+/* 預設：暗色模式 (Dark Mode) - 呼應科技業專業氛圍 */
+:root {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --panel-bg: #1e293b;
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --muted-color: #8c939b;
+  --primary-color: #3b82f6;
+}
+
+/* 亮色模式 (Light Mode) */
+[data-bs-theme="light"] {
+  --bg-color: #f8fafc;
+  --text-color: #334155;
+  --panel-bg: #ffffff;
+  --panel-border: #e2e8f0;
+  --muted-color: #64748b;
+  --primary-color: #2563eb;
+}
+
+/* 套用全域變數 */
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 統一卡片與面板外觀 */
+.panel, .card, .timeline-card {
+  background-color: var(--panel-bg) !important;
+  color: var(--text-color) !important;
+  border-color: var(--panel-border) !important;
+}
+
+.help-text, .text-muted {
+  color: var(--muted-color) !important;
+}

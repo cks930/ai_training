@@ -2,13 +2,13 @@
    1. 全局 CSS 變數（支援深淺色主題）
    =================================================== */
 :root {
-    /* 核心色彩 */
+    /* 核心色彩 (淺色模式) */
     --primary-color: #0A3663;
     --secondary-color: #0076C6;
     --accent-color: #00A8B5;
     --bgcolor01: #F8FAFC;
     --bgcolor02: #FFFFFF;
-    --nav-bg: #FFFFFF;
+    --nav-bg: #1e293b;
     --content-bg: linear-gradient(135deg, #0A3663 0%, #0076C6 100%);
     --body-text: #334155;
     --text-muted: #64748B;
@@ -22,12 +22,12 @@
     --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     
     /* Logo 文字專用顏色 */
-    --logo-title-color: #0A3663;
-    --logo-tagline-color: #475569;
+    --logo-title-color: #FFFFFF;
+    --logo-tagline-color: #94A3B8;
 }
 
-body.dark {
-    /* 核心色彩 (深色模式) */
+html.dark, html.dark-mode, [data-bs-theme="dark"] {
+    /* 核心色彩 (深色模式)[cite: 1] */
     --primary-color: #38BDF8;
     --secondary-color: #0EA5E9;
     --accent-color: #2DD4BF;
@@ -42,11 +42,11 @@ body.dark {
     --footer-text: #64748B;
     --card-bg: #1E293B;
 
-    /* 陰影系統 (深色模式) */
+    /* 陰影系統 (深色模式)[cite: 1] */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
     --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
 
-    /* Logo 文字專用顏色 */
+    /* Logo 文字專用顏色[cite: 1] */
     --logo-title-color: #38BDF8;
     --logo-tagline-color: #94A3B8;
 }
@@ -68,29 +68,34 @@ body {
     line-height: 1.6;
 }
 
-/* 確保 Footer 始終靠底 */
+/* 確保 Footer 始終靠底， wrapper 滿版無多餘留白 */
 .wrapper {
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
 /* ===================================================
-   3. 頂部導覽列 (Navbar) & Logo 設定
+   3. 頂部導覽列 (Navbar) & Logo 設定 (完美修復滿版與對齊)
    =================================================== */
-.navbar {
+header.navbar, .navbar {
+    width: 100% !important;
+    max-width: 100% !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 3rem;
-    background-color: var(--nav-bg);
+    padding: 1rem 2rem;
+    background-color: var(--nav-bg) !important;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow-sm);
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin: 0 !important;
 }
 
 .logo-group {
@@ -102,8 +107,8 @@ body {
 
 /* Logo 圖案區域 */
 .logo-icon {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     background-color: var(--primary-color);
     background-image: linear-gradient(rgba(10, 54, 99, 0.4), rgba(10, 54, 99, 0.4)), url('../images/a01.jpg');
     background-size: cover;
@@ -111,7 +116,7 @@ body {
     background-repeat: no-repeat;
     color: #FFFFFF;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -134,14 +139,14 @@ body {
 }
 
 .company-name {
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--logo-title-color);
     transition: color 0.3s ease;
 }
 
 .company-tagline {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     color: var(--logo-tagline-color);
     transition: color 0.3s ease;
 }
@@ -149,46 +154,50 @@ body {
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
-.nav-links {
+.nav-links, .navbar-nav {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    gap: 1rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-links a {
+.nav-links a, .navbar-nav .nav-link {
     text-decoration: none;
     color: var(--body-text);
     font-weight: 500;
     font-size: 0.95rem;
+    white-space: nowrap !important;
+    padding: 0.5rem 0.75rem !important;
     transition: color 0.2s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:hover, .navbar-nav .nav-link:hover {
     color: var(--secondary-color);
 }
 
 /* 切換深淺色按鈕 */
 .mode-switch {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     border: 1px solid var(--border-color);
     background-color: var(--bgcolor02);
     color: var(--body-text);
-    padding: 6px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin-left: auto;
-    margin-right: 1.5rem;
+    flex-shrink: 0;
 }
 
 .switch-track {
-    width: 34px;
-    height: 18px;
+    width: 32px;
+    height: 16px;
     background-color: #CBD7E1;
     border-radius: 20px;
     padding: 2px;
@@ -198,18 +207,18 @@ body {
 
 .switch-dot {
     display: block;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     background-color: #FFF;
     border-radius: 50%;
     transition: transform 0.25s ease;
 }
 
-body.dark .switch-track { 
+html.dark .switch-track, html.dark-mode .switch-track, [data-bs-theme="dark"] .switch-track { 
     background-color: var(--secondary-color); 
 }
 
-body.dark .switch-dot { 
+html.dark .switch-dot, html.dark-mode .switch-dot, [data-bs-theme="dark"] .switch-dot { 
     transform: translateX(16px); 
 }
 
@@ -416,39 +425,85 @@ footer {
 }
 
 /* ===================================================
-   8. 響應式適應 (RWD 768px 以下)
+   8. 圖片與卡片尺寸最佳化 (修復手機版圖片過大、文字擠壓)
+   =================================================== */
+.card img, 
+.col-company img, 
+.imgbox img, 
+.timeline-row img,
+.box03 img {
+    max-height: 200px; 
+    object-fit: cover;
+}
+
+/* 針對福委會表格圖片與 RWD 完美排版 (強制縮減至一半大小) */
+.custom-table img, 
+.custom-table td img {
+    max-width: 120px !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 100px !important;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.timeline-row .imgbox {
+    height: 220px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.col-company .card-img-wrapper {
+    height: 160px;
+    overflow: hidden;
+}
+
+.col-company .card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===================================================
+   9. 響應式適應 (RWD 768px 以下完美收合)
    =================================================== */
 @media (max-width: 768px) {
-    .navbar {
+    header.navbar, .navbar {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-        padding: 1rem;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .navbar-collapse {
+        background-color: var(--nav-bg);
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .nav-links, .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .nav-links a, .navbar-nav .nav-link {
+        width: 100%;
+        padding: 0.4rem 0.5rem !important;
     }
 
     .nav-right {
         width: 100%;
-        justify-content: flex-end;
-    }
-
-    .mode-switch {
-        margin-right: 0;
-        margin-left: 1rem;
-    }
-
-    .logo-icon {
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
+        justify-content: space-between;
+        margin-top: 5px;
     }
 
     .company-tagline {
         display: none;
-    }
-
-    .nav-links {
-        flex-wrap: wrap;
-        gap: 0.75rem;
     }
 
     .hero-container {
@@ -463,5 +518,47 @@ footer {
 
     .hero-content h1 {
         font-size: 1.8rem;
+    }
+
+    /* 手機版員工福利表格轉為卡片堆疊，防止文字擠壓 */
+    .custom-table thead {
+        display: none;
+    }
+
+    .custom-table, 
+    .custom-table tbody, 
+    .custom-table tr, 
+    .custom-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .custom-table tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 12px;
+        background: var(--card-bg);
+    }
+
+    .custom-table td {
+        text-align: left !important;
+        padding: 6px 0;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+
+    .custom-table td:nth-child(2) {
+        justify-content: center;
+        padding: 8px 0;
+    }
+
+    .custom-table img, 
+    .custom-table td img {
+        max-width: 130px !important;
+        max-height: 90px !important;
     }
 }

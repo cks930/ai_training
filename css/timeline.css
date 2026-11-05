@@ -1,0 +1,117 @@
+body {
+  background-color: #f8fafc;
+  color: #334155;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.imgbox {
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.timeline-section {
+  position: relative;
+  padding: 3rem 0;
+}
+
+.timeline-section::before {
+  position: absolute;
+  content: "";
+  width: 4px;
+  background: linear-gradient(to bottom, #cbd5e1, #3b82f6, #1e40af, #cbd5e1);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.timeline-row {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #60a5fa;
+  border-radius: 50%;
+  border: 6px solid #1e3a8a;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.timeline-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-tag {
+  display: inline-block;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 700;
+  padding: 0.35rem 1rem;
+  border-radius: 50rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  border: 1px solid #dbeafe;
+  width: fit-content;
+}
+
+.roller-t {
+  position: relative;
+  overflow: hidden;
+}
+
+.roller-t .rollerbox-t {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(153, 174, 231, 0.397);
+  transform: translateY(-100%);
+  transition: transform 2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+}
+
+.roller-t:hover .rollerbox-t {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .timeline-section::before {
+    display: none;
+  }
+  .timeline-dot {
+    display: none;
+  }
+}
