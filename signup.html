@@ -1,185 +1,403 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>智造科技｜2027 暑期高階研發實習生計畫線上報名</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/signup.css">
-  
-  <script>
-    (function() {
-      const savedTheme = localStorage.getItem("theme") || "dark";
-      if (savedTheme === "dark") {
-        document.documentElement.classList.add("dark");
-        document.documentElement.setAttribute("data-bs-theme", "dark");
-      }
-    })();
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>智造科技｜2027 暑期高階研發實習生計畫線上報名</title>
+    <meta name="description" content="智造科技 2027 暑期高階研發實習生計畫，提供實習申請資料填寫與前端驗證示範。">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/signup.css">
+
+    <script>
+        (function () {
+            let theme = "dark";
+            try {
+                theme = localStorage.getItem("theme") === "light" ? "light" : "dark";
+            } catch (error) {
+                theme = "dark";
+            }
+            document.documentElement.classList.toggle("dark", theme === "dark");
+            document.documentElement.classList.toggle("dark-mode", theme === "dark");
+            document.documentElement.setAttribute("data-bs-theme", theme);
+        })();
+    </script>
 </head>
 
 <body>
 <div class="wrapper">
-  <div id="navbar-container"></div>
 
-  <main class="container page-wrap py-4 py-md-5 flex-grow-1">
-    <header class="hero text-center p-4 p-md-5 mb-4 rounded">
-      <p class="text-uppercase small mb-2" style="letter-spacing: 2px;">SmartTech R&D Internship 2027</p>
-      <h1 class="fw-bold mb-2">2027 暑期高階研發實習生計畫</h1>
-      <p class="mb-0">邁向百大科技企業，探索 AI 伺服器與高階 PCB 載板前瞻技術</p>
-    </header>
+    <div id="navbar-container"></div>
 
-    <section class="rule-note p-3 p-md-4 mb-4 border rounded" aria-labelledby="rules-title">
-      <h2 id="rules-title" class="h5 fw-bold">申請與報名說明</h2>
-      <ul class="mb-0 ps-4">
-        <li>標示 <span class="required-mark">*</span> 的欄位皆為必要填寫項目。</li>
-        <li>申請資格：大三以上、碩博士在大專院校在學學生。</li>
-        <li>密碼用於日後「查詢實習甄選進度」（需包含大小寫英文與數字）。</li>
-        <li>身分證字號 / 居留證號用於入廠安檢授權與實習期間平安保險投保。</li>
-      </ul>
-    </section>
+    <main class="container page-wrap py-4 py-md-5 flex-grow-1">
 
-    <section class="panel p-3 p-md-5 border rounded shadow-sm mb-4" aria-labelledby="form-title">
-      <h2 id="form-title" class="h4 fw-bold mb-4">實習申請人資料</h2>
+        <!-- 主視覺 -->
+        <header class="signup-hero text-center p-4 p-md-5 mb-4 rounded">
+            <p class="text-uppercase small mb-2 signup-eyebrow">
+                SmartTech R&D Internship 2027
+            </p>
+            <h1 class="fw-bold mb-2">2027 暑期高階研發實習生計畫</h1>
+            <p class="mb-0">
+                邁向百大科技企業，探索 AI 伺服器與高階 PCB 載板前瞻技術
+            </p>
+        </header>
 
-      <form id="registrationForm" novalidate>
-        <div class="mb-4">
-          <label for="username" class="form-label">中文 / 英文姓名 <span class="required-mark">*</span></label>
-          <input id="username" name="username" class="form-control" type="text" autocomplete="name" maxlength="50" required placeholder="例如：王大明 / David Wang">
-          <div id="usernameError" class="invalid-feedback"></div>
-        </div>
+        <!-- 說明 -->
+        <section class="rule-note p-3 p-md-4 mb-4 border rounded"
+                 aria-labelledby="rules-title">
 
-        <div class="mb-4">
-          <label for="password" class="form-label">進度查詢密碼 <span class="required-mark">*</span></label>
-          <div class="input-group">
-            <input id="password" name="password" class="form-control" type="password" autocomplete="new-password" required placeholder="至少 8 個字元，包含大小寫英文與數字">
-            <button class="btn btn-outline-secondary" type="button" id="togglePassword" aria-label="顯示密碼">
-              <i class="bi bi-eye" id="passwordIcon" aria-hidden="true"></i>
-            </button>
-          </div>
-          <div id="passwordHelp" class="form-text mt-1">請自訂查詢甄選結果之密碼（至少 8 個字元，含大小寫英文及數字）。</div>
-          <div id="passwordError" class="invalid-feedback"></div>
-        </div>
+            <h2 id="rules-title" class="h5 fw-bold">申請與報名說明</h2>
 
-        <div class="mb-4">
-          <label for="email" class="form-label">聯絡 Email <span class="required-mark">*</span></label>
-          <input id="email" name="email" class="form-control" type="email" autocomplete="email" maxlength="254" required placeholder="例如：student@university.edu.tw">
-          <div id="emailError" class="invalid-feedback"></div>
-        </div>
+            <ul class="mb-3 ps-4">
+                <li>標示 <span class="required-mark">*</span> 的欄位皆為必要填寫項目。</li>
+                <li>申請資格：大三以上、碩博士在大專院校在學學生。</li>
+                <li>密碼用於日後「查詢實習甄選進度」（需包含大小寫英文與數字）。</li>
+                <li>身分證字號 / 居留證號用於入廠安檢授權與實習期間平安保險投保。</li>
+            </ul>
 
-        <div class="mb-4">
-          <label for="idcard" class="form-label">身分證字號 / 居留證號 <span class="required-mark">*</span></label>
-          <input id="idcard" name="idcard" class="form-control" type="text" maxlength="10" required placeholder="請輸入 10 碼身分證或居留證號">
-          <div id="idcardError" class="invalid-feedback"></div>
-        </div>
-
-        <div class="mb-4">
-          <label for="phone" class="form-label">行動電話 <span class="required-mark">*</span></label>
-          <input id="phone" name="phone" class="form-control" type="tel" maxlength="10" required placeholder="例如：0912345678">
-          <div id="phoneError" class="invalid-feedback"></div>
-        </div>
-
-        <fieldset class="mb-4">
-          <legend class="form-label fs-6">大專院校學歷背景 <span class="required-mark">*</span></legend>
-          <div class="row g-3">
-            <div class="col-12 col-md-4">
-              <label for="school_city" class="form-label">學校所在縣市</label>
-              <select id="school_city" name="school_city" class="form-select" required><option value="">載入縣市中…</option></select>
-              <div id="schoolCityError" class="invalid-feedback">請選擇學校所在縣市。</div>
+            <div class="alert alert-warning mb-0 small" role="note">
+                <strong>課程示範模式：</strong>
+                目前僅展示表單驗證功能，尚未連接正式報名系統。
+                請使用測試資料，不要輸入真實身分證號、密碼或上傳含個資的文件。
             </div>
-            <div class="col-12 col-md-8">
-              <label for="school_name" class="form-label">大專院校名稱</label>
-              <select id="school_name" name="school_name" class="form-select" required disabled><option value="">請先選擇學校縣市</option></select>
-              <div id="schoolNameError" class="invalid-feedback">請選擇大專院校。</div>
-            </div>
-            <div class="col-12 col-md-8">
-              <label for="department" class="form-label">就讀科系 / 研究所</label>
-              <input id="department" name="department" class="form-control" type="text" required placeholder="例如：電機工程學系">
-              <div id="departmentError" class="invalid-feedback">請填寫就讀科系。</div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label for="degree" class="form-label">目前年級</label>
-              <select id="degree" name="degree" class="form-select" required>
-                <option value="">請選擇年級</option>
-                <option value="大三">大學部 三年級</option>
-                <option value="大四">大學部 四年級</option>
-                <option value="碩一">碩士班 一年級</option>
-                <option value="碩二">碩士班 二年級以上</option>
-              </select>
-              <div id="degreeError" class="invalid-feedback">請選擇年級。</div>
-            </div>
-          </div>
-        </fieldset>
+        </section>
 
-        <fieldset class="mb-4">
-          <legend class="form-label fs-6">現居通訊地址 <span class="required-mark">*</span></legend>
-          <div class="row g-3">
-            <div class="col-12 col-md-4">
-              <label for="city" class="form-label">縣市</label>
-              <select id="city" name="city" class="form-select" required><option value="">載入縣市資料中…</option></select>
-              <div id="cityError" class="invalid-feedback"></div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label for="district" class="form-label">鄉鎮市區</label>
-              <select id="district" name="district" class="form-select" required disabled><option value="">請先選擇縣市</option></select>
-              <div id="districtError" class="invalid-feedback"></div>
-            </div>
-            <div class="col-12 col-md-4">
-              <label for="address_detail" class="form-label">詳細地址</label>
-              <input id="address_detail" name="address_detail" class="form-control" type="text" maxlength="120" required placeholder="例如：中山路 100 號 3 樓">
-              <div id="addressError" class="invalid-feedback"></div>
-            </div>
-          </div>
-        </fieldset>
+        <!-- 表單 -->
+        <section class="signup-panel p-3 p-md-5 border rounded shadow-sm mb-4"
+                 aria-labelledby="form-title">
 
-        <div class="mb-4">
-          <label class="form-label">實習應徵志願部門 (可複選，最多 2 項) <span class="required-mark">*</span></label>
-          <div>
-            <div class="form-check form-check-inline mb-2"><input type="checkbox" class="form-check-input dept-chk" id="chk01" value="AI 伺服器高階載板研發部"><label for="chk01" class="form-check-label">AI 伺服器高階載板研發部</label></div>
-            <div class="form-check form-check-inline mb-2"><input type="checkbox" class="form-check-input dept-chk" id="chk02" value="HDI 微孔製程整合工程部"><label for="chk02" class="form-check-label">HDI 微孔製程整合工程部</label></div>
-            <div class="form-check form-check-inline mb-2"><input type="checkbox" class="form-check-input dept-chk" id="chk03" value="全自動智慧工廠與 AOI 演算法組"><label for="chk03" class="form-check-label">全自動智慧工廠與 AOI 演算法組</label></div>
-            <div class="form-check form-check-inline mb-2"><input type="checkbox" class="form-check-input dept-chk" id="chk04" value="ESG 綠色低碳基材開發課"><label for="chk04" class="form-check-label">ESG 綠色低碳基材開發課</label></div>
-          </div>
-          <div id="deptError" class="invalid-feedback" style="display:none;">請至少選擇 1 項應徵志願（最多 2 項）。</div>
+            <h2 id="form-title" class="h4 fw-bold mb-4">實習申請人資料</h2>
+
+            <form id="registrationForm" novalidate>
+
+                <!-- 姓名 -->
+                <div class="mb-4">
+                    <label for="username" class="form-label">
+                        中文 / 英文姓名 <span class="required-mark">*</span>
+                    </label>
+                    <input id="username" name="username"
+                           class="form-control" type="text"
+                           autocomplete="name" maxlength="50" required
+                           placeholder="例如：王大明 / David Wang"
+                           aria-describedby="usernameError">
+                    <div id="usernameError" class="invalid-feedback"></div>
+                </div>
+
+                <!-- 密碼 -->
+                <div class="mb-4">
+                    <label for="password" class="form-label">
+                        進度查詢密碼 <span class="required-mark">*</span>
+                    </label>
+                    <div class="input-group has-validation">
+                        <input id="password" name="password"
+                               class="form-control" type="password"
+                               autocomplete="new-password"
+                               minlength="8" maxlength="64" required
+                               placeholder="至少 8 字元，包含大小寫英文與數字"
+                               aria-describedby="passwordHelp passwordError">
+                        <button class="btn btn-outline-secondary"
+                                type="button" id="togglePassword"
+                                aria-label="顯示密碼"
+                                aria-pressed="false">
+                            <i class="bi bi-eye" id="passwordIcon" aria-hidden="true"></i>
+                        </button>
+                        <div id="passwordError" class="invalid-feedback"></div>
+                    </div>
+                    <div id="passwordHelp" class="form-text mt-1">
+                        至少 8 個字元，包含大寫英文、小寫英文及數字。
+                    </div>
+                </div>
+
+                <!-- 確認密碼 -->
+                <div class="mb-4">
+                    <label for="confirmPassword" class="form-label">
+                        確認進度查詢密碼 <span class="required-mark">*</span>
+                    </label>
+                    <input id="confirmPassword" name="confirmPassword"
+                           class="form-control" type="password"
+                           autocomplete="new-password" required
+                           placeholder="請再次輸入相同密碼"
+                           aria-describedby="confirmPasswordError">
+                    <div id="confirmPasswordError" class="invalid-feedback"></div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-4">
+                    <label for="email" class="form-label">
+                        聯絡 Email <span class="required-mark">*</span>
+                    </label>
+                    <input id="email" name="email"
+                           class="form-control" type="email"
+                           autocomplete="email" maxlength="254" required
+                           placeholder="例如：student@university.edu.tw"
+                           aria-describedby="emailError">
+                    <div id="emailError" class="invalid-feedback"></div>
+                </div>
+
+                <!-- 身分證 / 居留證 -->
+                <div class="mb-4">
+                    <label for="idcard" class="form-label">
+                        身分證字號 / 居留證號 <span class="required-mark">*</span>
+                    </label>
+                    <input id="idcard" name="idcard"
+                           class="form-control" type="text"
+                           maxlength="10" required
+                           autocomplete="off"
+                           autocapitalize="characters"
+                           placeholder="請輸入 10 碼身分證或居留證號"
+                           aria-describedby="idcardError">
+                    <div id="idcardError" class="invalid-feedback"></div>
+                </div>
+
+                <!-- 電話 -->
+                <div class="mb-4">
+                    <label for="phone" class="form-label">
+                        行動電話 <span class="required-mark">*</span>
+                    </label>
+                    <input id="phone" name="phone"
+                           class="form-control" type="tel"
+                           inputmode="numeric" autocomplete="tel"
+                           maxlength="10" required
+                           placeholder="例如：0912345678"
+                           aria-describedby="phoneError">
+                    <div id="phoneError" class="invalid-feedback"></div>
+                </div>
+
+                <!-- 學歷 -->
+                <fieldset class="mb-4">
+                    <legend class="form-label fs-6 fw-bold">
+                        大專院校學歷背景 <span class="required-mark">*</span>
+                    </legend>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-4">
+                            <label for="school_city" class="form-label">
+                                學校所在縣市
+                            </label>
+                            <select id="school_city" name="school_city"
+                                    class="form-select" required
+                                    aria-describedby="schoolCityError">
+                                <option value="">請選擇學校縣市</option>
+                            </select>
+                            <div id="schoolCityError" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="col-12 col-md-8">
+                            <label for="school_name" class="form-label">
+                                大專院校名稱
+                            </label>
+                            <select id="school_name" name="school_name"
+                                    class="form-select" required disabled
+                                    aria-describedby="schoolNameError">
+                                <option value="">請先選擇學校縣市</option>
+                            </select>
+                            <div id="schoolNameError" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="col-12 col-md-8">
+                            <label for="department" class="form-label">
+                                就讀科系 / 研究所
+                            </label>
+                            <input id="department" name="department"
+                                   class="form-control" type="text"
+                                   maxlength="100" required
+                                   placeholder="例如：電機工程學系"
+                                   aria-describedby="departmentError">
+                            <div id="departmentError" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <label for="degree" class="form-label">目前年級</label>
+                            <select id="degree" name="degree"
+                                    class="form-select" required
+                                    aria-describedby="degreeError">
+                                <option value="">請選擇年級</option>
+                                <option value="大三">大學部 三年級</option>
+                                <option value="大四">大學部 四年級</option>
+                                <option value="碩一">碩士班 一年級</option>
+                                <option value="碩二">碩士班 二年級以上</option>
+                            </select>
+                            <div id="degreeError" class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- 地址 -->
+                <fieldset class="mb-4">
+                    <legend class="form-label fs-6 fw-bold">
+                        現居通訊地址 <span class="required-mark">*</span>
+                    </legend>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-4">
+                            <label for="city" class="form-label">縣市</label>
+                            <select id="city" name="city"
+                                    class="form-select" required
+                                    aria-describedby="cityError">
+                                <option value="">請選擇縣市</option>
+                            </select>
+                            <div id="cityError" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <label for="district" class="form-label">
+                                鄉鎮市區
+                            </label>
+                            <select id="district" name="district"
+                                    class="form-select" required disabled
+                                    aria-describedby="districtError">
+                                <option value="">請先選擇縣市</option>
+                            </select>
+                            <div id="districtError" class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <label for="address_detail" class="form-label">
+                                詳細地址
+                            </label>
+                            <input id="address_detail" name="address_detail"
+                                   class="form-control" type="text"
+                                   maxlength="120" required
+                                   placeholder="例如：中山路 100 號 3 樓"
+                                   aria-describedby="addressError">
+                            <div id="addressError" class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- 志願 -->
+                <fieldset class="mb-4">
+                    <legend class="form-label fs-6 fw-bold">
+                        實習應徵志願部門（可複選，最多 2 項）
+                        <span class="required-mark">*</span>
+                    </legend>
+
+                    <div id="departmentChoices" aria-describedby="deptError">
+                        <div class="form-check form-check-inline mb-2">
+                            <input type="checkbox" class="form-check-input dept-chk"
+                                   id="chk01" value="AI 伺服器高階載板研發部">
+                            <label for="chk01" class="form-check-label">
+                                AI 伺服器高階載板研發部
+                            </label>
+                        </div>
+
+                        <div class="form-check form-check-inline mb-2">
+                            <input type="checkbox" class="form-check-input dept-chk"
+                                   id="chk02" value="HDI 微孔製程整合工程部">
+                            <label for="chk02" class="form-check-label">
+                                HDI 微孔製程整合工程部
+                            </label>
+                        </div>
+
+                        <div class="form-check form-check-inline mb-2">
+                            <input type="checkbox" class="form-check-input dept-chk"
+                                   id="chk03" value="全自動智慧工廠與 AOI 演算法組">
+                            <label for="chk03" class="form-check-label">
+                                全自動智慧工廠與 AOI 演算法組
+                            </label>
+                        </div>
+
+                        <div class="form-check form-check-inline mb-2">
+                            <input type="checkbox" class="form-check-input dept-chk"
+                                   id="chk04" value="ESG 綠色低碳基材開發課">
+                            <label for="chk04" class="form-check-label">
+                                ESG 綠色低碳基材開發課
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="deptError" class="field-error" role="alert"></div>
+                </fieldset>
+
+                <!-- 履歷 -->
+                <div class="mb-4">
+                    <label for="resume_file" class="form-label">
+                        個人履歷與歷年成績單 (PDF)
+                        <span class="required-mark">*</span>
+                    </label>
+                    <input class="form-control" type="file"
+                           id="resume_file" name="resume_file"
+                           accept=".pdf,application/pdf" required
+                           aria-describedby="resumeHelp resumeError">
+                    <div id="resumeHelp" class="form-text">
+                        僅接受 PDF，檔案上限 10 MB。示範模式不會上傳檔案。
+                    </div>
+                    <div id="resumeError" class="invalid-feedback"></div>
+                </div>
+
+                <!-- 個資同意 -->
+                <div class="mb-4 p-3 signup-consent rounded">
+                    <p class="small mb-3">
+                        正式報名系統應提供完整的個人資料蒐集告知事項，
+                        包括蒐集機關、目的、資料類別、利用期間與地區、
+                        利用對象與方式，以及當事人權利。
+                        目前為課程示範，尚未提供正式條款。
+                    </p>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                               id="privacyConsent" required
+                               aria-describedby="privacyError">
+                        <label class="form-check-label small" for="privacyConsent">
+                            我了解此頁為前端驗證示範，不會正式提交報名資料。
+                            <span class="required-mark">*</span>
+                        </label>
+                        <div id="privacyError" class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <!-- 訊息 -->
+                <div id="formAlert" class="alert alert-danger d-none"
+                     role="alert" aria-live="assertive" tabindex="-1"></div>
+
+                <div id="loadingAlert" class="alert alert-info"
+                     role="status" aria-live="polite">
+                    正在準備縣市與大專院校資料…
+                </div>
+
+                <!-- 按鈕 -->
+                <div class="action-buttons d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4">
+                    <button id="submitButton" type="submit"
+                            class="btn btn-primary btn-lg px-5">
+                        驗證並預覽申請資料
+                    </button>
+                    <button id="resetButton" type="reset"
+                            class="btn btn-outline-secondary btn-lg px-4">
+                        重新填寫
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- 預覽 -->
+        <section class="mt-4">
+            <div class="signup-panel p-3 p-md-4 border rounded">
+                <h2 class="h5 fw-bold text-center mb-3">
+                    實習報名資料預覽確認
+                </h2>
+                <div id="showmsg" class="result-box p-3"
+                     role="status" aria-live="polite">
+                    尚未完成表單驗證
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <p>智造科技 Circuit Tech © 2026 人力資源處招募小組版權所有</p>
+            </div>
         </div>
+    </footer>
 
-        <div class="mb-4">
-          <label for="resume_file" class="form-label">個人履歷與歷年成績單 (PDF) <span class="required-mark">*</span></label>
-          <input class="form-control" type="file" id="resume_file" accept=".pdf" required>
-          <div id="resumeError" class="invalid-feedback">請上傳 PDF 格式之履歷成績單檔案。</div>
-        </div>
-
-        <div class="mb-4 p-3 border rounded">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="privacyConsent" required>
-            <label class="form-check-label small" for="privacyConsent">我已閱讀並同意人才招募個人資料蒐集條款。<span class="required-mark">*</span></label>
-            <div id="privacyError" class="invalid-feedback">送出前必須同意個人資料蒐集條款。</div>
-          </div>
-        </div>
-
-        <div id="formAlert" class="alert alert-danger d-none" role="alert"></div>
-        <div id="loadingAlert" class="alert alert-info" role="status">正在載入縣市與大專院校資料…</div>
-
-        <div class="action-buttons d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4">
-          <button id="submitButton" type="submit" class="btn btn-primary btn-lg px-5">送出實習申請</button>
-          <button id="resetButton" type="reset" class="btn btn-outline-secondary btn-lg px-4">重新填寫</button>
-        </div>
-      </form>
-    </section>
-
-    <section class="mt-4">
-      <div class="panel p-3 p-md-4 border rounded">
-        <h2 class="h5 fw-bold text-center mb-3">實習報名資料預覽確認</h2>
-        <div id="showmsg" class="result-box p-3 text-center">尚未送出資料</div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-content"><div class="footer-col"><p>智造科技 Circuit Tech © 2026 人力資源處招募小組版權所有</p></div></div>
-  </footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,397 +1,57 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>前端開發學習歷程作品集</title>
-    <link rel="stylesheet" href="css/mycss.css">
-    <style>
-        /* 明亮高質感變數設計 */
-        :root {
-            --bg-color: #f8fafc;
-            --bg-gradient-1: #e0f2fe;
-            --bg-gradient-2: #fae8ff;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-hover: rgba(255, 255, 255, 1);
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --accent-primary: #4f46e5;
-            --accent-secondary: #9333ea;
-            --accent-cyan: #0284c7;
-            --border-color: rgba(226, 232, 240, 0.8);
-            --shadow-color: rgba(148, 163, 184, 0.15);
-        }
-
-        body {
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(at 10% 10%, var(--bg-gradient-1) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, var(--bg-gradient-2) 0px, transparent 50%);
-            color: var(--text-main);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            min-height: 100vh;
-            margin: 0;
-            padding: 60px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-        }
-
-        .wrapper {
-            width: 100%;
-            max-width: 1100px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* 標題與副標設計 */
-        .header-container {
-            text-align: center;
-            margin-bottom: 35px;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        .mytitle-01 {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0 0 10px 0;
-            letter-spacing: 0.5px;
-        }
-
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        /* 即時搜尋框設計 */
-        .search-box {
-            width: 100%;
-            max-width: 480px;
-            margin-bottom: 45px;
-            position: relative;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .search-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--border-color);
-            padding: 14px 20px 14px 48px;
-            border-radius: 30px;
-            color: var(--text-main);
-            font-size: 1rem;
-            outline: none;
-            box-shadow: 0 4px 12px var(--shadow-color);
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-
-        .search-input:focus {
-            border-color: var(--accent-primary);
-            background: #ffffff;
-            box-shadow: 0 0 20px rgba(79, 70, 229, 0.15);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.1rem;
-        }
-
-        /* 網格卡片佈局 (Grid) */
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        li {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        /* 卡片本體 */
-        li a {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            padding: 24px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: var(--text-main);
-            backdrop-filter: blur(12px);
-            height: 200px;
-            box-sizing: border-box;
-            box-shadow: 0 10px 25px -5px var(--shadow-color);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        li a:hover {
-            background: var(--card-hover);
-            border-color: var(--accent-primary);
-            transform: translateY(-6px);
-            box-shadow: 0 20px 35px -10px rgba(79, 70, 229, 0.2);
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card-icon {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        li a:hover .card-icon {
-            transform: scale(1.15) rotate(10deg);
-        }
-
-        /* 明亮風標籤設計 */
-        .card-tag {
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 5px 12px;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        .card-tag.frontend { background: #e0e7ff; color: #4338ca; }
-        .card-tag.rwd { background: #e0f2fe; color: #0369a1; }
-        .card-tag.api { background: #fef9c3; color: #a16207; }
-        .card-tag.interactive { background: #fae8ff; color: #86198f; }
-
-        .card-content {
-            margin: 10px 0;
-        }
-
-        .card-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin: 0 0 6px 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .card-file {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            font-family: monospace;
-            margin: 0;
-        }
-
-        .card-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 14px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--accent-primary);
-            transition: color 0.3s ease;
-        }
-
-        .arrow-icon {
-            transition: transform 0.3s ease;
-        }
-
-        li a:hover .arrow-icon {
-            transform: translateX(6px);
-        }
-
-        /* 動畫設定 */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>互動式科技作品展示館｜前端開發學習歷程</title>
+<link rel="stylesheet" href="css/index.css">
+<script src="js/index.js" defer></script>
 </head>
-<body>
-    <div class="wrapper">
-        <div class="header-container">
-            <h1 class="mytitle-01">前端開發學習歷程</h1>
-            <p class="subtitle">HTML, CSS, JavaScript & Responsive Web Design Portfolio</p>
-        </div>
+<body class="gate-locked">
+<div class="intro" id="intro"><h1>⚡ INTERACTIVE PORTFOLIO</h1><p>科技實驗室啟動中...</p><div class="intro-progress"><div></div></div><button class="btn" id="skipIntro">跳過動畫</button></div>
 
-        <!-- 即時搜尋列 -->
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="快速搜尋專案名稱或檔名...">
-        </div>
-
-        <ul id="projectList">
-        <li data-title="智造科技｜公司介紹與關係企業" data-filename="about-us.html" style="animation-delay: 0s;">
-            <a href="about-us.html" target="_blank">
-                <div class="card-top">
-                    <span class="card-icon">💡</span>
-                    <span class="card-tag frontend">Frontend</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">智造科技｜公司介紹與關係企業</h3>
-                    <p class="card-file">about-us.html</p>
-                </div>
-                <div class="card-bottom">
-                    <span class="action-text">進入專案</span>
-                    <span class="arrow-icon">→</span>
-                </div>
-            </a>
-        </li>
-        <li data-title="kesin chen - 個人履歷與作品集" data-filename="bio.html" style="animation-delay: 0.06s;">
-            <a href="Bio.html" target="_blank">
-                <div class="card-top">
-                    <span class="card-icon">💡</span>
-                    <span class="card-tag frontend">Frontend</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Kesin Chen - 個人履歷與作品集</h3>
-                    <p class="card-file">Bio.html</p>
-                </div>
-                <div class="card-bottom">
-                    <span class="action-text">進入專案</span>
-                    <span class="arrow-icon">→</span>
-                </div>
-            </a>
-        </li>
-        <li data-title="智造科技｜職業安全衛生管理守則" data-filename="ehc-policy.html" style="animation-delay: 0.12s;">
-            <a href="EHC-policy.html" target="_blank">
-                <div class="card-top">
-                    <span class="card-icon">💡</span>
-                    <span class="card-tag frontend">Frontend</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">智造科技｜職業安全衛生管理守則</h3>
-                    <p class="card-file">EHC-policy.html</p>
-                </div>
-                <div class="card-bottom">
-                    <span class="action-text">進入專案</span>
-                    <span class="arrow-icon">→</span>
-                </div>
-            </a>
-        </li>
-        <li data-title="智造科技｜ pcb 電路板製造" data-filename="home.html" style="animation-delay: 0.18s;">
-            <a href="home.html" target="_blank">
-                <div class="card-top">
-                    <span class="card-icon">💡</span>
-                    <span class="card-tag frontend">Frontend</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">智造科技｜ PCB 電路板製造</h3>
-                    <p class="card-file">home.html</p>
-                </div>
-                <div class="card-bottom">
-                    <span class="action-text">進入專案</span>
-                    <span class="arrow-icon">→</span>
-                </div>
-            </a>
-        </li>
-        <li data-title="智造科技｜前瞻研展與科技展示" data-filename="r-d.html" style="animation-delay: 0.24s;">
-            <a href="R-D.html" target="_blank">
-                <div class="card-top">
-                    <span class="card-icon">💡</span>
-                    <span class="card-tag frontend">Frontend</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">智造科技｜前瞻研展與科技展示</h3>
-                    <p class="card-file">R-D.html</p>
-                </div>
-                <div class="card-bottom">
-                    <span class="action-text">進入專案</span>
-                    <span class="arrow-icon">→</span>
-                </div>
-            </a>
-        </li>
-        <li data-title="智造科技｜2027 暑期高階研發實習生計畫線上報名" data-filename="signup.html" style="animation-delay: 0.3s;">
-            <a href="signup.html" target="_blank">
-                <div class="card-top">
-                    <span class="card-icon">💡</span>
-                    <span class="card-tag frontend">Frontend</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">智造科技｜2027 暑期高階研發實習生計畫線上報名</h3>
-                    <p class="card-file">signup.html</p>
-                </div>
-                <div class="card-bottom">
-                    <span class="action-text">進入專案</span>
-                    <span class="arrow-icon">→</span>
-                </div>
-            </a>
-        </li>
-        <li data-title="智造科技｜pcb 產業發展時間軸" data-filename="timeline.html" style="animation-delay: 0.36s;">
-            <a href="timeline.html" target="_blank">
-                <div class="card-top">
-                    <span class="card-icon">💡</span>
-                    <span class="card-tag frontend">Frontend</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">智造科技｜PCB 產業發展時間軸</h3>
-                    <p class="card-file">timeline.html</p>
-                </div>
-                <div class="card-bottom">
-                    <span class="action-text">進入專案</span>
-                    <span class="arrow-icon">→</span>
-                </div>
-            </a>
-        </li>
-        <li data-title="智造科技｜員工福利委員會 (ewc)" data-filename="union.html" style="animation-delay: 0.42s;">
-            <a href="union.html" target="_blank">
-                <div class="card-top">
-                    <span class="card-icon">💡</span>
-                    <span class="card-tag frontend">Frontend</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">智造科技｜員工福利委員會 (EWC)</h3>
-                    <p class="card-file">union.html</p>
-                </div>
-                <div class="card-bottom">
-                    <span class="action-text">進入專案</span>
-                    <span class="arrow-icon">→</span>
-                </div>
-            </a>
-        </li>
-        </ul>
+<!-- 進站前強制三關：完成後才顯示作品集 -->
+<div class="entry-gate" id="entryGate" role="dialog" aria-modal="true" aria-labelledby="entryTitle">
+  <div class="entry-shell">
+    <div class="entry-heading"><span>⚡ PORTFOLIO ACCESS</span><h1 id="entryTitle">科技實驗室｜入場挑戰</h1><p>必須依序完成三關，才能開啟作品展示館。</p></div>
+    <div class="entry-steps" id="entrySteps" aria-label="關卡進度"><span class="current">🔐 密碼解謎</span><span>🐛 BUG 修復</span><span>🧠 記憶晶片</span></div>
+    <div class="entry-game" id="entryPassword">
+      <h2>🔐 第一關｜動態數學密碼</h2><p>四個數學線索分別代表一位數字。每次挑戰都會重新出題。</p>
+      <div class="entry-clues" id="entryClues"></div>
+      <form id="entryPasswordForm"><label for="entryPasswordInput">輸入四位數密碼</label><input id="entryPasswordInput" class="game-input" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" required placeholder="例如 1234"><div class="action-row"><button class="btn primary" type="submit">確認密碼</button><button class="btn" type="button" id="entryNewPassword">換一組題目</button></div></form>
+      <p class="feedback" id="entryPasswordMessage" aria-live="polite">你有五次機會。</p>
     </div>
-
-    <!-- 結合即時搜尋與 jQuery 互動 -->
-    <script src="js/jquery-4.0.0.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#searchInput').on('keyup', function() {
-                let keyword = $(this).val().toLowerCase();
-                $('#projectList li').filter(function() {
-                    let title = $(this).data('title');
-                    let filename = $(this).data('filename');
-                    let match = title.indexOf(keyword) > -1 || filename.indexOf(keyword) > -1;
-                    $(this).toggle(match);
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+    <div class="entry-game" id="entryBug" hidden>
+      <h2>🐛 第二關｜隨機 BUG 修復</h2><p>從題庫隨機抽出 HTML、CSS、JavaScript 各一題；三題都要答對。</p><p id="entryBugProgress"></p><pre class="code-sample" id="entryBugCode"></pre><div class="options" id="entryBugOptions"></div><p class="feedback" id="entryBugMessage" aria-live="polite"></p><button class="btn primary" id="entryBugNext" hidden>下一題</button>
+    </div>
+    <div class="entry-game" id="entryMemory" hidden>
+      <h2>🧠 第三關｜四燈記憶晶片</h2><p>觀察四個燈的閃爍順序，依序點擊。三回合分別記憶 4、5、6 次閃爍。</p><p id="entryMemoryRound"></p><div class="entry-lights" id="entryLights"></div><p class="feedback" id="entryMemoryMessage" aria-live="polite"></p><button class="btn primary" id="entryMemoryStart">開始記憶</button>
+    </div>
+    <div class="entry-game entry-success" id="entrySuccess" hidden><div class="trophy">🏆</div><h2>三關全部完成！</h2><p>科技實驗室已解鎖，現在可以進入作品展示館。</p><button class="btn primary" id="entryOpen">🚀 進入作品集</button></div>
+  </div>
+</div>
+<nav class="navbar"><div class="container nav-inner"><a class="brand" href="#top">⚡ PORTFOLIO LAB</a><div class="nav-actions"><a class="btn" href="#mystery">🎁 盲盒</a><a class="btn" href="#quiz">🎮 問答</a><a class="btn" href="#lab">🔐 闖關</a><a class="btn" href="#works">💼 作品</a><button class="btn" id="themeBtn">☀️ 淺色模式</button></div></div></nav>
+<main class="container" id="top">
+<section class="hero"><h1 id="mainTitle">前端開發學習歷程</h1><p>HTML, CSS, JavaScript & Responsive Web Design Portfolio</p><p>抽盲盒、玩遊戲、解鎖實驗室，最後探索我的八個作品。</p><div class="hero-actions"><a href="#mystery" class="btn primary">🎁 開始探索</a><a href="#quiz" class="btn">🎮 知識挑戰</a><a href="#lab" class="btn">🔐 科技實驗室</a></div></section>
+<section id="mystery"><h2 class="section-title">🎁 隨機作品盲盒</h2><div class="panel mystery"><div class="mystery-icon">🎁</div><h3>不知道先看哪個作品？</h3><p class="muted">讓系統隨機挑選，看看你抽中了什麼！</p><button class="btn primary" id="drawBtn">✨ 開啟神祕盲盒</button><div class="mystery-result" id="mysteryResult" hidden><h3 id="mysteryTitle"></h3><p id="mysteryFile" class="muted"></p><a class="btn primary" id="mysteryLink" href="about-us.html">🚀 進入這個作品</a><button class="btn" id="drawAgain">🔄 再抽一次</button></div></div></section>
+<section id="quiz"><h2 class="section-title">🎮 前端工程師知識挑戰</h2><div class="panel"><div id="quizStart"><h3>你能成為前端工程師嗎？</h3><p class="muted">30 題題庫，每局隨機抽 10 題，每題 10 分，限時 120 秒。</p><button class="btn primary" id="startQuiz">🚀 開始挑戰</button></div><div id="quizGame" hidden><div class="game-head"><span id="quizNumber"></span><span id="quizScore"></span><span id="quizTimer"></span></div><div class="progress"><div class="progress-bar" id="quizBar"></div></div><div class="question" id="questionText"></div><div class="options" id="quizOptions"></div><div class="feedback" id="quizFeedback" hidden></div><div class="action-row"><button class="btn primary" id="nextQuestion" hidden>下一題 →</button><button class="btn" id="quitQuiz">結束本局</button></div></div><div id="quizEnd" hidden><h2 id="finalTitle"></h2><h3 id="finalScore"></h3><p id="finalMessage"></p><button class="btn primary" id="restartQuiz">🔄 再挑戰一次</button></div></div></section>
+<section id="lab"><h2 class="section-title">🔐 科技實驗室｜四合一闖關</h2><div class="panel"><p class="muted">依序破解密碼、修復 BUG、記憶晶片，最後啟動能量核心。</p><div class="stage-grid"><div class="stage-card" id="stageCard0"><div class="stage-icon">🔐</div><strong>第一關</strong><div>密碼解謎</div><small id="stageStatus0">未開始</small></div><div class="stage-card" id="stageCard1"><div class="stage-icon">🐛</div><strong>第二關</strong><div>BUG 修復</div><small id="stageStatus1">未解鎖</small></div><div class="stage-card" id="stageCard2"><div class="stage-icon">🧠</div><strong>第三關</strong><div>記憶晶片</div><small id="stageStatus2">未解鎖</small></div><div class="stage-card" id="stageCard3"><div class="stage-icon">⚡</div><strong>第四關</strong><div>能量核心</div><small id="stageStatus3">未解鎖</small></div></div><div class="progress"><div class="progress-bar" id="labBar"></div></div><p id="labProgress">已完成 0 / 4 關</p>
+<div class="game-box" id="labWelcome"><h3>🚀 科技實驗室等待啟動</h3><p>準備好挑戰四個不同的遊戲了嗎？</p><button class="btn primary" id="startLab">開始闖關</button></div>
+<div class="game-box" id="passwordStage" hidden><h3>🔐 第一關：動態密碼破解</h3><p>每局密碼都不同！依線索推理四位數字，最多猜 5 次。</p><p id="passwordClue" class="clue"></p><p id="passwordAttempts">剩餘 5 次機會</p><form id="passwordForm"><label for="passwordInput">輸入四位數密碼</label><input class="game-input" id="passwordInput" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="例如 1234" required><div class="action-row"><button class="btn primary" id="passwordSubmit" type="submit">🔓 嘗試破解</button><button class="btn" id="newPassword" type="button">🎲 換一題</button></div></form><div class="feedback" id="passwordFeedback" hidden aria-live="polite"></div><div class="guess-history" id="guessHistory"></div></div>
+<div class="game-box" id="bugStage" hidden><h3>🐛 第二關：修復程式 BUG</h3><p>選出正確的修復方式，連續完成三題。</p><p id="bugCount"></p><pre id="bugCode" class="code-sample"></pre><div class="options" id="bugOptions"></div><div class="feedback" id="bugFeedback" hidden></div><button class="btn primary" id="nextBug" hidden>下一個 BUG →</button></div>
+<div class="game-box" id="memoryStage" hidden><h3>🧠 第三關：記憶晶片挑戰</h3><p>記住晶片閃爍的順序，再照順序點擊；完成三回合。</p><p id="memoryRound">準備開始</p><p id="memoryStatus" aria-live="polite"></p><div class="memory-grid" id="memoryGrid"></div><button class="btn primary" id="startMemory">開始記憶挑戰</button></div>
+<div class="game-box" id="energyStage" hidden><h3>⚡ 第四關：啟動能量核心</h3><p>30 秒內依照數字 1 → 9 的順序啟動節點。</p><div class="game-head"><span id="energyCount">已啟動 0 / 9</span><span id="energyTimer">剩餘 30 秒</span></div><div class="energy-grid" id="energyGrid"></div><p id="energyStatus" aria-live="polite"></p><button class="btn primary" id="startEnergy">⚡ 啟動挑戰</button></div>
+<div class="game-box achievement" id="labComplete" hidden><div class="trophy">🏆</div><h2>科技實驗室解鎖成功！</h2><p>恭喜完成四項挑戰！</p><button class="btn primary" id="restartLab">🔄 重新闖關</button></div></div></section>
+<section id="achievements"><h2 class="section-title">🏆 作品探索成就</h2><div class="panel achievement"><h3 id="achievementTitle">🔎 初階探索者</h3><p class="muted">每進入一個不同作品，就會累積探索進度。</p><div class="progress"><div class="progress-bar" id="exploreBar"></div></div><p id="exploreText">已探索 0 / 8 個作品</p><button class="btn" id="resetExplore">重新開始探索</button></div></section>
+<section id="works"><h2 class="section-title">💼 我的正式作品展示</h2><div class="search-area"><input id="searchInput" type="search" placeholder="🔍 搜尋作品名稱或檔名..." aria-label="搜尋作品"><div class="search-info"><span>目前顯示 <strong id="visibleCount">8</strong> / <span id="totalCount">8</span> 個作品</span><span>按 <kbd>/</kbd> 搜尋，<kbd>Esc</kbd> 清除</span></div></div><div class="projects" id="projectList">
+<article class="project-item"><a class="project-card" href="about-us.html"><div class="card-top"><span class="card-icon">🏢</span><span class="tag">Frontend</span></div><div><h3 class="card-title">智造科技｜公司介紹與關係企業</h3><p class="card-file">about-us.html</p></div><div class="card-bottom"><span>進入專案</span><span>→</span></div></a></article>
+<article class="project-item"><a class="project-card" href="Bio.html"><div class="card-top"><span class="card-icon">👤</span><span class="tag">Frontend</span></div><div><h3 class="card-title">Kesin Chen - 個人履歷與作品集</h3><p class="card-file">Bio.html</p></div><div class="card-bottom"><span>進入專案</span><span>→</span></div></a></article>
+<article class="project-item"><a class="project-card" href="EHC-policy.html"><div class="card-top"><span class="card-icon">🛡️</span><span class="tag">Frontend</span></div><div><h3 class="card-title">智造科技｜職業安全衛生管理守則</h3><p class="card-file">EHC-policy.html</p></div><div class="card-bottom"><span>進入專案</span><span>→</span></div></a></article>
+<article class="project-item"><a class="project-card" href="home.html"><div class="card-top"><span class="card-icon">💻</span><span class="tag">Frontend</span></div><div><h3 class="card-title">智造科技｜ PCB 電路板製造</h3><p class="card-file">home.html</p></div><div class="card-bottom"><span>進入專案</span><span>→</span></div></a></article>
+<article class="project-item"><a class="project-card" href="R-D.html"><div class="card-top"><span class="card-icon">🔬</span><span class="tag">Frontend</span></div><div><h3 class="card-title">智造科技｜前瞻研展與科技展示</h3><p class="card-file">R-D.html</p></div><div class="card-bottom"><span>進入專案</span><span>→</span></div></a></article>
+<article class="project-item"><a class="project-card" href="signup.html"><div class="card-top"><span class="card-icon">📝</span><span class="tag">Frontend</span></div><div><h3 class="card-title">智造科技｜2027 暑期高階研發實習生計畫線上報名</h3><p class="card-file">signup.html</p></div><div class="card-bottom"><span>進入專案</span><span>→</span></div></a></article>
+<article class="project-item"><a class="project-card" href="timeline.html"><div class="card-top"><span class="card-icon">⏳</span><span class="tag">Frontend</span></div><div><h3 class="card-title">智造科技｜PCB 產業發展時間軸</h3><p class="card-file">timeline.html</p></div><div class="card-bottom"><span>進入專案</span><span>→</span></div></a></article>
+<article class="project-item"><a class="project-card" href="union.html"><div class="card-top"><span class="card-icon">🤝</span><span class="tag">Frontend</span></div><div><h3 class="card-title">智造科技｜員工福利委員會 (EWC)</h3><p class="card-file">union.html</p></div><div class="card-bottom"><span>進入專案</span><span>→</span></div></a></article>
+</div><p id="emptyMessage" class="muted" hidden>找不到符合的作品，請更換搜尋關鍵字。</p></section>
+</main><footer>© 2026 Frontend Learning Portfolio | Made with HTML, CSS & JavaScript</footer><div class="toast" id="toast" hidden role="status" aria-live="polite"></div>
+</body></html>

@@ -1,36 +1,256 @@
+
+/* ============================================
+   signup.css
+   2027 暑期高階研發實習生計畫
+   深淺色模式 + Bootstrap RWD
+============================================ */
+
+/* 淺色模式 */
+:root {
+    --signup-bg: #f1f5f9;
+    --signup-panel: #ffffff;
+    --signup-text: #26384e;
+    --signup-muted: #53677d;
+    --signup-border: #d5e0ec;
+    --signup-input: #ffffff;
+    --signup-result: #f5f8fc;
+    --signup-primary: #155b94;
+    --signup-consent: #edf4fb;
+}
+
+/* 深色模式 */
+html.dark,
+html.dark-mode,
+html[data-bs-theme="dark"] {
+    --signup-bg: #0f172a;
+    --signup-panel: #1e293b;
+    --signup-text: #e2e8f0;
+    --signup-muted: #cbd5e1;
+    --signup-border: #405168;
+    --signup-input: #152238;
+    --signup-result: #142237;
+    --signup-primary: #7dd3fc;
+    --signup-consent: #26374d;
+}
+
 body {
-  background-color: #0f172a;
-  color: #f8fafc;
-  font-family: system-ui, -apple-system, sans-serif;
+    background: var(--signup-bg);
+    color: var(--signup-text);
+    font-family: system-ui, -apple-system, sans-serif;
 }
 
-#idcard {
-  text-transform: uppercase;
-}
-
-.required-mark {
-  color: #dc3545;
-  font-weight: bold;
-}
-
-.help-text {
-  font-size: 0.875rem;
-  color: #8c939b;
+.wrapper {
+    background: var(--signup-bg);
+    min-height: 100vh;
 }
 
 .page-wrap {
-  max-width: 900px;
+    max-width: 900px;
 }
 
-.panel {
-  background-color: #1e293b;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+/* 主視覺 */
+.signup-hero {
+    background: linear-gradient(135deg, #18314d, #285c82);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, .12);
 }
 
+.signup-hero h1,
+.signup-hero p {
+    color: #ffffff;
+}
+
+.signup-eyebrow {
+    letter-spacing: 2px;
+    opacity: .9;
+}
+
+/* 申請說明 */
+.rule-note,
+.signup-panel {
+    background: var(--signup-panel);
+    color: var(--signup-text);
+    border-color: var(--signup-border) !important;
+    border-radius: 12px;
+}
+
+.rule-note li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+.required-mark {
+    color: #e65d65;
+    font-weight: 800;
+}
+
+/* 表單 */
+.signup-panel .form-label,
+.signup-panel legend,
+.signup-panel .form-check-label {
+    color: var(--signup-text);
+}
+
+.signup-panel .form-control,
+.signup-panel .form-select {
+    background-color: var(--signup-input);
+    color: var(--signup-text);
+    border: 1px solid var(--signup-border);
+    min-height: 44px;
+}
+
+.signup-panel .form-control::placeholder {
+    color: var(--signup-muted);
+    opacity: .85;
+}
+
+.signup-panel .form-control:focus,
+.signup-panel .form-select:focus {
+    background-color: var(--signup-input);
+    color: var(--signup-text);
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, .15);
+}
+
+.signup-panel .form-control:disabled,
+.signup-panel .form-select:disabled {
+    opacity: .7;
+}
+
+.signup-panel .form-text {
+    color: var(--signup-muted);
+    line-height: 1.6;
+}
+
+.signup-panel .btn-outline-secondary {
+    border-color: var(--signup-border);
+    color: var(--signup-text);
+}
+
+.signup-panel .btn-outline-secondary:hover {
+    background: var(--signup-consent);
+    color: var(--signup-text);
+}
+
+/* 密碼按鈕 */
+#togglePassword {
+    min-width: 48px;
+}
+
+#idcard {
+    text-transform: uppercase;
+}
+
+/* 錯誤與成功 */
+.signup-panel .invalid-feedback,
+.field-error {
+    color: #ef777f;
+    font-size: .875rem;
+    line-height: 1.5;
+}
+
+.field-error:not(:empty) {
+    display: block;
+    margin-top: 6px;
+}
+
+.signup-panel .is-invalid {
+    border-color: #e35f6b !important;
+}
+
+.signup-panel .is-valid {
+    border-color: #31a47c !important;
+}
+
+/* 志願選擇 */
+#departmentChoices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+}
+
+#departmentChoices .form-check {
+    margin-right: 0;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.signup-panel .form-check-input {
+    cursor: pointer;
+}
+
+.signup-panel .form-check-label {
+    cursor: pointer;
+}
+
+/* 個資說明 */
+.signup-consent {
+    background: var(--signup-consent);
+    border: 1px solid var(--signup-border);
+}
+
+.signup-consent p {
+    color: var(--signup-muted);
+    line-height: 1.7;
+}
+
+/* 預覽 */
 .result-box {
-  background-color: #0f172a;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  text-align: left !important;
+    background: var(--signup-result);
+    border: 1px dashed var(--signup-border);
+    border-radius: 8px;
+    color: var(--signup-text);
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.result-box p {
+    line-height: 1.8;
+}
+
+.result-box strong {
+    color: var(--signup-primary);
+}
+
+.preview-success {
+    color: var(--signup-primary);
+    font-weight: 700;
+}
+
+/* 手機版 */
+@media (max-width: 767.98px) {
+    .signup-hero h1 {
+        font-size: 1.5rem;
+        line-height: 1.5;
+    }
+
+    .signup-hero p {
+        line-height: 1.7;
+    }
+
+    .signup-panel {
+        padding: 18px !important;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+    }
+
+    #departmentChoices {
+        display: block;
+    }
+
+    #departmentChoices .form-check {
+        display: block;
+        margin-bottom: 12px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0s !important;
+    }
 }

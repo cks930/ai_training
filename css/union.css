@@ -1,80 +1,395 @@
-/* === 員工福利特約廠商表格樣式 (RWD 優化版) === */
 
-.custom-table {
-    width: 100%;
-    background-color: transparent;
-    color: inherit;
+/* ============================================
+   union.css
+   員工福利委員會｜特約合作廠商列表
+============================================ */
+
+/* 深色模式 */
+:root,
+html.dark,
+html.dark-mode,
+html[data-bs-theme="dark"] {
+    --union-bg: #0f172a;
+    --union-card: #17283d;
+    --union-table-head: #203650;
+    --union-row-hover: #263d56;
+    --union-text: #e2e8f0;
+    --union-muted: #b7c8da;
+    --union-border: #35485e;
+    --union-primary: #1686b5;
+    --union-primary-hover: #0b6c96;
+    --union-input: #101e30;
+    --union-shadow: rgba(0, 0, 0, .2);
 }
 
-/* 表格圖片縮小與RWD保護 (設定最大寬度為原先的一半，約 120px - 150px) */
-.custom-table img, 
-.custom-table td img {
-    max-width: 120px !important;
-    width: 100% !important;
-    height: auto !important;
+/* 淺色模式 */
+html:not(.dark):not(.dark-mode),
+html[data-bs-theme="light"] {
+    --union-bg: #f4f7fb;
+    --union-card: #ffffff;
+    --union-table-head: #e9f0f8;
+    --union-row-hover: #eef5fc;
+    --union-text: #263b52;
+    --union-muted: #52677c;
+    --union-border: #d5dfeb;
+    --union-primary: #155bb5;
+    --union-primary-hover: #124a94;
+    --union-input: #ffffff;
+    --union-shadow: rgba(15, 23, 42, .08);
+}
+
+/* 頁面基本樣式 */
+body {
+    background: var(--union-bg) !important;
+    color: var(--union-text);
+}
+
+.wrapper {
+    min-height: 100vh;
+    background: var(--union-bg) !important;
+}
+
+.wrapper > main {
+    flex: 1;
+}
+
+/* 主內容 */
+.main-card {
+    background: var(--union-card);
+    color: var(--union-text);
+    border: 1px solid var(--union-border);
+    box-shadow: 0 6px 20px var(--union-shadow);
+}
+
+.main-title {
+    color: var(--union-text);
+    line-height: 1.4;
+}
+
+.union-intro,
+.union-note {
+    color: var(--union-muted);
+    line-height: 1.8;
+}
+
+.union-note {
+    font-size: .85rem;
+}
+
+/* 搜尋區 */
+.main-card .form-label {
+    color: var(--union-text);
+}
+
+.main-card .form-control {
+    background: var(--union-input);
+    color: var(--union-text);
+    border: 1px solid var(--union-border);
+    min-height: 43px;
+}
+
+.main-card .form-control::placeholder {
+    color: var(--union-muted);
+    opacity: 1;
+}
+
+.main-card .form-control:focus {
+    background: var(--union-input);
+    color: var(--union-text);
+    border-color: var(--union-primary);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, .15);
+}
+
+.btn-reload {
+    min-height: 43px;
+    background: var(--union-primary);
+    color: #ffffff;
+    border: 1px solid var(--union-primary);
+    font-weight: 700;
+}
+
+.btn-reload:hover,
+.btn-reload:focus-visible {
+    background: var(--union-primary-hover);
+    color: #ffffff;
+    border-color: var(--union-primary-hover);
+}
+
+.btn-reload:disabled {
+    opacity: .65;
+    cursor: wait;
+}
+
+/* 資料筆數 */
+.union-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--union-table-head);
+    border: 1px solid var(--union-border);
     border-radius: 8px;
-    object-fit: cover;
+    color: var(--union-text);
+    font-size: .9rem;
+}
+
+.union-source {
+    color: var(--union-muted);
+    font-size: .82rem;
+}
+
+/* 表格：限定本頁，避免影響其他網頁 */
+.main-card .custom-table {
+    width: 100%;
+    margin-bottom: 0;
+    background: var(--union-card);
+    color: var(--union-text);
+
+    --bs-table-bg: var(--union-card);
+    --bs-table-color: var(--union-text);
+    --bs-table-border-color: var(--union-border);
+    --bs-table-hover-bg: var(--union-row-hover);
+    --bs-table-hover-color: var(--union-text);
+}
+
+.main-card .custom-table thead th {
+    background: var(--union-table-head);
+    color: var(--union-text);
+    font-weight: 700;
+    border-bottom: 2px solid var(--union-border);
+}
+
+.main-card .custom-table th,
+.main-card .custom-table td {
+    padding: 14px 12px;
+    vertical-align: middle;
+    border-color: var(--union-border);
+    word-break: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.7;
+}
+
+.main-card .custom-table tbody tr {
+    transition: background-color .2s;
+}
+
+/* 店名 */
+.restaurant-name {
+    color: var(--union-text);
+    font-weight: 700;
+}
+
+/* 電話 */
+.restaurant-phone {
+    color: var(--union-text);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.restaurant-phone:hover {
+    color: var(--union-primary);
+    text-decoration: underline;
+}
+
+/* 地址 */
+.restaurant-address {
+    color: var(--union-muted);
+}
+
+/* 店家圖片 */
+.main-card .custom-table .img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-card .custom-table img {
     display: block;
+    width: 120px !important;
+    max-width: 100% !important;
+    height: 90px !important;
+    max-height: 90px !important;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--union-border);
+    background: var(--union-table-head);
     margin: 0 auto;
 }
 
-/* 確保表格儲存格有適當的間距，防止文字擠在一起 */
-.custom-table th, 
-.custom-table td {
-    padding: 12px 10px;
-    vertical-align: middle;
-    word-break: break-word;
+/* 地圖搜尋按鈕 */
+.btn-map {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 38px;
+    padding: 8px 12px;
+    background: var(--union-primary);
+    color: #ffffff !important;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background-color .2s;
 }
 
-/* 針對行動裝置 (RWD) 的強制斷行與排版調整 */
-@media (max-width: 768px) {
-    /* 隱藏傳統桌機版表頭，改用卡片式或自適應行 */
-    .custom-table thead {
-        display: none;
+.btn-map:hover {
+    background: var(--union-primary-hover);
+    color: #ffffff !important;
+}
+
+.btn-map:focus-visible {
+    outline: 3px solid #38bdf8;
+    outline-offset: 3px;
+}
+
+.map-unavailable {
+    color: var(--union-muted);
+    font-size: .85rem;
+}
+
+/* 狀態列 */
+.main-card .custom-table .status-row td {
+    text-align: center;
+    color: var(--union-muted);
+    background: var(--union-card);
+}
+
+.main-card .custom-table .error-message {
+    color: #e87979;
+}
+
+.main-card .custom-table .empty-message {
+    color: var(--union-muted);
+}
+
+/* Footer */
+.wrapper > footer {
+    background: var(--union-bg) !important;
+    border-top: 1px solid var(--union-border);
+}
+
+.wrapper > footer .footer-content {
+    background: var(--union-bg) !important;
+}
+
+.wrapper > footer .text-muted {
+    color: var(--union-muted) !important;
+}
+
+/* ============================================
+   手機版：表格改成卡片式
+============================================ */
+@media (max-width: 767.98px) {
+
+    .main-card {
+        padding: 16px !important;
     }
 
-    .custom-table, 
-    .custom-table tbody, 
-    .custom-table tr, 
-    .custom-table td {
+    .main-title {
+        font-size: 1.4rem !important;
+    }
+
+    .union-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .main-card .table-responsive-md {
+        overflow: visible;
+    }
+
+    .main-card .custom-table,
+    .main-card .custom-table tbody,
+    .main-card .custom-table tr,
+    .main-card .custom-table td {
         display: block;
         width: 100%;
     }
 
-    .custom-table tr {
-        margin-bottom: 20px;
-        border: 1px solid var(--border-color, #334155);
+    .main-card .custom-table thead {
+        display: none;
+    }
+
+    .main-card .custom-table tbody tr:not(.status-row) {
+        margin-bottom: 16px;
+        padding: 12px;
+        background: var(--union-card);
+        border: 1px solid var(--union-border);
         border-radius: 12px;
-        padding: 15px;
-        background: var(--card-bg, #1e293b);
+        box-shadow: 0 3px 10px var(--union-shadow);
     }
 
-    .custom-table td {
+    .main-card .custom-table tbody tr:not(.status-row) td {
+        display: grid;
+        grid-template-columns: 82px minmax(0, 1fr);
+        align-items: start;
+        gap: 10px;
+        padding: 10px 2px;
+        border: 0;
+        border-bottom: 1px solid var(--union-border);
         text-align: left !important;
-        padding: 8px 0;
-        border: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        background: transparent;
     }
 
-    /* 讓圖片在手機上靠左或置中，並嚴格控制大小為一半 */
-    .custom-table td:nth-child(2) {
-        justify-content: center;
-        padding: 10px 0;
+    .main-card .custom-table tbody tr:not(.status-row) td:last-child {
+        border-bottom: 0;
     }
 
-    .custom-table img, 
-    .custom-table td img {
-        max-width: 140px !important;
-    }
-
-    /* 讓住址與餐廳名稱文字正常顯示，不再直行擠在一起 */
-    .custom-table td::before {
+    /* 對應 JavaScript 產生的 data-label */
+    .main-card .custom-table tbody tr:not(.status-row) td::before {
         content: attr(data-label);
-        font-weight: bold;
-        color: var(--accent-color, #38bdf8);
-        margin-right: 15px;
-        flex-shrink: 0;
+        color: var(--union-text);
+        font-weight: 700;
+        font-size: .9rem;
+    }
+
+    .main-card .custom-table .img-container {
+        justify-content: flex-start;
+    }
+
+    .main-card .custom-table img {
+        width: 120px !important;
+        height: 90px !important;
+        margin: 0;
+    }
+
+    .main-card .custom-table .btn-map {
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .main-card .custom-table .status-row td {
+        display: block;
+        padding: 22px 12px;
+    }
+
+    .main-card .custom-table .status-row td::before {
+        content: none;
+    }
+}
+
+/* 更小的手機 */
+@media (max-width: 380px) {
+    .main-card .custom-table tbody tr:not(.status-row) td {
+        grid-template-columns: 70px minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .main-card .custom-table img {
+        width: 100px !important;
+        height: 75px !important;
+    }
+}
+
+/* 減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+    .main-card .custom-table tbody tr,
+    .btn-map {
+        transition: none;
     }
 }

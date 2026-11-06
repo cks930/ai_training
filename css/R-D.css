@@ -1,13 +1,75 @@
-/* 基礎樣式與 RWD 優化 */
-body {
-    background-color: #F1F5F9;
-    color: #0F172A;
-    font-family: system-ui, sans-serif;
+
+/* ============================================
+   R-D.css
+   智造科技｜前瞻研發與科技展示
+   支援深色 / 淺色 / 手機版
+============================================ */
+
+/* ============================================
+   1. 深淺色變數
+============================================ */
+
+/* 淺色模式 */
+:root {
+    --rd-bg: #f1f5f9;
+    --rd-card: #ffffff;
+    --rd-text: #24364b;
+    --rd-muted: #52667c;
+    --rd-title: #155b94;
+    --rd-border: #d7e1ec;
+    --rd-button-start: #193b62;
+    --rd-button-end: #2876ae;
+    --rd-button-hover: #0b557f;
+    --rd-footer: #1e293b;
+    --rd-shadow: rgba(15, 23, 42, .08);
 }
 
+/* 深色模式 */
+html.dark,
+html.dark-mode,
+html[data-bs-theme="dark"] {
+    --rd-bg: #0f172a;
+    --rd-card: #1e293b;
+    --rd-text: #e2e8f0;
+    --rd-muted: #cbd5e1;
+    --rd-title: #7dd3fc;
+    --rd-border: #334155;
+    --rd-button-start: #172a44;
+    --rd-button-end: #28557c;
+    --rd-button-hover: #32658e;
+    --rd-footer: #17263b;
+    --rd-shadow: rgba(0, 0, 0, .25);
+}
+
+/* ============================================
+   2. 頁面基本樣式
+============================================ */
+
+body {
+    background-color: var(--rd-bg);
+    color: var(--rd-text);
+}
+
+.wrapper {
+    background-color: var(--rd-bg);
+}
+
+.wrapper > main {
+    flex: 1;
+}
+
+/* ============================================
+   3. Banner 主視覺
+============================================ */
+
 .box01 {
-    height: 160px;
-    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80');
+    height: 230px;
+    background-image:
+        linear-gradient(
+            rgba(15, 23, 42, .15),
+            rgba(15, 23, 42, .4)
+        ),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80");
 }
 
 .bg-img {
@@ -17,81 +79,252 @@ body {
     border-radius: 12px;
 }
 
-/* 統一跨頁導覽列 */
-.site-nav {
-    background: #0F172A;
+.rd-banner-content {
+    width: min(85%, 800px);
+    background: rgba(15, 23, 42, .82);
+    border: 1px solid rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
 }
 
-.site-nav a {
-    color: #94A3B8;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 6px 16px;
-    border-radius: 20px;
-    transition: 0.2s;
-    white-space: nowrap;
-    border: 1px solid #334155;
-    font-size: 14px;
+.rd-banner-content h1 {
+    color: #ffffff;
+    line-height: 1.5;
 }
 
-.site-nav a:hover,
-.site-nav a.tech-active {
-    background: #2563EB;
-    border-color: #2563EB;
-    color: #fff;
+.rd-banner-content p {
+    color: #e2e8f0;
+    line-height: 1.7;
 }
 
-/* 核心選單按鈕 */
+/* ============================================
+   4. 四個核心選單按鈕
+============================================ */
+
 .box02 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 140px;
     height: 140px;
-    line-height: 140px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #0F172A, #2563EB);
-    color: #ffffff;
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: bold;
+    padding: 15px;
+
     margin: 0 auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: 0.3s;
+
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, .15);
+
+    background: linear-gradient(
+        135deg,
+        var(--rd-button-start),
+        var(--rd-button-end)
+    );
+
+    color: #ffffff !important;
+    text-align: center;
     text-decoration: none;
+
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+
+    box-shadow: 0 4px 12px var(--rd-shadow);
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.box02 span {
     display: block;
+    max-width: 110px;
+    color: #ffffff;
+    overflow-wrap: break-word;
 }
 
 .box02:hover {
     transform: translateY(-5px);
-    color: #ffffff;
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    background: var(--rd-button-hover);
+    color: #ffffff !important;
+    box-shadow: 0 8px 20px var(--rd-shadow);
 }
 
+.box02:focus-visible {
+    outline: 3px solid #38bdf8;
+    outline-offset: 4px;
+}
+
+/* 電腦版圓形放大 */
 @media (min-width: 992px) {
     .box02 {
         width: 180px;
         height: 180px;
-        line-height: 180px;
-        font-size: 1.25rem;
+        font-size: 1.15rem;
+    }
+
+    .box02 span {
+        max-width: 145px;
     }
 }
 
-/* 科技展示卡片 */
+/* ============================================
+   5. 科技展示區標題
+============================================ */
+
+.rd-section-title {
+    color: var(--rd-title);
+    font-size: 1.8rem;
+    line-height: 1.5;
+}
+
+.rd-section-description {
+    color: var(--rd-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* ============================================
+   6. 六張科技展示卡片
+============================================ */
+
 .box03 {
-    background: #ffffff;
+    background-color: var(--rd-card);
+    color: var(--rd-text);
+
+    border: 1px solid var(--rd-border) !important;
     border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: 0.3s;
-    border: 1px solid #E2E8F0;
+
+    box-shadow: 0 4px 12px var(--rd-shadow);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background-color .25s ease;
 }
 
 .box03:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 22px var(--rd-shadow);
 }
 
 .box03 img {
-    border-radius: 8px;
-    height: 180px;
+    display: block;
     width: 100%;
+    height: 180px;
+    max-height: 180px;
+
     object-fit: cover;
+    border-radius: 8px;
+    background-color: var(--rd-border);
+}
+
+.box03 .rd-card-title {
+    color: var(--rd-title) !important;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.box03 .rd-card-description {
+    color: var(--rd-muted) !important;
+    font-size: .95rem;
+    line-height: 1.85;
+    text-align: justify;
+    overflow-wrap: anywhere;
+}
+
+/* ============================================
+   7. Footer
+============================================ */
+
+.rd-footer {
+    background-color: var(--rd-footer);
+    color: #e2e8f0;
+    border: 1px solid var(--rd-border);
+    font-size: .9rem;
+    letter-spacing: .3px;
+}
+
+/* ============================================
+   8. RWD 手機版
+============================================ */
+
+@media (max-width: 767.98px) {
+
+    .box01 {
+        height: 220px;
+    }
+
+    .rd-banner-content {
+        width: 90%;
+        padding: 15px !important;
+    }
+
+    .rd-banner-content h1 {
+        font-size: 1.1rem !important;
+    }
+
+    .rd-banner-content p {
+        font-size: .85rem !important;
+    }
+
+    .box02 {
+        width: 135px;
+        height: 135px;
+        font-size: .9rem;
+        padding: 12px;
+    }
+
+    .rd-section-title {
+        font-size: 1.45rem;
+    }
+
+    .rd-section-description {
+        font-size: .9rem;
+    }
+
+    .box03 img {
+        height: 190px;
+        max-height: 190px;
+    }
+
+    .box03 .rd-card-description {
+        text-align: left;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .box02 {
+        width: 120px;
+        height: 120px;
+        font-size: .82rem;
+        padding: 10px;
+    }
+
+    .box02 span {
+        max-width: 100px;
+    }
+
+    .rd-banner-content h1 {
+        font-size: 1rem !important;
+    }
+}
+
+/* ============================================
+   9. 降低動畫效果
+============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .box02,
+    .box03 {
+        transition: none;
+    }
+
+    .box02:hover,
+    .box03:hover {
+        transform: none;
+    }
 }

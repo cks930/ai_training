@@ -2,996 +2,864 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Kesin Chen｜科技形象官網與個人作品集</title>
-  <meta name="description" content="Kesin Chen 個人作品集，展示科技產業經驗、AI 全端開發學習及智慧製造企業網站作品。">
-  <meta name="author" content="Kesin Chen">
-  <meta name="robots" content="index, follow">
+    <title>Kesin Chen｜科技形象官網與個人作品集</title>
+    <meta name="description" content="Kesin Chen 個人作品集，展示科技產業經驗、AI 全端開發學習及智慧製造企業網站作品。">
+    <meta name="author" content="Kesin Chen">
 
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 圖示及動畫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- 共用 CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
-  <!-- 老師原本的共用 CSS -->
-  <link rel="stylesheet" href="css/style.css">
+    <!-- Bio 專用 CSS -->
+    <link rel="stylesheet" href="css/bio.css">
 
-  <!-- Bio 專屬 CSS -->
-  <link rel="stylesheet" href="css/bio.css">
+    <!-- 初始化深淺色模式 -->
+    <script>
+        (function () {
+            let theme = "dark";
 
-  <!-- 防止切換深淺色時閃爍 -->
-  <script>
-    (function () {
-      let theme = "dark";
+            try {
+                theme = localStorage.getItem("theme") === "light"
+                    ? "light"
+                    : "dark";
+            } catch (error) {
+                theme = "dark";
+            }
 
-      try {
-        if (localStorage.getItem("theme") === "light") {
-          theme = "light";
-        }
-      } catch (error) {
-        // 無法讀取時使用預設深色模式
-      }
-
-      document.documentElement.classList.toggle(
-        "dark",
-        theme === "dark"
-      );
-
-      document.documentElement.setAttribute(
-        "data-bs-theme",
-        theme
-      );
-    })();
-  </script>
+            document.documentElement.classList.toggle("dark", theme === "dark");
+            document.documentElement.classList.toggle("dark-mode", theme === "dark");
+            document.documentElement.setAttribute("data-bs-theme", theme);
+        })();
+    </script>
 </head>
 
 <body>
 
-  <!-- Section 01：頂部社群圖示 -->
-  <header class="top-header" id="s01">
-    <div class="social-group">
+    <!-- ======================================
+         Section 01：頂部社群圖示
+    ======================================= -->
+    <header class="top-header" id="s01">
+        <div class="social-group">
 
-      <a href="#" class="social-btn" title="X" aria-label="X（連結待設定）">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
+            <a href="#" class="social-btn" title="X" aria-label="X（連結待設定）">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
 
-      <a href="#" class="social-btn" title="Instagram" aria-label="Instagram（連結待設定）">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
+            <a href="#" class="social-btn" title="Instagram" aria-label="Instagram（連結待設定）">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
 
-      <a href="#" class="social-btn" title="Threads" aria-label="Threads（連結待設定）">
-        <i class="fa-brands fa-threads"></i>
-      </a>
+            <a href="#" class="social-btn" title="Threads" aria-label="Threads（連結待設定）">
+                <i class="fa-brands fa-threads"></i>
+            </a>
 
-      <button type="button"
-              id="theme-toggle"
-              class="social-btn theme-toggle"
-              title="切換深淺色模式"
-              aria-label="切換深淺色模式">
-        <i class="fa-solid fa-sun"></i>
-      </button>
-
-    </div>
-  </header>
-
-  <!-- 共用導覽列 -->
-  <div id="navbar-container"></div>
-
-  <main>
-
-    <!-- Section 02：個人簡介 -->
-    <section id="s02" class="hero-section py-5 position-relative">
-      <div class="container py-4 position-relative z-1">
-        <div class="row align-items-center g-4">
-
-          <div class="col-12 col-lg-7 wow animate__animated animate__fadeInLeft">
-            <div class="hero-card p-4 p-md-5 rounded-4">
-
-              <h1 class="hero-title fw-bold text-white mb-1">
-                HELLO, I'M KESIN CHEN
-              </h1>
-
-              <div class="hero-pronunciation text-warning mb-3">
-                (pronounced like 'Keh-shin')
-              </div>
-
-              <p class="hero-desc text-light mb-4">
-                畢業於國立臺中科技大學，累積 8 年科技產業與商務工作經驗。
-                曾任職於半導體、精密光學及科技相關產業。
-                近期投入 AI 全端輔助開發學習，透過課程實作，
-                持續累積網頁設計、資料處理與系統開發能力。
-              </p>
-
-              <ul class="hero-list list-unstyled fs-6 text-light mb-4">
-                <li class="mb-2">
-                  <i class="fa-solid fa-graduation-cap text-info me-2"></i>
-                  國立臺中科技大學畢業｜AI 全端輔助開發課程學習
-                </li>
-
-                <li class="mb-2">
-                  <i class="fa-solid fa-briefcase text-info me-2"></i>
-                  旺宏電子（3 年）｜大立光電（2.5 年）｜沛淨科技（2.5 年）
-                </li>
-
-                <li class="mb-2">
-                  <i class="fa-solid fa-code text-info me-2"></i>
-                  HTML5、CSS3、Bootstrap 5、JavaScript、jQuery、Laravel
-                </li>
-              </ul>
-
-              <a href="#s07" class="btn btn-warning px-4 py-2 fw-bold">
-                <i class="fa-solid fa-eye me-2"></i>
-                探索專案成果
-              </a>
-
-            </div>
-          </div>
-
-          <div class="col-12 col-lg-5 wow animate__animated animate__fadeInRight">
-            <div class="thumb-group">
-
-              <div class="thumb-card active">
-                <img
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80"
-                  class="thumb-img"
-                  alt="半導體科技產業"
-                  loading="lazy">
-
-                <div class="thumb-info">
-                  <h2>旺宏電子｜3 年歷練</h2>
-                  <p>累積科技產業工作經驗，熟悉產線工作環境與團隊合作。</p>
-                </div>
-              </div>
-
-              <div class="thumb-card">
-                <img
-                  src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=300&q=80"
-                  class="thumb-img"
-                  alt="精密光學科技"
-                  loading="lazy">
-
-                <div class="thumb-info">
-                  <h2>大立光電｜2.5 年歷練</h2>
-                  <p>累積精密光學產業經驗，重視工作流程與品質觀念。</p>
-                </div>
-              </div>
-
-              <div class="thumb-card">
-                <img
-                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=300&q=80"
-                  class="thumb-img"
-                  alt="科技商務工作"
-                  loading="lazy">
-
-                <div class="thumb-info">
-                  <h2>沛淨科技｜2.5 年歷練</h2>
-                  <p>累積科技業務經驗，學習客戶溝通與需求整理。</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
+            <button type="button"
+                    id="theme-toggle"
+                    class="social-btn theme-toggle"
+                    title="切換深淺色模式"
+                    aria-label="切換深淺色模式">
+                <i class="fa-solid fa-sun"></i>
+            </button>
 
         </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- Section 03：企業願景 -->
-    <section id="s03" class="py-5 bg-body border-top border-bottom">
-      <div class="container text-center py-4 wow animate__animated animate__fadeIn">
+    <!-- 全站共用導覽列 -->
+    <div id="navbar-container"></div>
 
-        <span class="text-uppercase text-warning fw-bold tracking-wider">
-          Company Vision
-        </span>
+    <main>
 
-        <h2 class="fw-bold my-3">
-          智慧驅動製造・連結科技未來
-        </h2>
+        <!-- ======================================
+             Section 02：個人簡介
+        ======================================= -->
+        <section id="s02" class="hero-section py-5 position-relative">
+            <div class="container py-4 position-relative z-1">
+                <div class="row align-items-center g-4">
 
-        <p class="lead vision-text mx-auto text-muted">
-          智造科技以 PCB 電路板製造為企業情境展示主題，
-          結合智慧製造、品質管理與數位技術概念，
-          呈現科技產業如何運用資訊技術提升生產效率與管理品質。
+                    <div class="col-12 col-lg-7 wow animate__animated animate__fadeInLeft">
+                        <div class="hero-card p-4 p-md-5 rounded-4">
+
+                            <h1 class="hero-title fw-bold text-white mb-1">
+                                HELLO, I'M KESIN CHEN
+                            </h1>
+
+                            <div class="hero-pronunciation text-warning mb-3">
+                                (pronounced like 'Keh-shin')
+                            </div>
+
+                            <p class="hero-desc text-light mb-4">
+                                畢業於國立臺中科技大學，累積 8 年科技產業與商務工作經驗。
+                                曾任職於半導體、精密光學及科技相關產業。
+                                近期投入 AI 全端輔助開發學習，透過課程實作，
+                                持續累積網頁設計、資料處理與系統開發能力。
+                            </p>
+
+                            <ul class="hero-list list-unstyled fs-6 text-light mb-4">
+                                <li class="mb-2">
+                                    <i class="fa-solid fa-graduation-cap text-info me-2"></i>
+                                    國立臺中科技大學畢業｜AI 全端輔助開發課程學習
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fa-solid fa-briefcase text-info me-2"></i>
+                                    旺宏電子（3 年）｜大立光電（2.5 年）｜沛淨科技（2.5 年）
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fa-solid fa-code text-info me-2"></i>
+                                    HTML5、CSS3、Bootstrap 5、JavaScript、jQuery、Laravel
+                                </li>
+                            </ul>
+
+                            <a href="#s07" class="btn btn-warning px-4 py-2 fw-bold">
+                                <i class="fa-solid fa-eye me-2"></i>
+                                探索專案成果
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-5 wow animate__animated animate__fadeInRight">
+                        <div class="thumb-group">
+
+                            <div class="thumb-card active">
+                                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80"
+                                     class="thumb-img" alt="半導體科技產業" loading="lazy">
+                                <div class="thumb-info">
+                                    <h2>旺宏電子｜3 年歷練</h2>
+                                    <p>累積科技產業工作經驗，熟悉產線工作環境與團隊合作。</p>
+                                </div>
+                            </div>
+
+                            <div class="thumb-card">
+                                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=300&q=80"
+                                     class="thumb-img" alt="精密光學科技" loading="lazy">
+                                <div class="thumb-info">
+                                    <h2>大立光電｜2.5 年歷練</h2>
+                                    <p>累積精密光學產業經驗，重視工作流程與品質觀念。</p>
+                                </div>
+                            </div>
+
+                            <div class="thumb-card">
+                                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=300&q=80"
+                                     class="thumb-img" alt="科技商務工作" loading="lazy">
+                                <div class="thumb-info">
+                                    <h2>沛淨科技｜2.5 年歷練</h2>
+                                    <p>累積科技業務經驗，學習客戶溝通與需求整理。</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 03：企業願景
+        ======================================= -->
+        <section id="s03" class="py-5 bg-body border-top border-bottom">
+            <div class="container text-center py-4 wow animate__animated animate__fadeIn">
+
+                <span class="text-uppercase text-warning fw-bold tracking-wider">
+                    Company Vision
+                </span>
+
+                <h2 class="fw-bold my-3">
+                    智慧驅動製造・連結科技未來
+                </h2>
+
+                <p class="lead vision-text mx-auto text-muted">
+                    智造科技以 PCB 電路板製造為企業情境展示主題，
+                    結合智慧製造、品質管理與數位技術概念，
+                    呈現科技產業如何運用資訊技術提升生產效率與管理品質。
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 04：數字成就
+        ======================================= -->
+        <section id="s04" class="stats-section py-5">
+            <div class="container-fluid px-lg-5">
+                <div class="row align-items-center g-4">
+
+                    <div class="col-12 col-lg-5 wow animate__animated animate__fadeInLeft">
+                        <span class="text-uppercase text-warning fw-bold">
+                            DATA / EXPERIENCE
+                        </span>
+
+                        <h2 class="fw-bold my-2">
+                            累積經驗<br>
+                            <span class="text-info">持續學習成長。</span>
+                        </h2>
+
+                        <p class="text-muted">
+                            從科技產業工作經驗，到 AI 全端網頁開發學習，
+                            將過去的工作經驗轉化為新的學習動力。
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-lg-7 wow animate__animated animate__fadeInRight">
+                        <div class="row g-3">
+
+                            <div class="col-6 col-md-3">
+                                <div class="text-center p-3 card-custom h-100">
+                                    <i class="fa-solid fa-calendar-check text-info fa-2x mb-2"></i>
+                                    <div class="fs-2 fw-bold text-warning">
+                                        <span class="counter-num" data-target="8">0</span>
+                                    </div>
+                                    <div class="small text-muted">年工作經驗</div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <div class="text-center p-3 card-custom h-100">
+                                    <i class="fa-solid fa-building text-primary fa-2x mb-2"></i>
+                                    <div class="fs-2 fw-bold text-info">
+                                        <span class="counter-num" data-target="3">0</span>
+                                    </div>
+                                    <div class="small text-muted">任職企業</div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <div class="text-center p-3 card-custom h-100">
+                                    <i class="fa-solid fa-laptop-code text-success fa-2x mb-2"></i>
+                                    <div class="fs-2 fw-bold text-success">
+                                        <span class="counter-num" data-target="4">0</span>
+                                    </div>
+                                    <div class="small text-muted">作品展示項目</div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <div class="text-center p-3 card-custom h-100">
+                                    <i class="fa-solid fa-graduation-cap text-warning fa-2x mb-2"></i>
+                                    <div class="fs-2 fw-bold text-danger">
+                                        <span class="counter-num" data-target="1">0</span>
+                                    </div>
+                                    <div class="small text-muted">全端學習方向</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 05：工作信念
+        ======================================= -->
+        <section id="s05" class="py-5 bg-body border-top border-bottom">
+            <div class="container py-4">
+
+                <div class="text-center mb-5 wow animate__animated animate__fadeInDown">
+                    <span class="text-uppercase text-warning fw-bold">
+                        WORK PHILOSOPHY
+                    </span>
+                    <h2 class="fw-bold">我的工作信念</h2>
+                </div>
+
+                <div class="row g-4">
+
+                    <div class="col-12 col-md-4 wow animate__animated animate__fadeInUp">
+                        <div class="card-custom p-4 h-100">
+                            <h3 class="text-warning h5 fw-bold">
+                                01 / 主動解決問題
+                            </h3>
+                            <p class="small mb-0 text-muted">
+                                面對工作問題先釐清原因，再逐步尋找合適的解決方式，
+                                重視執行效率與工作細節。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                        <div class="card-custom p-4 h-100">
+                            <h3 class="text-info h5 fw-bold">
+                                02 / 持續學習成長
+                            </h3>
+                            <p class="small mb-0 text-muted">
+                                透過 AI 輔助開發課程學習網頁技術，
+                                將課堂知識轉化為實際作品與練習成果。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4 wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+                        <div class="card-custom p-4 h-100">
+                            <h3 class="text-success h5 fw-bold">
+                                03 / 重視團隊合作
+                            </h3>
+                            <p class="small mb-0 text-muted">
+                                重視溝通與團隊合作，理解不同工作角色的需求，
+                                共同完成任務與目標。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 06：圖文故事
+        ======================================= -->
+        <section id="s06" class="py-5">
+            <div class="container-fluid p-0">
+                <div class="row g-0 align-items-center">
+
+                    <div class="col-12 col-lg-6 wow animate__animated animate__fadeInLeft">
+                        <div class="story-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
+                                 alt="科技與數位網路"
+                                 class="img-fluid story-img w-100"
+                                 loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 wow animate__animated animate__fadeInRight">
+                        <div class="p-4 p-md-5">
+                            <span class="text-uppercase text-warning fw-bold">
+                                TECH EXPERIENCE & AI VISION
+                            </span>
+
+                            <h2 class="fw-bold mb-3 my-2">
+                                深耕科技產業，<br>
+                                用 AI 全端技術連結未來。
+                            </h2>
+
+                            <p class="text-muted leading-relaxed">
+                                從過去的科技產業工作經驗出發，
+                                逐步接觸網頁設計、前端互動與後端系統開發。
+                                透過課堂練習與實際操作，培養跨領域整合能力，
+                                讓過去累積的工作經驗成為未來發展的基礎。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 07：精選作品集
+        ======================================= -->
+        <section id="s07" class="py-5 bg-body border-top border-bottom">
+            <div class="container my-4">
+
+                <div class="text-center mb-4 wow animate__animated animate__fadeIn">
+                    <span class="text-uppercase text-warning fw-bold">
+                        FEATURED PROJECTS
+                    </span>
+                    <h2 class="h1 fw-bold text-info my-2">
+                        精選作品集
+                    </h2>
+                    <p class="text-muted">
+                        整理課堂學習與實作方向，展示網頁切版、表單及資料應用。
+                    </p>
+                </div>
+
+                <!-- 作品搜尋 -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-12 col-md-8 col-lg-6">
+                        <div class="input-group project-search">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                            <input type="search"
+                                   id="project-search"
+                                   class="form-control"
+                                   placeholder="輸入關鍵字搜尋作品..."
+                                   aria-label="搜尋作品">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="project-list">
+
+                    <!-- 作品 01 -->
+                    <div class="col-12 col-md-6 project-item wow animate__animated animate__fadeInUp"
+                         data-project="智造科技 企業入口網站 Bootstrap 網頁設計">
+                        <div class="p-4 card-custom h-100">
+                            <h3 class="h4 fw-bold text-warning">
+                                01. 智造科技企業入口網站
+                            </h3>
+                            <p class="text-muted small mb-3">
+                                使用 HTML、CSS、Bootstrap 5 製作響應式企業網站，
+                                練習版面配置、導覽列與深淺色切換。
+                            </p>
+                            <div class="project-actions">
+                                <a href="home.html" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-outline-warning btn-sm">
+                                    開啟 home.html
+                                </a>
+                                <a href="about-us.html" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-outline-info btn-sm ms-2">
+                                    關於智造
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品 02 -->
+                    <div class="col-12 col-md-6 project-item wow animate__animated animate__fadeInUp"
+                         data-project="線上報名系統 JavaScript 表單驗證">
+                        <div class="p-4 card-custom h-100">
+                            <h3 class="h4 fw-bold text-info">
+                                02. 線上報名系統
+                            </h3>
+                            <p class="text-muted small mb-3">
+                                練習 JavaScript 表單驗證、欄位檢查、
+                                密碼格式判斷與使用者輸入提示。
+                            </p>
+                            <a href="signup.html" target="_blank" rel="noopener noreferrer"
+                               class="btn btn-outline-info btn-sm">
+                                開啟 signup.html
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 作品 03 -->
+                    <div class="col-12 col-md-6 project-item wow animate__animated animate__fadeInUp"
+                         data-project="產業時間軸 OpenData API 資料串接">
+                        <div class="p-4 card-custom h-100">
+                            <h3 class="h4 fw-bold text-success">
+                                03. 產業時間軸與資料應用
+                            </h3>
+                            <p class="text-muted small mb-3">
+                                練習時間軸版面、非同步資料載入與 API 應用概念。
+                            </p>
+                            <div class="project-actions">
+                                <a href="timeline.html" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-outline-success btn-sm">
+                                    發展時間軸
+                                </a>
+                                <a href="union.html" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-outline-secondary btn-sm ms-2">
+                                    美食生活指南
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 作品 04 -->
+                    <div class="col-12 col-md-6 project-item wow animate__animated animate__fadeInUp"
+                         data-project="前瞻研發 科技展示 AI PCB 智慧製造">
+                        <div class="p-4 card-custom h-100">
+                            <h3 class="h4 fw-bold text-warning">
+                                04. 前瞻研發與科技展示
+                            </h3>
+                            <p class="text-muted small mb-3">
+                                展示 AI 伺服器、PCB 電路板與智慧製造技術，
+                                練習卡片式排版與跨頁導覽。
+                            </p>
+                            <a href="R-D.html" target="_blank" rel="noopener noreferrer"
+                               class="btn btn-outline-warning btn-sm">
+                                開啟 R-D.html
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 08：教育與學習背景
+        ======================================= -->
+        <section id="s08" class="py-5">
+            <div class="container py-4">
+
+                <div class="text-center mb-4">
+                    <span class="text-uppercase text-warning fw-bold">
+                        EDUCATION & LEARNING
+                    </span>
+                    <h2 class="fw-bold my-3">教育背景與學習歷程</h2>
+                </div>
+
+                <div class="row g-4">
+
+                    <div class="col-12 col-md-6">
+                        <div class="card-custom p-4 h-100">
+                            <h3 class="h5 text-info fw-bold">
+                                國立臺中科技大學
+                            </h3>
+                            <p class="text-muted mb-0">
+                                透過大學教育培養專業基礎，
+                                並累積職場溝通、問題分析與團隊合作能力。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="card-custom p-4 h-100">
+                            <h3 class="h5 text-warning fw-bold">
+                                AI 全端輔助開發課程
+                            </h3>
+                            <p class="text-muted mb-0">
+                                持續學習 HTML、CSS、JavaScript、
+                                Bootstrap、Vue.js 與 Laravel，
+                                透過課程專案累積實作經驗。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 09：科技發展歷程
+        ======================================= -->
+        <section id="s09" class="py-5 bg-body border-top border-bottom">
+            <div class="container py-4">
+
+                <div class="text-center mb-4">
+                    <span class="text-uppercase text-warning fw-bold">
+                        TECHNOLOGY TIMELINE
+                    </span>
+                    <h2 class="fw-bold my-3">科技產業發展歷程</h2>
+                </div>
+
+                <div class="row g-4">
+
+                    <div class="col-12 col-md-3">
+                        <div class="p-3 card-custom h-100">
+                            <span class="badge bg-primary mb-2">2016 創立</span>
+                            <h3 class="h6 fw-bold">製造技術奠基</h3>
+                            <p class="small text-muted mb-0">
+                                建立標準化生產流程與品質管理概念。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <div class="p-3 card-custom h-100">
+                            <span class="badge bg-info text-dark mb-2">2019 擴產</span>
+                            <h3 class="h6 fw-bold">多層板與 HDI 發展</h3>
+                            <p class="small text-muted mb-0">
+                                展示高密度互連電路板與製程技術概念。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <div class="p-3 card-custom h-100">
+                            <span class="badge bg-success mb-2">2022 轉型</span>
+                            <h3 class="h6 fw-bold">高頻高速應用</h3>
+                            <p class="small text-muted mb-0">
+                                展示高速傳輸與電子產品應用的發展方向。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <div class="p-3 card-custom h-100">
+                            <span class="badge bg-danger mb-2">2026 AI 智慧</span>
+                            <h3 class="h6 fw-bold">智慧製造與永續</h3>
+                            <p class="small text-muted mb-0">
+                                展示 AI 檢測、智慧工廠與數位化管理概念。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 10：未來願景與職涯發展
+        ======================================= -->
+        <section id="s10" class="py-5">
+            <div class="container-fluid px-lg-5">
+                <div class="row g-4">
+
+                    <div class="col-12 col-md-6">
+                        <div class="p-4 p-lg-5 card-custom h-100">
+                            <span class="text-info fw-bold text-uppercase">
+                                Future Vision
+                            </span>
+
+                            <h2 class="h2 fw-bold my-3">未來願景</h2>
+                            <h3 class="h6 text-warning mb-3">
+                                持續精進，培養全端開發能力
+                            </h3>
+
+                            <ul class="list-unstyled text-muted small mb-4">
+                                <li class="mb-2">✓ 深入學習 HTML、CSS 與 JavaScript</li>
+                                <li class="mb-2">✓ 熟悉 Vue.js 等前端框架</li>
+                                <li class="mb-2">✓ 學習 Laravel 後端與資料庫應用</li>
+                            </ul>
+
+                            <a href="#s07" class="btn btn-outline-info w-100 fw-bold">
+                                查看作品列表
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="p-4 p-lg-5 card-custom h-100">
+                            <span class="text-info fw-bold text-uppercase">
+                                Career Development
+                            </span>
+
+                            <h2 class="h2 fw-bold my-3">職涯發展</h2>
+                            <h3 class="h6 text-warning mb-3">
+                                結合產業經驗與資訊技術
+                            </h3>
+
+                            <ul class="list-unstyled text-muted small mb-4">
+                                <li class="mb-2">✓ 延伸科技產業工作經驗</li>
+                                <li class="mb-2">✓ 培養程式邏輯與問題分析能力</li>
+                                <li class="mb-2">✓ 持續累積實際開發作品</li>
+                            </ul>
+
+                            <a href="signup.html"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-info w-100 text-white fw-bold">
+                                查看報名頁面
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 11：核心技術
+        ======================================= -->
+        <section id="s11" class="py-5 bg-body border-top border-bottom">
+            <div class="container py-4 text-center">
+
+                <span class="text-uppercase text-info fw-bold">
+                    Core Capabilities
+                </span>
+
+                <h2 class="my-3 fw-bold">核心技術與學習方向</h2>
+
+                <div class="row g-4 mt-2">
+
+                    <div class="col-12 col-md-4">
+                        <div class="p-4 card-custom h-100">
+                            <h3 class="h5 text-warning">
+                                HTML / CSS 網頁設計
+                            </h3>
+                            <p class="small text-muted mb-0">
+                                練習網頁結構、CSS 排版、Bootstrap 與響應式設計。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="p-4 card-custom h-100">
+                            <h3 class="h5 text-info">
+                                JavaScript 互動功能
+                            </h3>
+                            <p class="small text-muted mb-0">
+                                練習事件處理、表單驗證、資料過濾與動態效果。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="p-4 card-custom h-100">
+                            <h3 class="h5 text-success">
+                                PHP / Laravel 後端
+                            </h3>
+                            <p class="small text-muted mb-0">
+                                學習 MVC 架構、路由、Controller 與資料庫操作。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 12：職業安全
+        ======================================= -->
+        <section id="s12" class="py-5">
+            <div class="container py-2">
+
+                <div class="row align-items-center g-4 card-custom p-4 p-lg-5">
+
+                    <div class="col-12 col-lg-8">
+                        <span class="text-uppercase text-success fw-bold">
+                            Safety First
+                        </span>
+
+                        <h2 class="h3 fw-bold my-2">
+                            職業安全衛生管理專區
+                        </h2>
+
+                        <p class="text-muted mb-0">
+                            重視職場安全、環境危害辨識與風險管理，
+                            建立安全、健康且友善的工作環境。
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-lg-4 text-lg-end">
+                        <a href="EHC-policy.html"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-success px-4 py-2 fw-bold">
+                            <i class="fa-solid fa-shield-halved me-2"></i>
+                            進入職安專區
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 13：員工福利
+        ======================================= -->
+        <section id="s13" class="py-5 bg-body border-top border-bottom">
+            <div class="container py-2">
+
+                <div class="row align-items-center g-4 card-custom p-4 p-lg-5">
+
+                    <div class="col-12 col-lg-8">
+                        <span class="text-uppercase text-warning fw-bold">
+                            Employee Welfare
+                        </span>
+
+                        <h2 class="h3 fw-bold my-2">
+                            員工福利與美食生活指南
+                        </h2>
+
+                        <p class="text-muted mb-0">
+                            透過網站展示員工福利與美食資訊，
+                            並練習資料整理、搜尋與地圖應用。
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-lg-4 text-lg-end">
+                        <a href="union.html"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-warning px-4 py-2 fw-bold text-dark">
+                            <i class="fa-solid fa-gift me-2"></i>
+                            探索美食生活指南
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 14：科技展示
+        ======================================= -->
+        <section id="s14" class="py-5">
+            <div class="container py-2">
+
+                <div class="row align-items-center g-4 card-custom p-4 p-lg-5">
+
+                    <div class="col-12 col-lg-8">
+                        <span class="text-uppercase text-info fw-bold">
+                            R&D Exhibition
+                        </span>
+
+                        <h2 class="h3 fw-bold my-2">
+                            前瞻研發與科技展示廳
+                        </h2>
+
+                        <p class="text-muted mb-0">
+                            展示科技產業、智慧製造、AI 應用與電子產品技術，
+                            呈現科技發展的多元面向。
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-lg-4 text-lg-end">
+                        <a href="R-D.html"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-info px-4 py-2 fw-bold text-white">
+                            <i class="fa-solid fa-rocket me-2"></i>
+                            造訪科技展示
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================
+             Section 15：線上報名
+        ======================================= -->
+        <section id="s15" class="py-5 bg-body border-top">
+            <div class="container py-2">
+
+                <div class="row align-items-center g-4 card-custom p-4 p-lg-5 border-danger">
+
+                    <div class="col-12 col-lg-8">
+                        <span class="text-uppercase text-danger fw-bold">
+                            Join Our Team
+                        </span>
+
+                        <h2 class="h3 fw-bold my-2">
+                            線上報名與聯絡資訊
+                        </h2>
+
+                        <p class="text-muted mb-0">
+                            透過線上報名頁面展示表單欄位、資料驗證與送出流程。
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-lg-4 text-lg-end">
+                        <a href="signup.html"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-danger px-4 py-2 fw-bold">
+                            <i class="fa-solid fa-user-plus me-2"></i>
+                            前往線上報名
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ======================================
+         Footer 頁尾
+    ======================================= -->
+    <footer class="footer text-center py-4 bg-dark text-white border-top">
+        <p class="mb-0 small">
+            Kesin Chen Portfolio © 2026 版權所有｜智造科技 Circuit Tech
         </p>
+    </footer>
 
-      </div>
-    </section>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Section 04：數字成就 -->
-    <section id="s04" class="stats-section py-5">
-      <div class="container-fluid px-lg-5">
-        <div class="row align-items-center g-4">
+    <!-- WOW.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
-          <div class="col-12 col-lg-5 wow animate__animated animate__fadeInLeft">
-            <span class="text-uppercase text-warning fw-bold">
-              DATA / EXPERIENCE
-            </span>
+    <!-- 全站共用導覽列 -->
+    <script src="js/nav-loader.js"></script>
 
-            <h2 class="fw-bold my-2">
-              累積經驗<br>
-              <span class="text-info">持續學習成長。</span>
-            </h2>
-
-            <p class="text-muted">
-              從科技產業工作經驗，到 AI 全端網頁開發學習，
-              將過去的工作經驗轉化為新的學習動力。
-            </p>
-          </div>
-
-          <div class="col-12 col-lg-7 wow animate__animated animate__fadeInRight">
-            <div class="row g-3">
-
-              <div class="col-6 col-md-3">
-                <div class="text-center p-3 card-custom h-100">
-                  <i class="fa-solid fa-calendar-check text-info fa-2x mb-2"></i>
-
-                  <div class="fs-2 fw-bold text-warning">
-                    <span class="counter-num" data-target="8">0</span>
-                  </div>
-
-                  <div class="small text-muted">年工作經驗</div>
-                </div>
-              </div>
-
-              <div class="col-6 col-md-3">
-                <div class="text-center p-3 card-custom h-100">
-                  <i class="fa-solid fa-building text-primary fa-2x mb-2"></i>
-
-                  <div class="fs-2 fw-bold text-info">
-                    <span class="counter-num" data-target="3">0</span>
-                  </div>
-
-                  <div class="small text-muted">任職企業</div>
-                </div>
-              </div>
-
-              <div class="col-6 col-md-3">
-                <div class="text-center p-3 card-custom h-100">
-                  <i class="fa-solid fa-laptop-code text-success fa-2x mb-2"></i>
-
-                  <div class="fs-2 fw-bold text-success">
-                    <span class="counter-num" data-target="4">0</span>
-                  </div>
-
-                  <div class="small text-muted">作品展示項目</div>
-                </div>
-              </div>
-
-              <div class="col-6 col-md-3">
-                <div class="text-center p-3 card-custom h-100">
-                  <i class="fa-solid fa-graduation-cap text-warning fa-2x mb-2"></i>
-
-                  <div class="fs-2 fw-bold text-danger">
-                    <span class="counter-num" data-target="1">0</span>
-                  </div>
-
-                  <div class="small text-muted">全端學習方向</div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 05：工作信念 -->
-    <section id="s05" class="py-5 bg-body border-top border-bottom">
-      <div class="container py-4">
-
-        <div class="text-center mb-5 wow animate__animated animate__fadeInDown">
-          <span class="text-uppercase text-warning fw-bold">
-            WORK PHILOSOPHY
-          </span>
-          <h2 class="fw-bold">我的工作信念</h2>
-        </div>
-
-        <div class="row g-4">
-
-          <div class="col-12 col-md-4 wow animate__animated animate__fadeInUp">
-            <div class="card-custom p-4 h-100">
-              <h3 class="text-warning h5 fw-bold">
-                01 / 主動解決問題
-              </h3>
-
-              <p class="small mb-0 text-muted">
-                面對工作問題先釐清原因，再逐步尋找合適的解決方式，
-                重視執行效率與工作細節。
-              </p>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-4 wow animate__animated animate__fadeInUp"
-               data-wow-delay="0.2s">
-            <div class="card-custom p-4 h-100">
-              <h3 class="text-info h5 fw-bold">
-                02 / 持續學習成長
-              </h3>
-
-              <p class="small mb-0 text-muted">
-                透過 AI 輔助開發課程學習網頁技術，
-                將課堂知識轉化為實際作品與練習成果。
-              </p>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-4 wow animate__animated animate__fadeInUp"
-               data-wow-delay="0.4s">
-            <div class="card-custom p-4 h-100">
-              <h3 class="text-success h5 fw-bold">
-                03 / 重視團隊合作
-              </h3>
-
-              <p class="small mb-0 text-muted">
-                重視溝通與團隊合作，理解不同工作角色的需求，
-                共同完成任務與目標。
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 06：圖文故事 -->
-    <section id="s06" class="py-5">
-      <div class="container-fluid p-0">
-        <div class="row g-0 align-items-center">
-
-          <div class="col-12 col-lg-6 wow animate__animated animate__fadeInLeft">
-            <div class="story-img-wrapper">
-              <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
-                alt="科技與數位網路"
-                class="img-fluid story-img w-100"
-                loading="lazy">
-            </div>
-          </div>
-
-          <div class="col-12 col-lg-6 wow animate__animated animate__fadeInRight">
-            <div class="p-4 p-md-5">
-
-              <span class="text-uppercase text-warning fw-bold">
-                TECH EXPERIENCE & AI VISION
-              </span>
-
-              <h2 class="fw-bold mb-3 my-2">
-                深耕科技產業，<br>
-                用 AI 全端技術連結未來。
-              </h2>
-
-              <p class="text-muted leading-relaxed">
-                從過去的科技產業工作經驗出發，
-                逐步接觸網頁設計、前端互動與後端系統開發。
-                透過課堂練習與實際操作，培養跨領域整合能力，
-                讓過去累積的工作經驗成為未來發展的基礎。
-              </p>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 07：精選作品集 -->
-    <section id="s07" class="py-5 bg-body border-top border-bottom">
-      <div class="container my-4">
-
-        <div class="text-center mb-4 wow animate__animated animate__fadeIn">
-          <span class="text-uppercase text-warning fw-bold">
-            FEATURED PROJECTS
-          </span>
-
-          <h2 class="h1 fw-bold text-info my-2">
-            精選作品集
-          </h2>
-
-          <p class="text-muted">
-            整理課堂學習與實作方向，展示網頁切版、表單及資料應用。
-          </p>
-        </div>
-
-        <!-- 作品搜尋 -->
-        <div class="row justify-content-center mb-4">
-          <div class="col-12 col-md-8 col-lg-6">
-
-            <div class="input-group project-search">
-              <span class="input-group-text">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </span>
-
-              <input
-                type="search"
-                id="project-search"
-                class="form-control"
-                placeholder="輸入關鍵字搜尋作品..."
-                aria-label="搜尋作品">
-            </div>
-
-          </div>
-        </div>
-
-        <div class="row g-4" id="project-list">
-
-          <!-- 作品 01 -->
-          <div class="col-12 col-md-6 project-item wow animate__animated animate__fadeInUp"
-               data-project="智造科技 企業入口網站 Bootstrap 網頁設計">
-
-            <div class="p-4 card-custom h-100">
-              <h3 class="h4 fw-bold text-warning">
-                01. 智造科技企業入口網站
-              </h3>
-
-              <p class="text-muted small mb-3">
-                使用 HTML、CSS、Bootstrap 5 製作響應式企業網站，
-                練習版面配置、導覽列與深淺色切換。
-              </p>
-
-              <div class="project-actions">
-                <a href="home.html" target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-warning btn-sm">
-                  開啟 home.html
-                </a>
-
-                <a href="about-us.html" target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-info btn-sm ms-2">
-                  關於智造
-                </a>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- 作品 02 -->
-          <div class="col-12 col-md-6 project-item wow animate__animated animate__fadeInUp"
-               data-project="線上報名系統 JavaScript 表單驗證">
-
-            <div class="p-4 card-custom h-100">
-              <h3 class="h4 fw-bold text-info">
-                02. 線上報名系統
-              </h3>
-
-              <p class="text-muted small mb-3">
-                練習 JavaScript 表單驗證、欄位檢查、
-                密碼格式判斷與使用者輸入提示。
-              </p>
-
-              <div class="project-actions">
-                <a href="signup.html" target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-info btn-sm">
-                  開啟 signup.html
-                </a>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- 作品 03 -->
-          <div class="col-12 col-md-6 project-item wow animate__animated animate__fadeInUp"
-               data-project="產業時間軸 OpenData API 資料串接">
-
-            <div class="p-4 card-custom h-100">
-              <h3 class="h4 fw-bold text-success">
-                03. 產業時間軸與資料應用
-              </h3>
-
-              <p class="text-muted small mb-3">
-                練習時間軸版面、非同步資料載入與 API 應用概念。
-              </p>
-
-              <div class="project-actions">
-                <a href="timeline.html" target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-success btn-sm">
-                  發展時間軸
-                </a>
-
-                <a href="union.html" target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-secondary btn-sm ms-2">
-                  福利特約
-                </a>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- 作品 04 -->
-          <div class="col-12 col-md-6 project-item wow animate__animated animate__fadeInUp"
-               data-project="Laravel 後端 MVC 路由資料庫">
-
-            <div class="p-4 card-custom h-100">
-              <h3 class="h4 fw-bold text-danger">
-                04. Laravel 後端學習
-              </h3>
-
-              <p class="text-muted small mb-3">
-                練習 MVC 架構、路由設定、Controller、
-                Model 與資料庫操作。
-              </p>
-
-              <div class="project-actions">
-                <a href="R-D.html" target="_blank" rel="noopener noreferrer"
-                   class="btn btn-outline-danger btn-sm">
-                  科技展示 R-D
-                </a>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <p id="no-project"
-           class="text-center text-muted mt-4 d-none"
-           role="status"
-           aria-live="polite">
-          <i class="fa-solid fa-circle-info me-2"></i>
-          找不到符合的作品。
-        </p>
-
-      </div>
-    </section>
-
-    <!-- Section 08：學經歷 -->
-    <section id="s08" class="py-5">
-      <div class="container my-4 wow animate__animated animate__fadeIn">
-
-        <div class="p-4 p-md-5 card-custom">
-
-          <h2 class="h2 text-center fw-bold text-info mb-4">
-            學經歷介紹
-          </h2>
-
-          <dl class="row g-3 fs-6 mb-0">
-
-            <dt class="col-sm-3 fw-bold text-warning">
-              個人特質
-            </dt>
-            <dd class="col-sm-9 text-muted">
-              具備科技產業與商務工作經驗，重視工作細節、
-              溝通協調及持續學習。
-            </dd>
-
-            <dt class="col-sm-3 fw-bold text-warning">
-              學歷與培訓
-            </dt>
-            <dd class="col-sm-9 text-muted">
-              國立臺中科技大學畢業｜AI 全端輔助開發課程學習
-            </dd>
-
-            <dt class="col-sm-3 fw-bold text-warning">
-              工作經歷
-            </dt>
-            <dd class="col-sm-9 text-muted">
-              旺宏電子（3 年）｜大立光電（2.5 年）｜沛淨科技（2.5 年）
-            </dd>
-
-            <dt class="col-sm-3 fw-bold text-warning">
-              學習技術
-            </dt>
-            <dd class="col-sm-9 text-muted">
-              HTML5、CSS3、Bootstrap 5、JavaScript、jQuery、PHP、Laravel
-            </dd>
-
-          </dl>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 09：發展時間軸 -->
-    <section id="s09" class="py-5 bg-body border-top border-bottom">
-      <div class="container my-4">
-
-        <div class="text-center mb-5 wow animate__animated animate__fadeInDown">
-          <span class="text-uppercase text-warning fw-bold">
-            Milestones Timeline
-          </span>
-
-          <h2 class="my-2 fw-bold">
-            PCB 產業與技術發展時間軸
-          </h2>
-
-          <p class="text-muted small">
-            以下為課堂企業情境展示資料，非個人任職公司的實際發展紀錄。
-          </p>
-        </div>
-
-        <div class="row g-4">
-
-          <div class="col-12 col-md-3 wow animate__animated animate__fadeInUp">
-            <div class="p-3 card-custom h-100">
-
-              <span class="badge bg-primary text-white mb-2">
-                2016 創立
-              </span>
-
-              <h3 class="h6 fw-bold">
-                創始奠基與標準化
-              </h3>
-
-              <p class="small text-muted mb-0">
-                以 PCB 生產與品質管理作為企業發展的基礎。
-              </p>
-
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3 wow animate__animated animate__fadeInUp"
-               data-wow-delay="0.1s">
-            <div class="p-3 card-custom h-100">
-
-              <span class="badge bg-info text-dark mb-2">
-                2019 擴產
-              </span>
-
-              <h3 class="h6 fw-bold">
-                多層板與 HDI 發展
-              </h3>
-
-              <p class="small text-muted mb-0">
-                展示高密度互連電路板與製程技術概念。
-              </p>
-
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3 wow animate__animated animate__fadeInUp"
-               data-wow-delay="0.2s">
-            <div class="p-3 card-custom h-100">
-
-              <span class="badge bg-success text-white mb-2">
-                2022 轉型
-              </span>
-
-              <h3 class="h6 fw-bold">
-                高頻高速應用
-              </h3>
-
-              <p class="small text-muted mb-0">
-                展示高速傳輸與電子產品應用的發展方向。
-              </p>
-
-            </div>
-          </div>
-
-          <div class="col-12 col-md-3 wow animate__animated animate__fadeInUp"
-               data-wow-delay="0.3s">
-            <div class="p-3 card-custom h-100">
-
-              <span class="badge bg-danger text-white mb-2">
-                2026 AI 智慧
-              </span>
-
-              <h3 class="h6 fw-bold">
-                智慧製造與永續
-              </h3>
-
-              <p class="small text-muted mb-0">
-                展示 AI 檢測、智慧工廠與數位化管理概念。
-              </p>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 10：未來願景與職涯發展 -->
-    <section id="s10" class="py-5">
-      <div class="container-fluid px-lg-5">
-        <div class="row g-4">
-
-          <div class="col-12 col-md-6 wow animate__animated animate__fadeInLeft">
-            <div class="p-4 p-lg-5 card-custom h-100">
-
-              <span class="text-info fw-bold text-uppercase mb-1 d-block">
-                Future Vision
-              </span>
-
-              <h2 class="h2 fw-bold mb-3">
-                未來願景
-              </h2>
-
-              <h3 class="h6 text-warning mb-3">
-                持續精進，培養全端開發能力
-              </h3>
-
-              <ul class="list-unstyled text-muted small mb-4">
-                <li class="mb-2">
-                  <i class="fa-solid fa-check text-info me-2"></i>
-                  深入學習 HTML、CSS 與 JavaScript
-                </li>
-
-                <li class="mb-2">
-                  <i class="fa-solid fa-check text-info me-2"></i>
-                  熟悉 Vue.js 等前端框架
-                </li>
-
-                <li class="mb-2">
-                  <i class="fa-solid fa-check text-info me-2"></i>
-                  學習 Laravel 後端與資料庫應用
-                </li>
-              </ul>
-
-              <a href="#s07" class="btn btn-outline-info w-100 fw-bold">
-                查看作品列表
-              </a>
-
-            </div>
-          </div>
-
-          <div class="col-12 col-md-6 wow animate__animated animate__fadeInRight">
-            <div class="p-4 p-lg-5 card-custom h-100">
-
-              <span class="text-info fw-bold text-uppercase mb-1 d-block">
-                Career Development
-              </span>
-
-              <h2 class="h2 fw-bold mb-3">
-                職涯發展
-              </h2>
-
-              <h3 class="h6 text-warning mb-3">
-                結合產業經驗與資訊技術
-              </h3>
-
-              <ul class="list-unstyled text-muted small mb-4">
-                <li class="mb-2">
-                  <i class="fa-solid fa-layer-group text-info me-2"></i>
-                  延伸科技產業工作經驗
-                </li>
-
-                <li class="mb-2">
-                  <i class="fa-solid fa-layer-group text-info me-2"></i>
-                  培養程式邏輯與問題分析能力
-                </li>
-
-                <li class="mb-2">
-                  <i class="fa-solid fa-layer-group text-info me-2"></i>
-                  持續累積實際開發作品
-                </li>
-              </ul>
-
-              <a href="signup.html"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="btn btn-info w-100 text-white fw-bold">
-                查看報名頁面
-              </a>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 11：核心技術 -->
-    <section id="s11" class="py-5 bg-body border-top border-bottom">
-      <div class="container py-4 text-center wow animate__animated animate__fadeIn">
-
-        <span class="text-uppercase text-info fw-bold">
-          Core Capabilities
-        </span>
-
-        <h2 class="my-3 fw-bold">
-          核心技術與學習方向
-        </h2>
-
-        <div class="row g-4 mt-2">
-
-          <div class="col-12 col-md-4">
-            <div class="p-4 card-custom h-100">
-              <h3 class="h5 text-warning">
-                HTML / CSS 網頁設計
-              </h3>
-
-              <p class="small text-muted mb-0">
-                練習網頁結構、CSS 排版、Bootstrap 與響應式設計。
-              </p>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-4">
-            <div class="p-4 card-custom h-100">
-              <h3 class="h5 text-info">
-                JavaScript 互動功能
-              </h3>
-
-              <p class="small text-muted mb-0">
-                練習事件處理、表單驗證、資料過濾與動態效果。
-              </p>
-            </div>
-          </div>
-
-          <div class="col-12 col-md-4">
-            <div class="p-4 card-custom h-100">
-              <h3 class="h5 text-success">
-                PHP / Laravel 後端
-              </h3>
-
-              <p class="small text-muted mb-0">
-                學習 MVC 架構、路由、Controller 與資料庫操作。
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 12：職業安全 -->
-    <section id="s12" class="py-5">
-      <div class="container py-2">
-
-        <div class="row align-items-center g-4 card-custom p-4 p-lg-5 wow animate__animated animate__fadeIn">
-
-          <div class="col-12 col-lg-8">
-            <span class="text-uppercase text-success fw-bold">
-              Safety First
-            </span>
-
-            <h2 class="h3 fw-bold my-2">
-              職業安全衛生管理專區
-            </h2>
-
-            <p class="text-muted mb-0">
-              重視職場安全、環境危害辨識與風險管理，
-              建立安全、健康且友善的工作環境。
-            </p>
-          </div>
-
-          <div class="col-12 col-lg-4 text-lg-end">
-            <a href="EHC-policy.html"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-success px-4 py-2 fw-bold">
-
-              <i class="fa-solid fa-shield-halved me-2"></i>
-              進入職安專區
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 13：員工福利 -->
-    <section id="s13" class="py-5 bg-body border-top border-bottom">
-      <div class="container py-2">
-
-        <div class="row align-items-center g-4 card-custom p-4 p-lg-5 wow animate__animated animate__fadeIn">
-
-          <div class="col-12 col-lg-8">
-            <span class="text-uppercase text-warning fw-bold">
-              Employee Welfare
-            </span>
-
-            <h2 class="h3 fw-bold my-2">
-              員工福利與特約服務
-            </h2>
-
-            <p class="text-muted mb-0">
-              透過網站展示員工福利與特約服務資訊，
-              並練習資料整理、搜尋與地圖應用。
-            </p>
-          </div>
-
-          <div class="col-12 col-lg-4 text-lg-end">
-            <a href="union.html"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-warning px-4 py-2 fw-bold text-dark">
-
-              <i class="fa-solid fa-gift me-2"></i>
-              探索福利特約
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 14：科技展示 -->
-    <section id="s14" class="py-5">
-      <div class="container py-2">
-
-        <div class="row align-items-center g-4 card-custom p-4 p-lg-5 wow animate__animated animate__fadeIn">
-
-          <div class="col-12 col-lg-8">
-            <span class="text-uppercase text-info fw-bold">
-              R&D Exhibition
-            </span>
-
-            <h2 class="h3 fw-bold my-2">
-              前瞻研發與科技展示廳
-            </h2>
-
-            <p class="text-muted mb-0">
-              展示科技產業、智慧製造、AI 應用與電子產品技術，
-              呈現科技發展的多元面向。
-            </p>
-          </div>
-
-          <div class="col-12 col-lg-4 text-lg-end">
-            <a href="R-D.html"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-info px-4 py-2 fw-bold text-white">
-
-              <i class="fa-solid fa-rocket me-2"></i>
-              造訪科技展示
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 15：線上報名 -->
-    <section id="s15" class="py-5 bg-body border-top">
-      <div class="container py-2">
-
-        <div class="row align-items-center g-4 card-custom p-4 p-lg-5 border-danger wow animate__animated animate__fadeIn">
-
-          <div class="col-12 col-lg-8">
-            <span class="text-uppercase text-danger fw-bold">
-              Join Our Team
-            </span>
-
-            <h2 class="h3 fw-bold my-2">
-              線上報名與聯絡資訊
-            </h2>
-
-            <p class="text-muted mb-0">
-              透過線上報名頁面展示表單欄位、資料驗證與送出流程。
-            </p>
-          </div>
-
-          <div class="col-12 col-lg-4 text-lg-end">
-            <a href="signup.html"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-danger px-4 py-2 fw-bold">
-
-              <i class="fa-solid fa-user-plus me-2"></i>
-              前往線上報名
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- 頁尾 -->
-  <footer class="footer text-center py-4 bg-dark text-white border-top">
-    <p class="mb-0 small">
-      Kesin Chen Portfolio © 2026 版權所有｜智造科技 Circuit Tech
-    </p>
-  </footer>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- WOW.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-
-  <!-- 共用導覽列 -->
-  <script src="js/nav-loader.js"></script>
-
-  <!-- Bio 專屬 JS -->
-  <script src="js/bio.js"></script>
+    <!-- Bio 專用 JavaScript -->
+    <script src="js/bio.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,10 @@
+全站整合優化第一版（2026-11-06）
+1. 統一 Bootstrap CDN 5.3.3，保留原 Bootstrap container/row/col 類別。
+2. 新增 js/theme.js：全站統一 theme 儲存鍵，兼容舊 portfolio-theme；更新三種切換按鈕，避免重複切換。
+3. js/nav-loader.js：專注載入導覽列、標示目前頁面；切換功能交由 theme.js。
+4. js/bio.js：移除重複的日夜切換事件，其餘原功能保留。
+5. js/index.js：保留原強制三關、問答、盲盒、探索與實驗室，只移除重複主題切換。
+6. home.html 原本其實是「前端開發學習歷程」作品清單，不是 PCB 公司首頁：保留原文及卡片，改為 css/home.css + js/home.js，解決錯誤引用 index.js。
+7. 所有主頁的 <head> 早期載入 theme.js，避免主題閃爍。
+8. other/ 和 backup-other/ 內容原封不動；.git 版本控制資料未打包進交付 ZIP（原始上傳檔不受影響）。
+注意：動態 navbar.html 需以 VS Code Live Server 或 HTTP 伺服器開啟，不能用 file:// 直接開啟。
