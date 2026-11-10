@@ -1,24 +1,13 @@
-
 "use strict";
 
-// ============================================
-// union.js｜員工福利合作廠商列表
-// API 載入、搜尋、重新整理、手機版表格
-// ============================================
-
-// 原本農業部開放資料網址
 const UNION_API =
     "https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx?IsTransData=1&UnitId=193";
 
-// 保留原本最多 50 筆資料
-const UNION_LIMIT = 50;
-
-// 資料儲存
 let unionData = [];
 let unionLoading = false;
 let unionController = null;
 
-// 圖片備援
+// 店家沒有照片，或照片載入失敗時，顯示備用圖。
 const unionFallback = "data:image/svg+xml;charset=UTF-8," +
     encodeURIComponent(`
         <svg xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +24,6 @@ const unionFallback = "data:image/svg+xml;charset=UTF-8," +
         </svg>
     `);
 
-// 安全處理外部網址
 function safeImageUrl(value) {
     if (typeof value !== "string" || !value.trim()) {
         return unionFallback;
@@ -54,7 +42,6 @@ function safeImageUrl(value) {
     return unionFallback;
 }
 
-// 處理資料欄位
 function cleanText(value) {
     if (value === null || value === undefined) {
         return "";
@@ -63,7 +50,7 @@ function cleanText(value) {
     return String(value).trim();
 }
 
-// 取得地圖搜尋連結（不強制導航）
+// 有座標就用座標，否則用店名與地址搜尋地圖。
 function createMapUrl(item) {
     const lat = Number(item.Latitude);
     const lng = Number(item.Longitude);
@@ -76,13 +63,11 @@ function createMapUrl(item) {
         lat >= -90 && lat <= 90 &&
         lng >= -180 && lng <= 180;
 
-    // 有座標：搜尋該位置
     if (hasCoordinates) {
         return "https://www.google.com/maps/search/?api=1&query=" +
             encodeURIComponent(lat + "," + lng);
     }
 
-    // 無座標：搜尋店名與地址
     const query = [
         cleanText(item.Name),
         cleanText(item.Address)
@@ -96,18 +81,14 @@ function createMapUrl(item) {
         encodeURIComponent(query);
 }
 
-// 建立表格欄位
 function createCell(label, content) {
     const td = document.createElement("td");
-
-    // 修正原本 CSS data-label / JS data-th 不一致
     td.setAttribute("data-label", label);
     td.appendChild(content);
 
     return td;
 }
 
-// 建立純文字元素
 function createTextElement(tag, text, className = "") {
     const element = document.createElement(tag);
     element.textContent = text;
@@ -119,7 +100,7 @@ function createTextElement(tag, text, className = "") {
     return element;
 }
 
-// 建立單筆店家資料
+// 每筆店家資料建立一列表格。
 function createRestaurantRow(item) {
     const tr = document.createElement("tr");
 
@@ -127,7 +108,6 @@ function createRestaurantRow(item) {
     const tel = cleanText(item.Tel);
     const addr = cleanText(item.Address);
 
-    // 1. 餐廳名稱
     tr.appendChild(
         createCell(
             "餐廳名稱",
@@ -135,7 +115,6 @@ function createRestaurantRow(item) {
         )
     );
 
-    // 2. 圖片
     const imageWrap = document.createElement("span");
     imageWrap.className = "img-container";
 
@@ -152,10 +131,8 @@ function createRestaurantRow(item) {
     imageWrap.appendChild(image);
     tr.appendChild(createCell("圖片", imageWrap));
 
-    // 3. 電話
     let phoneElement;
 
-    // 只接受常見電話字元，避免產生不安全的連結
     if (tel && /^[+()\d\s-]+$/.test(tel)) {
         phoneElement = document.createElement("a");
         phoneElement.className = "restaurant-phone";
@@ -171,7 +148,6 @@ function createRestaurantRow(item) {
 
     tr.appendChild(createCell("電話", phoneElement));
 
-    // 4. 地址
     tr.appendChild(
         createCell(
             "住址",
@@ -183,7 +159,6 @@ function createRestaurantRow(item) {
         )
     );
 
-    // 5. 地圖位置
     const mapUrl = createMapUrl(item);
     let mapElement;
 
@@ -211,7 +186,6 @@ function createRestaurantRow(item) {
     return tr;
 }
 
-// 更新狀態文字
 function updateCount(message) {
     const count = document.getElementById("resultCount");
 
@@ -220,7 +194,6 @@ function updateCount(message) {
     }
 }
 
-// 顯示載入或錯誤訊息
 function showStatus(message, className = "") {
     const list = document.getElementById("myList");
     if (!list) return;
@@ -239,11 +212,9 @@ function showStatus(message, className = "") {
     list.appendChild(tr);
 }
 
-// 顯示表格資料
 function renderUnionData() {
     const list = document.getElementById("myList");
     const input = document.getElementById("searchInput");
-
     if (!list) return;
 
     const keyword = (input ? input.value : "")
@@ -291,10 +262,8 @@ function renderUnionData() {
     );
 }
 
-// 取得開放資料
 async function loadUnionData() {
     if (unionLoading) return;
-
     unionLoading = true;
 
     const reloadButton = document.getElementById("reloadButton");
@@ -309,7 +278,6 @@ async function loadUnionData() {
 
     unionController = new AbortController();
 
-    // 避免網路請求無限等待
     const timeoutId = setTimeout(function () {
         unionController.abort();
     }, 15000);
@@ -331,14 +299,11 @@ async function loadUnionData() {
             throw new Error("開放資料格式不符合預期");
         }
 
-        unionData = data.slice(0, UNION_LIMIT);
-
+        // 保留 API 回傳的每一筆店家資料。
+        unionData = data;
         renderUnionData();
-
     } catch (error) {
         console.error("美食資料載入失敗：", error);
-
-        // 載入失敗時不顯示舊資料，避免誤認為最新
         unionData = [];
 
         showStatus(
@@ -347,7 +312,6 @@ async function loadUnionData() {
         );
 
         updateCount("資料載入失敗");
-
     } finally {
         clearTimeout(timeoutId);
         unionLoading = false;
@@ -360,7 +324,6 @@ async function loadUnionData() {
     }
 }
 
-// 啟動
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("searchInput");
     const reloadButton = document.getElementById("reloadButton");

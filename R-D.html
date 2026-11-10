@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -6,21 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>智造科技｜前瞻研發與科技展示</title>
-
     <meta name="description"
-          content="探索智造科技在 AI 伺服器、高階 PCB 載板、智慧工廠、職業安全、員工福利與綠色永續領域的技術發展。">
+          content="智造科技的 PCB 研發情境展示，介紹 HDI、高速運算電路板、批次追溯及網通設備控制板的樣品驗證流程。">
 
-    <!-- Bootstrap -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-    <!-- 共用 CSS -->
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- 科技展示專用 CSS -->
     <link rel="stylesheet" href="css/R-D.css">
 
-    <!-- 預先套用主題，避免畫面閃爍 -->
     <script>
         (function () {
             let theme = "dark";
@@ -33,62 +25,39 @@
                 theme = "dark";
             }
 
-            document.documentElement.classList.toggle(
-                "dark", theme === "dark"
-            );
-
-            document.documentElement.classList.toggle(
-                "dark-mode", theme === "dark"
-            );
-
-            document.documentElement.setAttribute(
-                "data-bs-theme", theme
-            );
+            document.documentElement.classList.toggle("dark", theme === "dark");
+            document.documentElement.classList.toggle("dark-mode", theme === "dark");
+            document.documentElement.setAttribute("data-bs-theme", theme);
         })();
     </script>
 </head>
 
 <body>
 <div class="wrapper">
-
-    <!-- 共用導覽列 -->
     <div id="navbar-container"></div>
 
     <main class="container my-4">
-
-        <!-- ======================================
-             1. Banner 主視覺
-        ======================================= -->
+        <!-- 01 主視覺 -->
         <div class="row">
             <div class="col-12">
-
                 <section class="box01 bg-img rounded position-relative text-white overflow-hidden shadow-sm"
                          aria-labelledby="rdBannerTitle">
-
                     <div class="rd-banner-content position-absolute top-50 start-50 translate-middle text-center p-3 rounded-3">
-
-                        <h1 class="fw-bold mb-2 fs-4 text-white"
-                            id="rdBannerTitle">
-                            智造科技 AI 伺服器與高階 PCB 載板
+                        <h1 class="fw-bold mb-2 fs-4 text-white" id="rdBannerTitle">
+                            PCB 研發與製程整合
                         </h1>
 
                         <p class="mb-0 small text-light">
-                            AI 數據與綠色材料，驅動智慧製造與永續未來
+                            從設計審查、試產驗證到量產追溯
                         </p>
-
                     </div>
-
                 </section>
-
             </div>
         </div>
 
-        <!-- ======================================
-             2. 四個核心選單
-        ======================================= -->
+        <!-- 02 四個頁面入口 -->
         <nav class="row text-center my-4 g-3 g-md-4"
              aria-label="科技展示相關頁面">
-
             <div class="col-6 col-md-3 mt-3">
                 <a href="home.html" class="box02 shadow-lg">
                     <span>智造企業首頁</span>
@@ -112,36 +81,24 @@
                     <span>員工福利委員會</span>
                 </a>
             </div>
-
         </nav>
 
-        <!-- ======================================
-             3. 科技展示標題
-        ======================================= -->
+        <!-- 03 科技展示介紹 -->
         <div class="row mb-3">
             <div class="col-12 text-center">
-
-                <h2 class="rd-section-title fw-bold">
-                    前瞻技術與智慧製造
-                </h2>
+                <h2 class="rd-section-title fw-bold">前瞻技術與智慧製造</h2>
 
                 <p class="rd-section-description">
-                    探索高階電路板、智慧生產與永續發展的核心技術
+                    從電路板設計、樣品檢驗到量產管理，介紹工程團隊在各階段需要確認的項目。
+                    本頁為課程專題，案例與圖片均為示意。
                 </p>
-
             </div>
         </div>
 
-        <!-- ======================================
-             4. 科技展示 6 格
-             保留原本 Bootstrap 行列與圖片
-        ======================================= -->
+        <!-- 04 六張科技展示卡片 -->
         <div class="row g-4 mb-4">
-
-            <!-- 第 1 格 -->
             <div class="col-12 col-md-6 col-lg-4 mt-3">
                 <article class="box03 h-100 p-3 border rounded shadow-sm">
-
                     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
                          alt="高階 HDI 電路板"
                          class="img-fluid rounded mb-2"
@@ -152,98 +109,91 @@
                     </h3>
 
                     <p class="small rd-card-description mb-0">
-                        導入雷射鑽孔與盲埋技術，良率 99.8%，為行動通訊提供穩定可靠的傳輸效能。
+                        當元件密度提高、板面空間有限時，工程團隊會評估使用雷射微孔及增層疊構，
+                        為不同層的線路保留佈線空間。打樣後可利用切片檢查微孔對準、孔壁鍍銅和層間連接，
+                        再依觀察結果調整製程條件。
                     </p>
-
                 </article>
             </div>
 
-            <!-- 第 2 格 -->
             <div class="col-12 col-md-6 col-lg-4 mt-3">
                 <article class="box03 h-100 p-3 border rounded shadow-sm">
-
                     <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80"
-                         alt="AI 伺服器封裝載板"
+                         alt="高速運算設備示意"
                          class="img-fluid rounded mb-2"
                          loading="lazy">
 
                     <h3 class="h5 fw-bold text-center mt-2 rd-card-title">
-                        AI 伺服器封裝載板
+                        高速運算電路板
                     </h3>
 
                     <p class="small rd-card-description mb-0">
-                        因應高效能運算 (HPC) 需求，專注於超高層數與極細線路載板研發。
+                        以伺服器與網通設備為應用情境，設計端先提出訊號傳輸需求，
+                        製程端再評估材料、疊構和線路尺寸。樣品完成後，將阻抗量測結果與設計目標比對，
+                        並保留板材與圖面版本，供後續樣品比較。
                     </p>
-
                 </article>
             </div>
 
-            <!-- 第 3 格 -->
             <div class="col-12 col-md-6 col-lg-4 mt-3">
                 <article class="box03 h-100 p-3 border rounded shadow-sm">
-
                     <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80"
-                         alt="全自動智慧工廠"
+                         alt="數位製程與批次追溯示意"
                          class="img-fluid rounded mb-2"
                          loading="lazy">
 
                     <h3 class="h5 fw-bold text-center mt-2 rd-card-title">
-                        全自動智慧工廠
+                        數位製程與批次追溯
                     </h3>
 
                     <p class="small rd-card-description mb-0">
-                        結合 AI 即時品質監控、IoT 產線監測與 AGV 系統，落實數位生產轉型目標。
+                        將工單、材料批號、製程站點與自動光學檢測（AOI）紀錄關聯。
+                        發現異常時，品保人員可從板件批號回查檢測結果，
+                        再比對同一時段或同一材料批次的板件，確認需要複查的範圍。
                     </p>
-
                 </article>
             </div>
 
-            <!-- 第 4 格 -->
             <div class="col-12 col-md-6 col-lg-4 mt-3">
                 <article class="box03 h-100 p-3 border rounded shadow-sm">
-
                     <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80"
-                         alt="零災害職業安全"
+                         alt="製程安全與作業管理示意"
                          class="img-fluid rounded mb-2"
                          loading="lazy">
 
                     <h3 class="h5 fw-bold text-center mt-2 rd-card-title">
-                        零災害職業安全
+                        製程安全與作業管理
                     </h3>
 
                     <p class="small rd-card-description mb-0">
-                        引進符合規定的安全防護設備，落實職安訓練與危害辨識控制，建構安全職場環境。
+                        以設備維護與化學品作業為情境，介紹研發試作前如何確認作業範圍、設備狀態與負責人員。
+                        情境也包含異常通報和交接紀錄，讓下一班人員能掌握目前處理進度。
                     </p>
-
                 </article>
             </div>
 
-            <!-- 第 5 格 -->
             <div class="col-12 col-md-6 col-lg-4 mt-3">
                 <article class="box03 h-100 p-3 border rounded shadow-sm">
-
                     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
-                         alt="員工福利與特約合作"
+                         alt="員工餐飲與生活資訊示意"
                          class="img-fluid rounded mb-2"
                          loading="lazy">
 
                     <h3 class="h5 fw-bold text-center mt-2 rd-card-title">
-                        優質福利與特約合作
+                        員工餐飲與生活資訊
                     </h3>
 
                     <p class="small rd-card-description mb-0">
-                        福委會嚴選特約廠商，提供美食資料地圖導航與多元活動，致力提升員工幸福感。
+                        將日常用餐資訊整理成可搜尋的生活指南。同仁可依店名、電話或地址查找餐廳，
+                        再透過地圖查看位置，方便安排午餐、跨部門聚餐或出差途中的用餐行程。
                     </p>
-
                 </article>
             </div>
 
-            <!-- 第 6 格 -->
             <div class="col-12 col-md-6 col-lg-4 mt-3">
                 <article class="box03 h-100 p-3 border rounded shadow-sm">
-
                     <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=600&q=80"
-                         alt="綠色材料與永續營運"
+                         alt="綠色材料與永續營運示意"
                          class="img-fluid rounded mb-2"
                          loading="lazy">
 
@@ -252,32 +202,59 @@
                     </h3>
 
                     <p class="small rd-card-description mb-0">
-                        幻視綠能專注環保基材與廢水循環再利用解決方案，助力達成電子產業低碳環境保護目標。
+                        在樣品驗證階段比較材料規格、加工適用性與備料需求。
+                        製造端可依製程站點整理用水、用電和廢棄物紀錄，
+                        以相近的製造條件比較不同批次，找出適合優先評估的改善項目。
                     </p>
-
                 </article>
             </div>
-
         </div>
 
-        <!-- ======================================
-             5. 頁尾
-        ======================================= -->
+        <!-- 05 研發案例 -->
+        <section class="row mt-4 mb-4" aria-labelledby="rdCaseTitle">
+            <div class="col-12 text-center mb-3">
+                <h2 class="rd-section-title fw-bold" id="rdCaseTitle">
+                    研發案例｜網通設備控制板
+                </h2>
+
+                <p class="rd-section-description mb-0">
+                    以小型網路交換器為情境，展示一張控制板如何從圖面走到試產。
+                </p>
+            </div>
+
+            <div class="col-12">
+                <article class="box03 p-3 p-md-4 border rounded shadow-sm">
+                    <h3 class="h5 fw-bold mt-2 rd-card-title">01｜設計審查</h3>
+                    <p class="small rd-card-description">
+                        設計端先提供機殼尺寸、連接器位置與訊號需求。
+                        工程團隊對照圖面，確認板厚、疊構和裝配空間，整理需要修正的項目。
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-3 rd-card-title">02｜樣品驗證</h3>
+                    <p class="small rd-card-description">
+                        首批樣品完成後，安排尺寸檢查、導通測試及阻抗量測。
+                        若結果與設計目標有差異，記錄差異位置與圖面版本，作為下一輪調整的依據。
+                    </p>
+
+                    <h3 class="h5 fw-bold mt-3 rd-card-title">03｜量產準備</h3>
+                    <p class="small rd-card-description mb-0">
+                        小批試產確認後，將圖面版本、材料規格、檢驗項目與批號規則整理成量產文件。
+                        後續若需更換板材或調整圖面，便能依照這份紀錄確認要重新驗證哪些項目。
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 06 頁尾 -->
         <div class="row">
             <div class="col-12 rd-footer text-center py-3 mt-4 rounded shadow-sm">
                 Powered By 智造科技 Circuit Tech © 2026
             </div>
         </div>
-
     </main>
-
 </div>
 
-<!-- Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- 全站共用導覽列與深淺色切換 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/nav-loader.js"></script>
-
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -6,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>智造科技｜員工福利・美食生活指南</title>
-
     <meta name="description"
-          content="智造科技員工福利美食生活指南，提供農業部開放資料中的餐廳名稱、照片、電話、地址與地圖資訊查詢。">
+          content="查詢農業部開放資料中的餐廳名稱、照片、電話、地址與地圖位置。">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/union.css">
 
@@ -35,12 +34,9 @@
 
 <body>
 <div class="wrapper">
-
-    <!-- 全站共用導覽列 -->
     <div id="navbar-container"></div>
 
     <main class="container my-4">
-
         <section class="main-card p-3 p-md-4 rounded shadow-sm"
                  aria-labelledby="unionTitle">
 
@@ -50,16 +46,13 @@
             </h1>
 
             <p class="union-intro text-center mb-4">
-                探索各地特色餐飲與美食資訊，讓工作與生活更加精彩。
-                查詢店名、電話、地址與地圖位置。
+                午餐、團隊聚餐或出差途中，可依店名、電話或地址查詢餐飲資訊。
+                店家地址可搭配地圖導航查看。
             </p>
 
-            <!-- 搜尋工具列 -->
             <div class="row g-3 align-items-end mb-3">
-
                 <div class="col-12 col-md-8">
-                    <label for="searchInput"
-                           class="form-label fw-bold">
+                    <label for="searchInput" class="form-label fw-bold">
                         搜尋餐廳或地址
                     </label>
 
@@ -77,47 +70,27 @@
                         ↻ 重新載入資料
                     </button>
                 </div>
-
             </div>
 
-            <!-- 資料筆數 -->
             <div class="union-toolbar mb-3">
-
-                <p class="mb-0"
-                   id="resultCount"
-                   role="status"
-                   aria-live="polite">
+                <p class="mb-0" id="resultCount" role="status" aria-live="polite">
                     正在讀取資料...
                 </p>
 
                 <span class="union-source">
                     資料來源：農業部開放資料
                 </span>
-
             </div>
 
-            <!-- 保留原本 Bootstrap 表格 -->
             <div class="table-responsive-md">
-
                 <table class="table custom-table table-rwd mb-0 table-hover align-middle">
-
                     <thead>
                         <tr>
-                            <th scope="col" style="width:20%;">
-                                餐廳名稱
-                            </th>
-                            <th scope="col" style="width:15%;">
-                                圖片
-                            </th>
-                            <th scope="col" style="width:15%;">
-                                電話
-                            </th>
-                            <th scope="col" style="width:30%;">
-                                住址
-                            </th>
-                            <th scope="col" style="width:20%;">
-                                地圖位置
-                            </th>
+                            <th scope="col" style="width:20%;">餐廳名稱</th>
+                            <th scope="col" style="width:15%;">圖片</th>
+                            <th scope="col" style="width:15%;">電話</th>
+                            <th scope="col" style="width:30%;">住址</th>
+                            <th scope="col" style="width:20%;">地圖位置</th>
                         </tr>
                     </thead>
 
@@ -128,37 +101,29 @@
                             </td>
                         </tr>
                     </tbody>
-
                 </table>
-
             </div>
 
-            <!-- 資料使用說明 -->
             <p class="union-note mt-3 mb-0">
-                ※ 本頁顯示農業部美食開放資料，僅供店家資訊查詢；
-                不代表所有店家均已與本公司簽訂特約優惠。
-                實際營業資訊與優惠資格請另行確認。
+                ※ 店家資訊來自農業部美食開放資料，供餐飲與交通規劃參考。
+                特約資格以另行公告的有效名單為準。
+                營業時間與訂位方式請向店家確認。
             </p>
-
         </section>
-
     </main>
 
-    <!-- 頁尾 -->
     <footer>
         <div class="footer-content py-3 text-center">
             <p class="small mb-0 text-muted">
-                智造科技 Circuit Tech © 2026 員工福利委員會
+                智造科技 Circuit Tech © 2026｜員工生活資訊示範
             </p>
         </div>
     </footer>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/nav-loader.js"></script>
 <script src="js/union.js"></script>
-
 </body>
 </html>

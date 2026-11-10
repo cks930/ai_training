@@ -1,262 +1,255 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>智造科技｜PCB 電路板製造</title>
-
     <meta name="description"
-          content="智造科技 PCB 電路板製造與智慧製造企業網站，展示多層板、HDI 技術及品質管理相關內容。">
+          content="智造科技企業網站示範，介紹多層 PCB、HDI、製程驗證與品質追溯。">
 
-    <!-- Bootstrap 5.3.3 -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-    <!-- 原本公司網站的 CSS -->
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- 原本日夜模式 CSS -->
     <link rel="stylesheet" href="css/theme-fix.css">
 
-    <!-- 預先套用主題，避免畫面閃爍 -->
+    <style>
+        .home-process-photo {
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+    </style>
+
     <script>
         (function () {
             let theme = "dark";
 
             try {
-                theme = localStorage.getItem("theme") === "light"
-                    ? "light"
-                    : "dark";
+                if (localStorage.getItem("theme") === "light") {
+                    theme = "light";
+                }
             } catch (error) {
-                theme = "dark";
+                // 使用預設深色模式
             }
 
-            document.documentElement.classList.toggle(
-                "dark",
-                theme === "dark"
-            );
-
-            document.documentElement.classList.toggle(
-                "dark-mode",
-                theme === "dark"
-            );
-
-            document.documentElement.setAttribute(
-                "data-bs-theme",
-                theme
-            );
+            document.documentElement.classList.toggle("dark", theme === "dark");
+            document.documentElement.classList.toggle("dark-mode", theme === "dark");
+            document.documentElement.setAttribute("data-bs-theme", theme);
         })();
     </script>
-
 </head>
 
 <body>
-
 <div class="wrapper">
-
-    <!-- 全站共用導覽列：七個按鈕 -->
     <div id="navbar-container"></div>
 
     <main>
-
-        <!-- =====================================
-             Section 01：首頁主視覺
-        ====================================== -->
+        <!-- 01 主視覺 -->
         <section class="hero">
-
             <div class="hero-container">
-
                 <div class="hero-image">
-                    <img src="images/a1.jpg"
-                         alt="智造科技主視覺">
+                    <img src="images/a1.jpg" alt="智造科技主視覺">
                 </div>
 
                 <div class="hero-content">
-
                     <h1>
-                        智慧驅動製造<br>
-                        連結科技未來
+                        精密電路板製造<br>
+                        從打樣到量產
                     </h1>
 
                     <p>
-                        專注於高階多層板與 HDI PCB 製造，
-                        結合專業研發團隊與自動化精準工藝。
+                        以多層 PCB 與高密度互連板（HDI）為核心，
+                        面向網通設備、工業控制與邊緣運算應用。
                     </p>
 
-                    <a href="about-us.html" class="btn-cta">
-                        探索智造
-                    </a>
-
+                    <a href="about-us.html" class="btn-cta">探索智造</a>
                 </div>
-
             </div>
-
         </section>
 
-        <!-- =====================================
-             Section 02：企業數據
-        ====================================== -->
+        <!-- 02 技術亮點 -->
         <section class="metrics-bar">
-
             <div class="metrics-container">
-
                 <div class="metric-item">
-
-                    <div class="number">
-                        30+
-                    </div>
-
-                    <div class="label">
-                        年產業經驗積累
-                    </div>
-
+                    <div class="number">HDI</div>
+                    <div class="label">高密度互連製程</div>
                 </div>
 
                 <div class="metric-item">
-
-                    <div class="number">
-                        99.8%
-                    </div>
-
-                    <div class="label">
-                        嚴格良率控制
-                    </div>
-
+                    <div class="number">AOI</div>
+                    <div class="label">內外層線路檢測</div>
                 </div>
 
                 <div class="metric-item">
-
-                    <div class="number">
-                        ISO
-                    </div>
-
-                    <div class="label">
-                        國際認證 9001 / 14001
-                    </div>
-
+                    <div class="number">DFM</div>
+                    <div class="label">製造可行性評估</div>
                 </div>
 
                 <div class="metric-item">
-
-                    <div class="number">
-                        24/7
-                    </div>
-
-                    <div class="label">
-                        快速打樣與全球支援
-                    </div>
-
+                    <div class="number">LOT</div>
+                    <div class="label">製程批次追溯</div>
                 </div>
-
             </div>
-
         </section>
 
-        <!-- =====================================
-             Section 03：核心優勢與服務
-        ====================================== -->
+        <!-- 03 核心優勢與專業服務 -->
         <section id="products" class="section">
-
-            <h2 class="section-title">
-                核心優勢與專業服務
-            </h2>
+            <h2 class="section-title">核心優勢與專業服務</h2>
 
             <div class="grid-cards">
-
-                <!-- 卡片 01 -->
                 <div class="card">
-
-                    <h3>
-                        精密製程技術
-                    </h3>
-
+                    <h3>精密製程技術</h3>
                     <p>
-                        專注於多層板與 HDI 線路設計，
-                        滿足通訊與工業的高頻品質需求。
+                        依產品用途規劃疊構、線寬線距與導通孔，
+                        在打樣前先確認設計與製程條件。
                     </p>
-
                 </div>
 
-                <!-- 卡片 02 -->
                 <div class="card">
-
-                    <h3>
-                        全面品質管理
-                    </h3>
-
+                    <h3>全面品質管理</h3>
                     <p>
-                        引進全自動光學檢測 (AOI)
-                        與嚴密品質控管流程，
-                        確保極致穩定性。
+                        透過自動光學檢測（AOI）辨識線路異常，
+                        搭配電性測試及批次紀錄，支援出貨檢驗與問題追查。
                     </p>
-
                 </div>
 
-                <!-- 卡片 03 -->
                 <div class="card">
-
-                    <h3>
-                        快速打樣彈性量產
-                    </h3>
-
+                    <h3>快速打樣彈性量產</h3>
                     <p>
-                        提供客製化快速打樣方案，
-                        縮短客戶開發週期。
+                        依序安排工程樣品、小批試產與量產確認，
+                        透過階段性驗證確認製程一致性。
                     </p>
-
                 </div>
-
             </div>
-
         </section>
 
-    </main>
+        <!-- 04 公司簡介 -->
+        <section id="company-overview" class="section">
+            <h2 class="section-title">認識智造科技</h2>
 
-    <!-- =====================================
-         Footer：公司資訊
-    ====================================== -->
-    <footer>
-
-        <div class="footer-content">
-
-            <div class="footer-col">
-
-                <h4>
-                    智造科技股份有限公司
-                </h4>
+            <div class="card">
+                <h3>從產品需求建立製造條件</h3>
 
                 <p>
-                    電話：+886-2-1234-5678
+                    智造科技以多層 PCB 與高密度互連板為核心，服務方向涵蓋工業控制、網路通訊與運算設備。
+                    開發初期先和設計端確認板厚、疊構、阻抗與使用環境，再由製程團隊評估材料、
+                    線路配置和加工條件，讓工程樣品有明確的驗證依據。
                 </p>
 
-                <p>
-                    地址：新竹科學園區創新一路 888 號
+                <p class="mb-0">
+                    打樣與試產期間，工程與品保團隊共同整理檢驗結果及異常紀錄。
+                    每次調整圖面、材料或製程條件，都保留對應的版本與批次資料，
+                    方便後續重複製造，也能在出現問題時追查原因。
                 </p>
+            </div>
+        </section>
 
+        <!-- 05 製造流程 -->
+        <section id="manufacturing-process" class="section">
+            <h2 class="section-title">從工程樣品到量產</h2>
+
+            <div class="grid-cards">
+                <div class="card">
+                    <img src="images/c2.jpg"
+                         class="home-process-photo w-100 rounded mb-3"
+                         alt="工業機械手臂與自動化產線示意"
+                         width="5760" height="3840"
+                         loading="lazy" decoding="async">
+
+                    <h3>01｜設計審查與打樣</h3>
+
+                    <p class="mb-0">
+                        根據電路圖面、板材需求及成品尺寸檢查製造可行性。
+                        在工程樣品階段確認疊構、線寬線距與孔位，並記錄需要調整的項目。
+                    </p>
+                </div>
+
+                <div class="card">
+                    <img src="images/c3.jpg"
+                         class="home-process-photo w-100 rounded mb-3"
+                         alt="工業設備操作面板示意"
+                         width="3868" height="5802"
+                         loading="lazy" decoding="async">
+
+                    <h3>02｜小批試產與檢驗</h3>
+
+                    <p class="mb-0">
+                        以小批試產確認加工條件，搭配外觀檢查、電性測試及必要的截面觀察，
+                        比對實物和圖面要求。工程團隊依檢驗結果調整製程，再確認下一批的結果。
+                    </p>
+                </div>
+
+                <div class="card">
+                    <img src="images/c4.jpg"
+                         class="home-process-photo w-100 rounded mb-3"
+                         alt="自動化設備與產線操作終端示意"
+                         width="6000" height="4002"
+                         loading="lazy" decoding="async">
+
+                    <h3>03｜量產管理與追溯</h3>
+
+                    <p class="mb-0">
+                        將工單、材料批號及檢測結果與出貨批次關聯。
+                        發現品質異常時，可回查相同製程條件的批次，縮小排查範圍。
+                    </p>
+                </div>
             </div>
 
+            <p class="small text-center text-body-secondary mt-3 mb-0">
+                圖片為製造環境示意。
+            </p>
+        </section>
+
+        <!-- 06 產品應用 -->
+        <section id="product-applications" class="section">
+            <h2 class="section-title">產品應用領域</h2>
+
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>工業控制</h3>
+                    <p class="mb-0">
+                        以控制器、人機介面與監測模組為應用方向。設計評估從機構尺寸、
+                        接頭位置與安裝方式開始，讓板件與設備組裝條件一起確認。
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>網路通訊</h3>
+                    <p class="mb-0">
+                        以交換器、通訊閘道器和網路設備為應用方向。
+                        依傳輸需求評估材料、疊構與阻抗，並在打樣階段安排對應量測。
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>伺服器與邊緣運算</h3>
+                    <p class="mb-0">
+                        以伺服器周邊控制板與邊緣設備為應用方向。
+                        根據元件密度、散熱空間與介面配置，評估多層板的設計與製造條件。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>智造科技股份有限公司</h4>
+                <p>服務範圍｜PCB 設計評估與製程整合</p>
+                <p>企業情境展示｜課程專題</p>
+            </div>
         </div>
 
         <div class="footer-bottom">
             &copy; 智造科技股份有限公司
             All Rights Reserved.
         </div>
-
     </footer>
-
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- 原本七個導覽按鈕的載入程式 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/nav-loader.js"></script>
-
-<!-- 原本全站日夜模式 -->
 <script src="js/theme-fix.js"></script>
-
 </body>
 </html>

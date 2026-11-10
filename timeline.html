@@ -1,23 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>智造科技｜PCB 產業發展時間軸</title>
+    <title>智造科技｜公司發展時間軸</title>
 
-    <!-- Bootstrap 5 -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-    <!-- 原本共用 CSS -->
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- 時間軸專用 CSS -->
     <link rel="stylesheet" href="css/timeline.css">
 
-    <!-- 深淺色初始化 -->
     <script>
         (function () {
             let theme = "dark";
@@ -30,310 +23,216 @@
                 theme = "dark";
             }
 
-            document.documentElement.classList.toggle(
-                "dark", theme === "dark"
-            );
-
-            document.documentElement.classList.toggle(
-                "dark-mode", theme === "dark"
-            );
-
-            document.documentElement.setAttribute(
-                "data-bs-theme", theme
-            );
+            document.documentElement.classList.toggle("dark", theme === "dark");
+            document.documentElement.classList.toggle("dark-mode", theme === "dark");
+            document.documentElement.setAttribute("data-bs-theme", theme);
         })();
     </script>
 </head>
 
 <body>
-
 <div class="wrapper">
-
-    <!-- 共用導覽列 -->
     <div id="navbar-container"></div>
 
     <main class="container py-4" style="max-width: 1100px;">
-
-        <!-- 頁面標題 -->
         <h1 class="timeline-title text-center fw-bold fs-2 mb-2">
-            PCB 產業發展時間軸
+            智造科技發展時間軸
         </h1>
 
         <p class="timeline-subtitle text-center mb-4 fs-6">
-            從傳統製造到智慧永續的技術革新之路
+            從工業控制板打樣起步，逐步建立多層板製程、高速板驗證與量產追溯。
+            以下為課程專題中的虛構企業沿革，圖片為製造環境示意。
         </p>
 
-        <!-- 時間軸 -->
         <div class="timeline-section">
-
-            <!-- 2016：階段一 -->
+            <!-- 2016 創立與技術奠基 -->
             <div class="row align-items-center justify-content-between timeline-row mb-4">
-
                 <div class="timeline-dot"></div>
 
                 <div class="col-md-5 mb-3 mb-md-0">
-
                     <div class="imgbox bg-img roller-t rounded overflow-hidden shadow-sm"
                          style="height: 220px; background-image: url('images/c1.jpg');">
-
                         <div class="rollerbox-t">
-
                             <button type="button"
                                     class="btn btn-warning btn-sm fw-bold"
                                     data-timeline="0">
                                 查看更多
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
 
                 <div class="col-md-6">
-
                     <div class="timeline-card card p-4 border shadow-sm">
-
                         <span class="timeline-tag badge bg-primary text-white mb-2 fs-7"
                               style="width: fit-content;">
                             2016 · 階段一
                         </span>
 
-                        <h2 class="h5 fw-bold mb-2">
-                            創立與技術奠基
-                        </h2>
+                        <h2 class="h5 fw-bold mb-2">創立與技術奠基</h2>
 
                         <p class="mb-2">
-                            公司正式成立並引進先進的單雙面板生產設備，
-                            建立標準化無塵室與化學蝕刻產線。
+                            智造科技從工業控制器和設備監測模組的電路板打樣起步，
+                            初期以雙面板與基礎多層板為主，承接工程樣品及小批量製造。
                         </p>
 
                         <p class="mb-2">
-                            成功通過 ISO 9001 品質管理系統認證，
-                            奠定高品質電路板製造的穩固基礎。
+                            接到圖面後，先確認成品尺寸、孔位與板材規格。
+                            第一片樣品完成後，檢查外形和導通結果，再決定是否依同一條件繼續製作。
                         </p>
 
                         <p class="mb-0">
-                            初期主要服務本地消費性電子與家電客戶，
-                            建立穩定的產品良率與交期口碑。
+                            隨著案件增加，團隊開始依工單記錄圖面版本、材料批號及出貨檢驗結果。
+                            下次接到相同產品時，可依前次紀錄安排備料與製程。
                         </p>
-
                     </div>
-
                 </div>
-
             </div>
 
-            <!-- 2019：階段二 -->
+            <!-- 2019 多層板與 HDI 試產 -->
             <div class="row flex-row-reverse align-items-center justify-content-between timeline-row mb-4">
-
                 <div class="timeline-dot"></div>
 
                 <div class="col-md-5 mb-3 mb-md-0">
-
                     <div class="imgbox bg-img roller-t rounded overflow-hidden shadow-sm"
                          style="height: 220px; background-image: url('images/c2.jpg');">
-
                         <div class="rollerbox-t">
-
                             <button type="button"
                                     class="btn btn-warning btn-sm fw-bold"
                                     data-timeline="1">
                                 查看更多
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
 
                 <div class="col-md-6">
-
                     <div class="timeline-card card p-4 border shadow-sm">
-
                         <span class="timeline-tag badge bg-primary text-white mb-2 fs-7"
                               style="width: fit-content;">
                             2019 · 階段二
                         </span>
 
-                        <h2 class="h5 fw-bold mb-2">
-                            多層板擴產突破
-                        </h2>
+                        <h2 class="h5 fw-bold mb-2">多層板與 HDI 試產</h2>
 
                         <p class="mb-0">
-                            因應資通訊與筆記型電腦市場的高速成長，
-                            大規模擴建多層板量產廠房，
-                            順利切入主流供應鏈，
-                            並導入自動化雷射鑽孔與精密壓合技術。
+                            隨著板件上的元件增加，團隊開始試作高密度互連板（HDI），
+                            透過多層壓合與雷射微孔增加佈線空間。試產時取樣切片，
+                            檢查孔壁鍍銅與層間對準情況，再依結果調整鑽孔或壓合條件。
+                            每次調整都記錄於試產工單，方便比較前後批次的差異。
                         </p>
-
                     </div>
-
                 </div>
-
             </div>
 
-            <!-- 2022：階段三 -->
+            <!-- 2022 高頻高速板驗證 -->
             <div class="row align-items-center justify-content-between timeline-row mb-4">
-
                 <div class="timeline-dot"></div>
 
                 <div class="col-md-5 mb-3 mb-md-0">
-
                     <div class="imgbox bg-img roller-t rounded overflow-hidden shadow-sm"
                          style="height: 220px; background-image: url('images/c3.jpg');">
-
                         <div class="rollerbox-t">
-
                             <button type="button"
                                     class="btn btn-warning btn-sm fw-bold"
                                     data-timeline="2">
                                 查看更多
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
 
                 <div class="col-md-6">
-
                     <div class="timeline-card card p-4 border shadow-sm">
-
                         <span class="timeline-tag badge bg-primary text-white mb-2 fs-7"
                               style="width: fit-content;">
                             2022 · 階段三
                         </span>
 
-                        <h2 class="h5 fw-bold mb-2">
-                            高頻高速與車用轉型
-                        </h2>
+                        <h2 class="h5 fw-bold mb-2">高頻高速板驗證</h2>
 
                         <p class="mb-2">
-                            面對 5G 通訊、物聯網及車用電子龐大需求，
-                            全面升級製程能力，
-                            開發出低訊號損耗的高頻高速板
-                            與車規級信賴性板材。
+                            研發方向延伸到網路交換器與邊緣運算設備。
+                            以交換器控制板為例，工程團隊先和設計端確認連接器位置及傳輸需求，
+                            再評估板材、疊構和線路尺寸。
                         </p>
 
                         <p class="mb-0">
-                            取得 IATF 16949 認證，
-                            成功打入國際知名車用電子
-                            與網通大廠供應鏈。
+                            樣品完成後，除了外形與導通檢查，也將阻抗量測結果和設計目標比對。
+                            若量測結果有差異，就把對應的圖面版本、材料規格及檢驗紀錄保留下來，
+                            供下一輪打樣確認。
                         </p>
-
                     </div>
-
                 </div>
-
             </div>
 
-            <!-- 2026：階段四 -->
+            <!-- 2026 數位追溯與資源管理 -->
             <div class="row flex-row-reverse align-items-center justify-content-between timeline-row mb-0">
-
                 <div class="timeline-dot"></div>
 
                 <div class="col-md-5 mb-3 mb-md-0">
-
                     <div class="imgbox bg-img roller-t rounded overflow-hidden shadow-sm"
                          style="height: 220px; background-image: url('images/c4.jpg');">
-
                         <div class="rollerbox-t">
-
                             <button type="button"
                                     class="btn btn-warning btn-sm fw-bold"
                                     data-timeline="3">
                                 查看更多
                             </button>
-
                         </div>
-
                     </div>
-
                 </div>
 
                 <div class="col-md-6">
-
                     <div class="timeline-card card p-4 border shadow-sm">
-
                         <span class="timeline-tag badge bg-primary text-white mb-2 fs-7"
                               style="width: fit-content;">
                             2026 · 階段四
                         </span>
 
-                        <h2 class="h5 fw-bold mb-2">
-                            智慧製造與永續淨零
-                        </h2>
+                        <h2 class="h5 fw-bold mb-2">數位追溯與資源管理</h2>
 
                         <p class="mb-2">
-                            呼應全球淨零碳排與工業 4.0 趨勢，
-                            全面導入 AI 智慧光學檢測（AOI）
-                            與大數據產線分析。
+                            示範產線以工單串接材料批號、製程站點與自動光學檢測（AOI）紀錄。
+                            發現線路異常時，品保人員可依批號回查檢測結果，
+                            找出使用同一批材料或相同製程條件的板件，安排複查。
                         </p>
 
                         <p class="mb-0">
-                            積極推動綠色製造，
-                            落實廢水回收與節能減碳標竿廠房建置。
+                            同時按製程站點整理用水、用電和廢水分類紀錄，
+                            比較相近產量下的資源使用情形，作為後續評估節水與設備調整的依據。
                         </p>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </main>
 
-    <!-- Footer -->
     <footer>
-
         <div class="footer-content py-3">
-
             <div class="footer-col text-center">
-
-                <h6 class="fs-6">
-                    智造科技股份有限公司
-                </h6>
-
-                <p class="small mb-1">
-                    電話：+886-2-1234-5678
-                </p>
-
-                <p class="small mb-0">
-                    地址：新竹科學園區創新一路 888 號
-                </p>
-
+                <h6 class="fs-6">智造科技股份有限公司</h6>
+                <p class="small mb-1">服務範圍｜PCB 設計評估與製程整合</p>
+                <p class="small mb-0">企業情境展示｜課程專題</p>
             </div>
-
         </div>
 
         <div class="footer-bottom py-2 small">
             &copy; 智造科技股份有限公司 All Rights Reserved.
         </div>
-
     </footer>
-
 </div>
 
-<!-- 查看更多：Bootstrap Modal -->
+<!-- 查看更多彈窗 -->
 <div class="modal fade"
      id="timelineModal"
      tabindex="-1"
      aria-labelledby="timelineModalTitle"
      aria-hidden="true">
-
     <div class="modal-dialog modal-dialog-centered modal-lg">
-
         <div class="modal-content">
-
             <div class="modal-header">
-
-                <h2 class="modal-title fs-5 fw-bold"
-                    id="timelineModalTitle">
+                <h2 class="modal-title fs-5 fw-bold" id="timelineModalTitle">
                     發展階段
                 </h2>
 
@@ -342,46 +241,30 @@
                         data-bs-dismiss="modal"
                         aria-label="關閉">
                 </button>
-
             </div>
 
             <div class="modal-body">
-
                 <img id="timelineModalImage"
                      class="img-fluid rounded mb-3 w-100"
                      alt="發展階段圖片">
 
-                <p id="timelineModalYear"
-                   class="fw-bold mb-2"></p>
-
+                <p id="timelineModalYear" class="fw-bold mb-2"></p>
                 <div id="timelineModalContent"></div>
-
             </div>
 
             <div class="modal-footer">
-
                 <button type="button"
                         class="btn btn-secondary"
                         data-bs-dismiss="modal">
                     關閉
                 </button>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- 原本共用導覽列 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/nav-loader.js"></script>
-
-<!-- 時間軸專用 JS -->
 <script src="js/timeline.js"></script>
-
 </body>
 </html>
