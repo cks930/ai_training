@@ -4,53 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>智造科技｜員工福利・美食生活指南</title>
+    <title>智造科技｜員工福利與生活服務</title>
     <meta name="description"
-          content="查詢農業部開放資料中的餐廳名稱、照片、電話、地址與地圖位置。">
+          content="智造科技員工福利與生活服務，提供餐飲與日用品訂購入口，以及餐廳搜尋、電話、地址與地圖資訊。">
 
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/union.css">
 
-    <script>
-        (function () {
-            let theme = "dark";
-
-            try {
-                theme = localStorage.getItem("theme") === "light"
-                    ? "light"
-                    : "dark";
-            } catch (error) {
-                theme = "dark";
-            }
-
-            document.documentElement.classList.toggle("dark", theme === "dark");
-            document.documentElement.classList.toggle("dark-mode", theme === "dark");
-            document.documentElement.setAttribute("data-bs-theme", theme);
-        })();
-    </script>
+    <script src="js/theme.js"></script>
 </head>
 
-<body>
+<body class="employee-benefits-page">
 <div class="wrapper">
+
+    <!-- 共用導覽列 -->
     <div id="navbar-container"></div>
 
     <main class="container my-4">
+
+        <!-- 員工福利與訂購入口 -->
+        <section class="benefits-overview mb-4"
+                 aria-labelledby="benefitsTitle">
+
+            <header class="benefits-header text-center mb-4">
+                <p class="benefits-eyebrow mb-2">
+                    EMPLOYEE BENEFITS
+                </p>
+
+                <h1 class="fw-bold mb-3" id="benefitsTitle">
+                    員工福利與生活服務
+                </h1>
+
+                <p class="union-intro mb-0">
+                    整合餐飲訂購、日用品登記與美食查詢，讓日常生活更便利。
+                </p>
+            </header>
+
+            <article class="benefit-service-card">
+                <div class="row g-3 align-items-center align-self-stretch">
+
+                    <div class="col-12 col-md-9">
+                        <h2 class="h4 fw-bold mb-2">
+                            員工訂購
+                        </h2>
+
+                        <p class="union-intro mb-0">
+                            提供便當、飲料與日用品訂購登記，
+                            可分區建立清單、調整數量並確認訂購內容。
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <a href="order.html"
+                           class="btn benefit-primary-button w-100">
+                            前往員工訂購
+                        </a>
+                    </div>
+
+                </div>
+            </article>
+
+            <aside class="benefits-reminder mt-3"
+                   aria-labelledby="benefitsReminderTitle">
+
+                <h2 class="h6 fw-bold mb-2" id="benefitsReminderTitle">
+                    使用說明
+                </h2>
+
+                <p class="mb-0">
+                    員工訂購與美食指南為不同服務。
+                    美食指南中的店家不代表已開放訂購或具有員工優惠；
+                    可訂購品項、價格與辦理方式，請以訂購頁及相關公告為準。
+                </p>
+
+            </aside>
+        </section>
+
+        <!-- 美食生活指南 -->
         <section class="main-card p-3 p-md-4 rounded shadow-sm"
+                 id="dining-guide"
                  aria-labelledby="unionTitle">
 
-            <h1 class="display-6 main-title text-center mb-3 fw-bold fs-3"
+            <h2 class="main-title text-center mb-3 fw-bold fs-3"
                 id="unionTitle">
-                員工福利｜美食生活指南
-            </h1>
+                美食生活指南
+            </h2>
 
             <p class="union-intro text-center mb-4">
                 午餐、團隊聚餐或出差途中，可依店名、電話或地址查詢餐飲資訊。
                 店家地址可搭配地圖導航查看。
             </p>
 
+            <!-- 搜尋與重新載入 -->
             <div class="row g-3 align-items-end mb-3">
+
                 <div class="col-12 col-md-8">
                     <label for="searchInput" class="form-label fw-bold">
                         搜尋餐廳或地址
@@ -60,7 +109,9 @@
                            class="form-control"
                            id="searchInput"
                            placeholder="輸入店名、電話或地址"
-                           autocomplete="off">
+                           autocomplete="off"
+                           aria-controls="myList"
+                           aria-describedby="resultCount">
                 </div>
 
                 <div class="col-12 col-md-4">
@@ -70,27 +121,40 @@
                         ↻ 重新載入資料
                     </button>
                 </div>
+
             </div>
 
+            <!-- 資料狀態 -->
             <div class="union-toolbar mb-3">
-                <p class="mb-0" id="resultCount" role="status" aria-live="polite">
+
+                <p class="mb-0"
+                   id="resultCount"
+                   role="status"
+                   aria-live="polite">
                     正在讀取資料...
                 </p>
 
                 <span class="union-source">
                     資料來源：農業部開放資料
                 </span>
+
             </div>
 
+            <!-- 店家列表 -->
             <div class="table-responsive-md">
                 <table class="table custom-table table-rwd mb-0 table-hover align-middle">
+
+                    <caption class="visually-hidden">
+                        餐廳搜尋結果，包含名稱、圖片、電話、住址與地圖連結。
+                    </caption>
+
                     <thead>
                         <tr>
-                            <th scope="col" style="width:20%;">餐廳名稱</th>
-                            <th scope="col" style="width:15%;">圖片</th>
-                            <th scope="col" style="width:15%;">電話</th>
-                            <th scope="col" style="width:30%;">住址</th>
-                            <th scope="col" style="width:20%;">地圖位置</th>
+                            <th scope="col">餐廳名稱</th>
+                            <th scope="col">圖片</th>
+                            <th scope="col">電話</th>
+                            <th scope="col">住址</th>
+                            <th scope="col">地圖位置</th>
                         </tr>
                     </thead>
 
@@ -101,24 +165,35 @@
                             </td>
                         </tr>
                     </tbody>
+
                 </table>
             </div>
+
+            <noscript>
+                <p class="union-note mt-3">
+                    美食查詢需要啟用 JavaScript，請啟用後重新載入頁面。
+                </p>
+            </noscript>
 
             <p class="union-note mt-3 mb-0">
                 ※ 店家資訊來自農業部美食開放資料，供餐飲與交通規劃參考。
                 特約資格以另行公告的有效名單為準。
                 營業時間與訂位方式請向店家確認。
             </p>
+
         </section>
+
     </main>
 
+    <!-- 頁尾 -->
     <footer>
         <div class="footer-content py-3 text-center">
             <p class="small mb-0 text-muted">
-                智造科技 Circuit Tech © 2026｜員工生活資訊示範
+                智造科技 Circuit Tech © 2026｜員工福利與生活服務
             </p>
         </div>
     </footer>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

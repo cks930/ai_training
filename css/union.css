@@ -1,8 +1,4 @@
-
-/* ============================================
-   union.css
-   員工福利委員會｜特約合作廠商列表
-============================================ */
+/* 員工福利頁 */
 
 /* 深色模式 */
 :root,
@@ -140,13 +136,12 @@ body {
     font-size: .82rem;
 }
 
-/* 表格：限定本頁，避免影響其他網頁 */
+/* 表格 */
 .main-card .custom-table {
     width: 100%;
     margin-bottom: 0;
     background: var(--union-card);
     color: var(--union-text);
-
     --bs-table-bg: var(--union-card);
     --bs-table-color: var(--union-text);
     --bs-table-border-color: var(--union-border);
@@ -175,13 +170,12 @@ body {
     transition: background-color .2s;
 }
 
-/* 店名 */
+/* 店名與電話 */
 .restaurant-name {
     color: var(--union-text);
     font-weight: 700;
 }
 
-/* 電話 */
 .restaurant-phone {
     color: var(--union-text);
     text-decoration: none;
@@ -193,7 +187,6 @@ body {
     text-decoration: underline;
 }
 
-/* 地址 */
 .restaurant-address {
     color: var(--union-muted);
 }
@@ -218,7 +211,7 @@ body {
     margin: 0 auto;
 }
 
-/* 地圖搜尋按鈕 */
+/* 地圖按鈕 */
 .btn-map {
     display: inline-flex;
     align-items: center;
@@ -267,7 +260,7 @@ body {
     color: var(--union-muted);
 }
 
-/* Footer */
+/* 頁尾 */
 .wrapper > footer {
     background: var(--union-bg) !important;
     border-top: 1px solid var(--union-border);
@@ -281,11 +274,8 @@ body {
     color: var(--union-muted) !important;
 }
 
-/* ============================================
-   手機版：表格改成卡片式
-============================================ */
+/* 手機版表格 */
 @media (max-width: 767.98px) {
-
     .main-card {
         padding: 16px !important;
     }
@@ -340,7 +330,6 @@ body {
         border-bottom: 0;
     }
 
-    /* 對應 JavaScript 產生的 data-label */
     .main-card .custom-table tbody tr:not(.status-row) td::before {
         content: attr(data-label);
         color: var(--union-text);
@@ -373,7 +362,6 @@ body {
     }
 }
 
-/* 更小的手機 */
 @media (max-width: 380px) {
     .main-card .custom-table tbody tr:not(.status-row) td {
         grid-template-columns: 70px minmax(0, 1fr);
@@ -386,10 +374,163 @@ body {
     }
 }
 
-/* 減少動畫 */
 @media (prefers-reduced-motion: reduce) {
     .main-card .custom-table tbody tr,
     .btn-map {
         transition: none;
     }
+}
+
+/* 福利入口 */
+.employee-benefits-page > .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.employee-benefits-page .benefits-header {
+    padding: 24px 12px 8px;
+}
+
+.employee-benefits-page .benefits-header h1 {
+    color: var(--union-text);
+    font-size: clamp(1.65rem, 4vw, 2.2rem);
+    line-height: 1.4;
+}
+
+.employee-benefits-page .benefits-eyebrow {
+    color: var(--union-muted);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+}
+
+.employee-benefits-page .benefit-service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(20px, 3vw, 30px);
+    background: var(--union-card);
+    color: var(--union-text);
+    border: 1px solid var(--union-border);
+    border-radius: 14px;
+    box-shadow: 0 6px 20px var(--union-shadow);
+}
+
+.employee-benefits-page .benefit-service-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+    background: var(--union-table-head);
+    border-radius: 12px;
+    font-size: 1.6rem;
+}
+
+.employee-benefits-page .benefit-service-card h2 {
+    color: var(--union-text);
+    line-height: 1.4;
+}
+
+.employee-benefits-page .benefit-service-list {
+    padding-left: 1.2rem;
+    margin-bottom: 24px;
+    color: var(--union-muted);
+    font-size: .92rem;
+    line-height: 1.9;
+}
+
+.employee-benefits-page .benefit-primary-button,
+.employee-benefits-page .benefit-secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.employee-benefits-page .benefit-primary-button {
+    background: var(--union-primary);
+    color: #fff;
+    border: 1px solid var(--union-primary);
+}
+
+.employee-benefits-page .benefit-primary-button:hover {
+    background: var(--union-primary-hover);
+    color: #fff;
+    border-color: var(--union-primary-hover);
+}
+
+.employee-benefits-page .benefit-secondary-button {
+    background: var(--union-table-head);
+    color: var(--union-text);
+    border: 1px solid var(--union-border);
+}
+
+.employee-benefits-page .benefit-secondary-button:hover {
+    background: var(--union-row-hover);
+    color: var(--union-text);
+    border-color: var(--union-muted);
+}
+
+.employee-benefits-page .benefit-primary-button:focus-visible,
+.employee-benefits-page .benefit-secondary-button:focus-visible {
+    outline: 3px solid var(--union-primary);
+    outline-offset: 4px;
+}
+
+.employee-benefits-page .benefits-reminder {
+    padding: 18px 20px;
+    background: var(--union-table-head);
+    color: var(--union-muted);
+    border: 1px solid var(--union-border);
+    border-radius: 10px;
+    font-size: .9rem;
+    line-height: 1.8;
+}
+
+.employee-benefits-page .benefits-reminder h2 {
+    color: var(--union-text);
+}
+
+.employee-benefits-page #dining-guide {
+    scroll-margin-top: 100px;
+}
+
+@media (max-width: 575.98px) {
+    .employee-benefits-page .benefit-primary-button,
+    .employee-benefits-page .benefit-secondary-button {
+        width: 100%;
+    }
+}
+
+/* 原本 HTML 的表頭欄寬 */
+#dining-guide .custom-table thead th:nth-child(1) {
+    width: 20%;
+}
+
+#dining-guide .custom-table thead th:nth-child(2) {
+    width: 15%;
+}
+
+#dining-guide .custom-table thead th:nth-child(3) {
+    width: 15%;
+}
+
+#dining-guide .custom-table thead th:nth-child(4) {
+    width: 30%;
+}
+
+#dining-guide .custom-table thead th:nth-child(5) {
+    width: 20%;
 }

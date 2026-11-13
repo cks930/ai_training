@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智造科技｜員工訂購系統</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/order.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">智造科技</div>
+            <div class="topbar-note">員工訂購系統</div>
+        </div>
+    </header>
+
+    <main class="page">
+        <h1>員工訂購專區</h1>
+        <p class="intro">餐飲與公司自製日用品分區處理，各自確認送出。</p>
+
+        <fieldset class="area-grid">
+            <legend class="visually-hidden">選擇訂購專區</legend>
+
+            <div>
+                <input type="radio" class="btn-check" name="area"
+                       id="area-food" value="food" checked>
+                <label class="area-option" for="area-food">
+                    <span>
+                        <strong>餐飲訂購</strong>
+                        <small>西屯區便當・飲料</small>
+                    </span>
+                    <span id="food-count" class="count-badge">0 項</span>
+                </label>
+            </div>
+
+            <div>
+                <input type="radio" class="btn-check" name="area"
+                       id="area-goods" value="goods">
+                <label class="area-option" for="area-goods">
+                    <span>
+                        <strong>公司自製日用品</strong>
+                        <small>口罩・隱形眼鏡</small>
+                    </span>
+                    <span id="goods-count" class="count-badge">0 項</span>
+                </label>
+            </div>
+        </fieldset>
+
+        <!-- 左右等高區域 -->
+        <div class="layout">
+            <form id="order-form" novalidate>
+                <section class="panel">
+                    <div class="panel-header">
+                        <h2>訂購人資料</h2>
+                    </div>
+
+                    <div class="panel-body form-grid">
+                        <div class="field">
+                            <label for="employee" class="form-label">訂購人</label>
+                            <input id="employee" class="form-control"
+                                   autocomplete="name" placeholder="請輸入姓名">
+                            <div class="invalid-feedback">姓名需為 2–20 字。</div>
+                        </div>
+
+                        <div class="field">
+                            <label for="department" class="form-label">所屬部門</label>
+                            <input id="department" class="form-control"
+                                   placeholder="例如：行政部">
+                            <div class="invalid-feedback">部門需為 2–30 字。</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-header">
+                        <h2 id="editor-title">選擇餐飲</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="form-grid">
+                            <div class="field full-width">
+                                <label for="category" class="form-label">商品分類</label>
+                                <select id="category" class="form-select"></select>
+                                <div class="invalid-feedback">請選擇分類。</div>
+                            </div>
+
+                            <div id="food-fields" class="field full-width">
+                                <div class="mb-3">
+                                    <label for="shop" class="form-label">西屯區店家</label>
+                                    <select id="shop" class="form-select" disabled></select>
+                                    <div class="invalid-feedback">請選擇店家。</div>
+                                </div>
+
+                                <div id="shop-info" class="info-box mb-3 d-none">
+                                    <div id="shop-name" class="fw-bold"></div>
+                                    <div id="shop-address" class="mt-1"></div>
+                                    <div id="shop-phone"></div>
+                                    <div id="shop-price-type" class="mt-1"></div>
+                                    <div class="shop-links">
+                                        <a id="map-link" target="_blank"
+                                           rel="noopener noreferrer">查看地圖</a>
+                                        <a id="source-link" target="_blank"
+                                           rel="noopener noreferrer">菜單來源</a>
+                                    </div>
+                                </div>
+
+                                <label for="pname" class="form-label">餐點／飲料規格</label>
+                                <select id="pname" class="form-select" disabled></select>
+                                <div class="invalid-feedback">請選擇商品。</div>
+                            </div>
+
+                            <div id="goods-fields" class="field full-width d-none">
+                                <div class="info-box mb-3">
+                                    公司自行製造，無需填寫供應商。
+                                </div>
+                                <label for="goods-name" class="form-label">公司商品名稱</label>
+                                <input id="goods-name" class="form-control"
+                                       placeholder="請輸入公司公告的商品名稱">
+                                <div class="invalid-feedback">商品名稱需為 2–80 字。</div>
+                            </div>
+
+                            <div class="field">
+                                <label for="price" class="form-label">單價（元）</label>
+                                <input id="price" type="number" class="form-control"
+                                       min="1" max="10000" step="1">
+                                <div class="invalid-feedback">請輸入 1–10,000 的整數。</div>
+                            </div>
+
+                            <div class="field">
+                                <label for="num" class="form-label">
+                                    數量（<span id="unit-text">份</span>）
+                                </label>
+                                <div class="number-control">
+                                    <button id="num-minus" type="button"
+                                            class="btn btn-outline-secondary"
+                                            aria-label="減少數量">－</button>
+                                    <input id="num" type="number" class="form-control"
+                                           min="1" max="100" step="1" value="1">
+                                    <button id="num-plus" type="button"
+                                            class="btn btn-outline-secondary"
+                                            aria-label="增加數量">＋</button>
+                                </div>
+                                <div id="num-error" class="small text-danger mt-1 d-none">
+                                    數量需為 1–100 的整數。
+                                </div>
+                            </div>
+
+                            <div id="drink-fields" class="field full-width d-none">
+                                <div class="form-grid">
+                                    <div class="field">
+                                        <label for="sugar" class="form-label">甜度需求</label>
+                                        <select id="sugar" class="form-select">
+                                            <option value="依店家預設">依店家預設</option>
+                                            <option value="無糖">無糖</option>
+                                            <option value="微糖">微糖</option>
+                                            <option value="半糖">半糖</option>
+                                            <option value="少糖">少糖</option>
+                                            <option value="正常糖">正常糖</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="ice" class="form-label">冰量需求</label>
+                                        <select id="ice" class="form-select">
+                                            <option value="依店家預設">依店家預設</option>
+                                            <option value="去冰">去冰</option>
+                                            <option value="微冰">微冰</option>
+                                            <option value="少冰">少冰</option>
+                                            <option value="正常冰">正常冰</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-text">
+                                    以上為訂購需求，固定糖冰品項仍依店家規定供應。
+                                </div>
+                            </div>
+
+                            <div class="field full-width">
+                                <label for="remark" class="form-label">
+                                    <span id="remark-label">訂購備註</span>
+                                    <span id="remark-optional" class="optional">選填</span>
+                                </label>
+                                <textarea id="remark" class="form-control" rows="3"></textarea>
+                                <div class="invalid-feedback" id="remark-error"></div>
+                                <div id="remark-help" class="form-text"></div>
+                            </div>
+
+                            <div class="field full-width">
+                                <div id="price-note" class="info-box"></div>
+                            </div>
+
+                            <div class="field full-width total-box">
+                                <span>本項小計</span>
+                                <strong>NT$ <span id="item-total">—</span></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <button id="add-btn" type="submit"
+                                class="btn btn-primary w-100">加入餐飲清單</button>
+                        <div id="add-status" class="status"
+                             role="status" aria-live="polite"></div>
+                    </div>
+                </section>
+            </form>
+
+            <!-- 右側框架拉伸至左側整體高度 -->
+            <aside class="sidebar">
+                <section class="panel cart-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2 id="cart-title">餐飲訂購清單</h2>
+                            <div id="receiver-text" class="receiver"></div>
+                        </div>
+                        <span id="current-count" class="count-badge">0 項</span>
+                    </div>
+
+                    <div class="panel-body">
+                        <div id="cart-list" class="cart-list"
+                             role="region" aria-label="目前專區訂購清單"
+                             tabindex="0"></div>
+
+                        <div class="total-box mt-3">
+                            <span id="total-label">餐飲金額</span>
+                            <span class="total-price">
+                                NT$ <span id="total-text">0</span>
+                            </span>
+                        </div>
+
+                        <div class="form-text mt-2">
+                            商品合計，未含運費或其他費用。
+                        </div>
+                        <div id="other-cart-note" class="form-text mt-2"></div>
+                    </div>
+
+                    <div class="panel-footer cart-actions">
+                        <button id="btnCancel" type="button"
+                                class="btn btn-outline-secondary" disabled>清空</button>
+                        <button id="ok-btn" type="button"
+                                class="btn btn-primary" disabled>確認餐飲訂單</button>
+                    </div>
+                </section>
+            </aside>
+        </div>
+
+        <section id="showmsg" class="panel confirm-panel d-none"
+                 aria-labelledby="confirm-title">
+            <div class="panel-header">
+                <h2 id="confirm-title" tabindex="-1">訂單確認</h2>
+            </div>
+
+            <div class="panel-body">
+                <div class="info-box mb-3">
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            接收單位：<strong id="confirm-receiver"></strong>
+                        </div>
+                        <div class="col-md-4">
+                            訂購人：<strong id="confirm-employee"></strong>
+                        </div>
+                        <div class="col-md-4">
+                            部門：<strong id="confirm-department"></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table confirm-table">
+                        <caption class="visually-hidden">本次訂單明細</caption>
+                        <thead>
+                            <tr>
+                                <th>商品／規格</th>
+                                <th>單價</th>
+                                <th>數量</th>
+                                <th>小計</th>
+                            </tr>
+                        </thead>
+                        <tbody id="confirm-items"></tbody>
+                    </table>
+                </div>
+
+                <div class="total-box mt-3">
+                    <span>本筆訂單金額</span>
+                    <span class="total-price">
+                        NT$ <span id="confirm-total"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="panel-footer d-flex justify-content-end gap-2">
+                <button id="confirm-cancel" type="button"
+                        class="btn btn-outline-secondary">返回修改</button>
+                <button id="send-btn" type="button"
+                        class="btn btn-primary">確認送出</button>
+            </div>
+        </section>
+
+        <p class="page-note">
+            餐飲僅提供西屯區店家的部分參考菜單，非即時價格。<br>
+            餐飲與日用品獨立登記；未串接付款、店家下單或單位通知。
+        </p>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/order.js"></script>
+</body>
+</html>
